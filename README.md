@@ -14,4 +14,4 @@ This project acts as a registry for biological resource centers (BRC) used acron
 
 All source code is licensed under the MIT License (see LICENSE).
 
-The acronym data inside the data folder is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/) (see data/LICENSE). 
+The acronym data inside the data folder is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/) (see LICENSE-CC-BY). 
