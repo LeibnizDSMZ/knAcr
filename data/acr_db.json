@@ -1,1 +1,661 @@
-{}
+{
+  "1": {
+    "acr": "DSM",
+    "acr_syn": [
+      "DSMZ"
+    ],
+    "active": true,
+    "catalogue": "https://www.dsmz.de/collection/catalogue/details/culture/{acr}-{id}",
+    "code": "DSMZ",
+    "homepage": "https://www.dsmz.de/",
+    "name": "DSMZ-German Collection of Microorganisms and Cell Cultures GmbH",
+    "regex_ccno": "^DSM\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "10": {
+    "acr": "ITM",
+    "acr_syn": [
+      "BCCM:ITM"
+    ],
+    "active": true,
+    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {id}",
+    "code": "BCCM:ITM",
+    "homepage": "https://bccm.belspo.be/catalogues/",
+    "name": "Belgian Coordinated Collections of Microorganisms / ITM - Mycobacteria Collection",
+    "regex_ccno": "^ITM\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "11": {
+    "acr": "ULC",
+    "acr_syn": [
+      "BCCM:ULC"
+    ],
+    "active": true,
+    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {id}",
+    "code": "BCCM:ULC",
+    "homepage": "https://bccm.belspo.be/catalogues/",
+    "name": "Belgian Coordinated Collections of Microorganisms / ULC - Cyanobacteria Collection",
+    "regex_ccno": "^ULC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "12": {
+    "acr": "NBRC",
+    "active": true,
+    "catalogue": "https://www.nite.go.jp/nbrc/catalogue/NBRCCatalogueDetailServlet?ID=NBRC&CAT={id}",
+    "code": "NBRC",
+    "homepage": "https://www.nite.go.jp/en/nbrc/",
+    "name": "Biological Resource Center, NITE",
+    "regex_ccno": "^NBRC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "13": {
+    "acr": "IMI",
+    "acr_syn": [
+      "CABI:IMI"
+    ],
+    "active": true,
+    "code": "CABI:IMI",
+    "homepage": "https://www.cabi.org/",
+    "name": "CABI (Centre for Agriculture and Biosciences International) - Genetic Resource Collection",
+    "regex_ccno": "^IMI\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "14": {
+    "acr": "JCM",
+    "active": true,
+    "catalogue": "https://www.jcm.riken.jp/cgi-bin/jcm/jcm_number?JCM={id}",
+    "code": "JCM",
+    "homepage": "https://jcm.brc.riken.jp/en/",
+    "name": "Japan Collection of Microorganisms",
+    "regex_ccno": "^JCM\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "15": {
+    "acr": "IAM",
+    "acr_changed_to": [
+      {
+        "id": 14,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "IAM",
+    "name": "IAM Culture Collection, Center for Cellular and Molecular Research",
+    "regex_ccno": "^IAM\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "16": {
+    "acr": "IFO",
+    "acr_changed_to": [
+      {
+        "id": 12,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "IFO",
+    "name": "Institute for Fermentation",
+    "regex_ccno": "^IFO\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "17": {
+    "acr": "NRRL",
+    "acr_syn": [
+      "USDA-ARS:NRRL"
+    ],
+    "active": true,
+    "code": "USDA-ARS:NRRL",
+    "homepage": "https://nrrl.ncaur.usda.gov/",
+    "name": "USDA Agricultural Research Service (ARS) - Culture Collection (NRRL)",
+    "regex_ccno": "^NRRL\\s*([BL]-)?\\d+$",
+    "regex_id": "^([BL]-)?\\d+$"
+  },
+  "18": {
+    "acr": "CIP",
+    "acr_syn": [
+      "CRBIP:CIP"
+    ],
+    "active": true,
+    "code": "CRBIP:CIP",
+    "homepage": "https://www.pasteur.fr/en/public-health/biobanks-and-collections/collection-institut-pasteur-cip",
+    "name": "Biological Resource Center of Institut Pasteur (CRBIP) - Pasteur Institute Collection (CIP)",
+    "regex_ccno": "^CIP\\s*[A]?\\d+(\\.\\d+)?$",
+    "regex_id": "^[A]?\\d+(\\.\\d+)?$"
+  },
+  "19": {
+    "acr": "PCC",
+    "acr_syn": [
+      "CRBIP:PCC"
+    ],
+    "active": true,
+    "code": "CRBIP:PCC",
+    "homepage": "https://webext.pasteur.fr/cyanobacteria/",
+    "name": "Biological Resource Center of Institut Pasteur (CRBIP) - Pasteur Culture collection of Cyanobacteria (PCC)",
+    "regex_ccno": "^PCC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "2": {
+    "acr": "LMG",
+    "acr_syn": [
+      "BCCM:LMG"
+    ],
+    "active": true,
+    "catalogue": "https://bccm.belspo.be/catalogues/lmg-strain-details?NUM={id}",
+    "code": "BCCM:LMG",
+    "homepage": "https://bccm.belspo.be/catalogues/",
+    "name": "Belgian Coordinated Collections of Microorganisms / LMG - Bacteria Collection",
+    "regex_ccno": "^LMG\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "20": {
+    "acr": "CRBIP",
+    "active": true,
+    "code": "CRBIP",
+    "homepage": "https://research.pasteur.fr/en/center/biological-resource-center-of-the-institut-pasteur-crbip/",
+    "name": "Biological Resource Center of Institut Pasteur (CRBIP)",
+    "regex_ccno": "^CRBIP\\s*\\d+\\.\\d+$",
+    "regex_id": "^\\d+\\.\\d+$"
+  },
+  "21": {
+    "acr": "BCRC",
+    "active": true,
+    "catalogue": "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid={id}",
+    "code": "BCRC",
+    "homepage": "https://catalog.bcrc.firdi.org.tw/",
+    "name": "Bioresource Collection and Research Center",
+    "regex_ccno": "^BCRC\\s*(AL)?\\d+$",
+    "regex_id": "^(AL)?\\d+$"
+  },
+  "22": {
+    "acr": "CGMCC",
+    "active": true,
+    "catalogue": "https://www.cgmcc.net/english/search?stn={acr}+{id}",
+    "code": "CGMCC",
+    "homepage": "https://www.cgmcc.net/english/",
+    "name": "China General Microbiological Culture Collection Center",
+    "regex_ccno": "^CGMCC\\s*\\d+\\.\\d+$",
+    "regex_id": "^\\d+\\.\\d+$"
+  },
+  "23": {
+    "acr": "KCTC",
+    "active": true,
+    "catalogue": "https://kctc.kribb.re.kr/en/collection/view?sn={id}",
+    "code": "KCTC",
+    "homepage": "https://kctc.kribb.re.kr/EN/",
+    "name": "Korean Collection for Type Cultures",
+    "regex_ccno": "^KCTC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "24": {
+    "acr": "UAMH",
+    "active": true,
+    "catalogue": "https://www.uamh.ca/details.php?id={id}",
+    "code": "UAMH",
+    "homepage": "https://www.uamh.ca",
+    "name": "UAMH - Centre for Global Microfungal Biodiversity",
+    "regex_ccno": "^UAMH\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "25": {
+    "acr": "NCIMB",
+    "active": true,
+    "catalogue": "https://store.ncimb.com/page/Strains record name display/{id}",
+    "code": "NCIMB",
+    "homepage": "https://www.ncimb.com",
+    "name": "National Collection of Industrial, Food and Marine Bacteria",
+    "regex_ccno": "^NCIMB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "26": {
+    "acr": "NCFB",
+    "acr_changed_to": [
+      {
+        "id": 25,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "NCFB",
+    "name": "National Collection of Food Bacteria",
+    "regex_ccno": "^NCFB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "27": {
+    "acr": "NCIB",
+    "acr_changed_to": [
+      {
+        "id": 25,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "NCIB",
+    "name": "National Collection of Industrial Bacteria",
+    "regex_ccno": "^NCIB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "28": {
+    "acr": "NCIB",
+    "acr_changed_to": [
+      {
+        "id": 25,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "NCMB",
+    "name": "National Collection of Marine Bacteria",
+    "regex_ccno": "^NCMB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "29": {
+    "acr": "PDDCC",
+    "acr_changed_to": [
+      {
+        "id": 6,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "PDDCC",
+    "name": " Plant Diseases Division Culture Collection",
+    "regex_ccno": "^PDDCC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "3": {
+    "acr": "CCUG",
+    "acr_syn": [],
+    "active": true,
+    "catalogue": "https://www.ccug.se/strain?id={id}",
+    "code": "CCUG",
+    "homepage": "https://www.ccug.se/",
+    "name": "Culture Collection University of Gothenburg",
+    "regex_ccno": "^CCUG\\s*\\d+(\\s+[AaBbCEQDFG]{1,2})?$",
+    "regex_id": "^\\d+(\\s+[AaBbCEQDFG]{1,2})?$"
+  },
+  "30": {
+    "acr": "CCRC",
+    "acr_changed_to": [
+      {
+        "id": 21,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "CCRC",
+    "name": "Culture Collection and Research Centre",
+    "regex_ccno": "^CCRC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "31": {
+    "acr": "NCDO",
+    "acr_changed_to": [
+      {
+        "id": 26,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "NCDO",
+    "name": "National Collection of Dairy Organisms",
+    "regex_ccno": "^NCDO\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "32": {
+    "acr": "CECT",
+    "acr_syn": [],
+    "active": true,
+    "catalogue": "https://www.cect.org/vstrn.php?lan=en&cect={id}",
+    "code": "CECT",
+    "homepage": "https://www.uv.es/",
+    "name": "Spanish Type Culture Collection",
+    "regex_ccno": "^CECT\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "33": {
+    "acr": "NCTC",
+    "acr_syn": [
+      "UKHSA:NCTC"
+    ],
+    "active": true,
+    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{id}&collection=nctc",
+    "code": "UKHSA:NCTC",
+    "homepage": "https://www.culturecollections.org.uk/collections/nctc.aspx",
+    "name": "National Collection of Type Cultures",
+    "regex_ccno": "^NCTC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "34": {
+    "acr": "NCPV",
+    "acr_syn": [
+      "UKHSA:NCPV"
+    ],
+    "active": true,
+    "catalogue": "https://www.culturecollections.org.uk/products/viruses/detail.jsp?refId={id}&collection=ncpv",
+    "code": "UKHSA:NCPV",
+    "homepage": "https://www.culturecollections.org.uk/collections/ncpv.aspx",
+    "name": "National Collection of Pathogenic Viruses",
+    "regex_ccno": "^NCPV\\s*\\d+v$",
+    "regex_id": "^\\d+v$"
+  },
+  "35": {
+    "acr": "NCPF",
+    "acr_syn": [
+      "UKHSA:NCPF"
+    ],
+    "active": true,
+    "catalogue": "https://www.culturecollections.org.uk/products/fungi/detail.jsp?refId={acr}+{id}&collection=ncpf",
+    "code": "UKHSA:NCPF",
+    "homepage": "https://www.culturecollections.org.uk/collections/ncpf.aspx",
+    "name": "National Collection of Pathogenic Fungi",
+    "regex_ccno": "^NCPF\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "36": {
+    "acr": "VTT",
+    "active": true,
+    "catalogue": "http://culturecollection.vtt.fi/m/html?p=sti&code={id}",
+    "code": "VTT",
+    "homepage": "http://culturecollection.vtt.fi/",
+    "name": "VTT Culture Collection",
+    "regex_ccno": "^VTT\\s*[ABCDE]-\\d+$",
+    "regex_id": "^[ABCDE]-\\d+$"
+  },
+  "37": {
+    "acr": "UTEX",
+    "active": true,
+    "catalogue": "https://utex.org/products/{acr}-{pre}<->{core}",
+    "code": "UTEX",
+    "homepage": "https://utex.org/",
+    "name": "University of Texas at Austin - Culture Collection of Algae",
+    "regex_ccno": "^UTEX\\s*(LB|B)?\\s*\\d+$",
+    "regex_id": "^(LB|B)?\\s*\\d+$"
+  },
+  "38": {
+    "acr": "CCM",
+    "active": true,
+    "code": "CCM",
+    "homepage": "https://ccm.sci.muni.cz/en",
+    "name": "Czech Collection of Microorganisms",
+    "regex_ccno": "^CCM\\s*(F-)?\\d+$",
+    "regex_id": "^(F-)?\\d+$"
+  },
+  "39": {
+    "acr": "NCPPB",
+    "active": true,
+    "catalogue": "https://ncppb.fera.co.uk/furtherinfo.cfm?{acr}_no={id}",
+    "code": "NCPPB",
+    "homepage": "https://www.fera.co.uk/ncppb",
+    "name": "National Collection of Type Cultures",
+    "regex_ccno": "^NCPPB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "4": {
+    "acr": "ATCC",
+    "acr_syn": [],
+    "active": true,
+    "catalogue": "https://www.atcc.org/products/{id}",
+    "code": "ATCC",
+    "homepage": "https://www.atcc.org/",
+    "name": "American Type Culture Collection",
+    "regex_ccno": "^ATCC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "40": {
+    "acr": "CCAP",
+    "active": true,
+    "code": "CCAP",
+    "homepage": "https://www.fera.co.uk/ncppb",
+    "name": "Culture Collection of Algae and Protozoa",
+    "regex_ccno": "^CCAP\\s*\\d+/\\d+$",
+    "regex_id": "^\\d+/\\d+$"
+  },
+  "41": {
+    "acr": "NCYC",
+    "active": true,
+    "catalogue": "https://www.ncyc.co.uk/catalogue/filobasidium-capsuligenum-{id}",
+    "code": "NCYC",
+    "homepage": "https://www.ncyc.co.uk/",
+    "name": "National Collection of Yeast Cultures",
+    "regex_ccno": "^NCYC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "42": {
+    "acr": "CNCTC",
+    "active": true,
+    "catalogue": "http://apps.szu.cz/cnctc/a/onestraininfo.php?a={id}",
+    "code": "CNCTC",
+    "homepage": "https://szu.cz/",
+    "name": "Czech National Collection of Type Cultures",
+    "regex_ccno": "^CNCTC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "43": {
+    "acr": "SAG",
+    "active": true,
+    "code": "SAG",
+    "homepage": "https://sammlungen.uni-goettingen.de/sammlung/slg_1007/",
+    "name": "Culture Collection of Algae at Goettingen University",
+    "regex_ccno": "^SAG\\s*\\d+([.-/]\\d+){0,2}[Ma-z]?$",
+    "regex_id": "^\\d+([.-/]\\d+){0,2}[Ma-z]?$"
+  },
+  "44": {
+    "acr": "NCAIM",
+    "active": true,
+    "code": "NCAIM",
+    "homepage": "http://ncaim.etk.szie.hu/",
+    "name": "National Collection of Agricultural and Industrial Microorganisms",
+    "regex_ccno": "^NCAIM\\s*[BYF]\\.\\d+$",
+    "regex_id": "^[BYF]\\.\\d+$"
+  },
+  "45": {
+    "acr": "CCT",
+    "active": true,
+    "code": "CCT",
+    "homepage": "https://fat.org.br/catalogo-de-culturas-online/",
+    "name": "Collection of Tropical Cultures",
+    "regex_ccno": "^CCT\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "46": {
+    "acr": "CCMP",
+    "active": true,
+    "catalogue": "https://ncma.bigelow.org/{acr}{id}",
+    "code": "NCMA",
+    "homepage": "https://fat.org.br/catalogo-de-culturas-online/",
+    "name": "National Center for Marine Algae and Microbiota",
+    "regex_ccno": "^CCMP\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "47": {
+    "acr": "NCMA",
+    "active": true,
+    "catalogue": "https://ncma.bigelow.org/{acr}-{id}",
+    "code": "NCMA",
+    "homepage": "https://fat.org.br/catalogo-de-culturas-online/",
+    "name": "National Center for Marine Algae and Microbiota",
+    "regex_ccno": "^NCMA\\s*B\\d+$",
+    "regex_id": "^B\\d+$"
+  },
+  "48": {
+    "acr": "HAMBI",
+    "active": true,
+    "code": "HAMBI",
+    "homepage": "https://www.helsinki.fi/en/infrastructures/biodiversity-collections/infrastructures/microbial-domain-biological-resource-centre-hambi",
+    "name": "Culture Collection of the Department of Microbiology",
+    "regex_ccno": "^HAMBI\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "49": {
+    "acr": "NCIM",
+    "active": true,
+    "catalogue": "https://www.ncl-india.org/files/NCIM/CatalogueDetails.aspx?{acr}No={id}",
+    "code": "NCIM",
+    "homepage": "https://www.ncl-india.org/files/NCIM/Default.aspx",
+    "name": "National Collection of Industrial Microorganisms",
+    "regex_ccno": "^NCIM\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "5": {
+    "acr": "CBS",
+    "acr_syn": [
+      "WI:CBS"
+    ],
+    "active": true,
+    "code": "WI:CBS",
+    "homepage": "https://wi.knaw.nl/",
+    "name": "Westerdijk Institute - Central Bureau of Fungal Cultures",
+    "regex_ccno": "^CBS\\s*\\d+(\\.\\d+)?$",
+    "regex_id": "^\\d+(\\.\\d+)?$"
+  },
+  "50": {
+    "acr": "RCC",
+    "active": true,
+    "catalogue": "https://www.roscoff-culture-collection.org/rcc-strain-details/{id}",
+    "code": "RCC",
+    "homepage": "https://www.roscoff-culture-collection.org/",
+    "name": "Roscoff Culture Collection",
+    "regex_ccno": "^RCC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "51": {
+    "acr": "CCMM",
+    "active": true,
+    "code": "CCMM",
+    "homepage": "https://www.ccmm.ma/",
+    "name": "Moroccan Coordinated Collections of Microorganisms",
+    "regex_ccno": "^CCMM\\s*B\\d+$",
+    "regex_id": "^B\\d+$"
+  },
+  "52": {
+    "acr": "KACC",
+    "active": true,
+    "code": "KACC",
+    "homepage": "http://genebank.rda.go.kr/eng/uat/uia/actionMain.do",
+    "name": "Korean Agricultural Culture Collection",
+    "regex_ccno": "^KACC\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "53": {
+    "acr": "NCCB",
+    "acr_syn": [
+      "WI:NCCB"
+    ],
+    "active": true,
+    "code": "WI:NCCB",
+    "homepage": "https://wi.knaw.nl/",
+    "name": "Westerdijk Institute - The Netherlands Culture Collection of Bacteria",
+    "regex_ccno": "^NCCB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "54": {
+    "acr": "LMD",
+    "acr_changed_to": [
+      {
+        "id": 53,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "LMD",
+    "name": "Laboratory for Microbiology (Wageningen)",
+    "regex_ccno": "^LMD\\s*\\d+(\\.\\d+)?$",
+    "regex_id": "^\\d+(\\.\\d+)?$"
+  },
+  "55": {
+    "acr": "AS",
+    "acr_changed_to": [
+      {
+        "id": 22,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "AS",
+    "name": "China General Microbiological Culture Collection Center",
+    "regex_ccno": "^AS\\s*\\d+\\.\\d+$",
+    "regex_id": "^\\d+\\.\\d+$"
+  },
+  "56": {
+    "acr": "CDBB",
+    "active": true,
+    "code": "CDBB",
+    "homepage": "http://cdbb.cinvestav.mx/cdbb/",
+    "name": "National Collection of Microbial Strains and Cell Cultures",
+    "regex_ccno": "^CDBB\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "57": {
+    "acr": "IMET",
+    "acr_changed_to": [
+      {
+        "id": 1,
+        "type": "transfer"
+      }
+    ],
+    "active": false,
+    "code": "IMET",
+    "name": "Culture collection of the Central Institute for Microbiology and Experimental Therapy",
+    "regex_ccno": "^IMET\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "58": {
+    "acr": "DBVPG",
+    "active": true,
+    "catalogue": "http://www.dbvpg.unipg.it/en/lievito/?id={id}",
+    "code": "DBVPG",
+    "homepage": "http://www.dbvpg.unipg.it/en/",
+    "name": " Department of Agricultural, Food and Environmental Sciences - Industrial Yeasts Collection",
+    "regex_ccno": "^DBVPG\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "6": {
+    "acr": "ICMP",
+    "acr_syn": [
+      "LCR:ICMP"
+    ],
+    "active": true,
+    "catalogue": "https://scd.landcareresearch.co.nz/Specimen/{acr} {id}",
+    "code": "LCR:ICMP",
+    "homepage": "https://www.landcareresearch.co.nz/tools-and-resources/collections/icmp-culture-collection/",
+    "name": "Landcare Research / International Collection of Microorganisms from Plants",
+    "regex_ccno": "^ICMP\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "7": {
+    "acr": "FGSC",
+    "acr_syn": [],
+    "active": true,
+    "code": "FGSC",
+    "homepage": "https://www.fgsc.net/",
+    "name": "Fungal Genetics Stock Center",
+    "regex_ccno": "^FGSC\\s*[A#]?\\d+$",
+    "regex_id": "^[A#]?\\d+$"
+  },
+  "8": {
+    "acr": "MUCL",
+    "acr_syn": [
+      "BCCM:MUCL"
+    ],
+    "active": true,
+    "catalogue": "https://bccm.belspo.be/catalogues/mucl-species-details?NUM={acr} {id}",
+    "code": "BCCM:MUCL",
+    "homepage": "https://bccm.belspo.be/catalogues/",
+    "name": "Belgian Coordinated Collections of Microorganisms / MUCL - Agro-food & Environmental Fungal Collection",
+    "regex_ccno": "^MUCL\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
+  "9": {
+    "acr": "IHEM",
+    "acr_syn": [
+      "BCCM:IHEM"
+    ],
+    "active": true,
+    "catalogue": "https://bccm.belspo.be/catalogues/ihem-strain-details?NUM={acr} {id}",
+    "code": "BCCM:IHEM",
+    "homepage": "https://bccm.belspo.be/catalogues/",
+    "name": "Belgian Coordinated Collections of Microorganisms / IHEM - Fungi Collection: Human & Animal Health",
+    "regex_ccno": "^IHEM\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  }
+}
