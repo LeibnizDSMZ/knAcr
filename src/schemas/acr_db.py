@@ -35,7 +35,7 @@ ACR_DB = {
                 "regex_ccno": {"type": "string", "format": "regex"},
                 "regex_id": {"type": "string", "format": "regex"},
             },
-            "required": [],
+            "required": ["code", "acr", "name", "active", "regex_ccno", "regex_id"],
             "additionalProperties": False,
         }
     },
