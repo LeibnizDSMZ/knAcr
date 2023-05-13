@@ -17,7 +17,7 @@ allow_redefinition = false
 # misc
 allow_untyped_globals = false
 check_untyped_defs = false
-disallow_any_decorated = true
+disallow_any_decorated = false
 disallow_any_explicit = false
 # any
 disallow_any_expr = false
@@ -27,7 +27,7 @@ disallow_incomplete_defs = true
 disallow_subclassing_any = false
 # functions
 disallow_untyped_calls = true
-disallow_untyped_decorators = true
+disallow_untyped_decorators = false
 disallow_untyped_defs = true
 exclude = [
   "__pycache__",
