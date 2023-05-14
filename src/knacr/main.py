@@ -1,14 +1,12 @@
-import json
-from pathlib import Path
-from knacr.library.validate import validate_acr_db_schema
+from knacr.errors.custom_exceptions import ValJsonEx
+from knacr.library.loader import load_acr_db
 
 
 def run() -> None:
-    data_path = Path(__file__).parent.joinpath(
-        Path("../"), Path("data_knacr/acr_db.json")
-    )
-    with data_path.open() as fdb:
-        validate_acr_db_schema(json.load(fdb))
+    try:
+        load_acr_db()
+    except ValJsonEx:
+        print("installed knacr version is not compatible with the latest data")
 
 
 if __name__ == "__main__":

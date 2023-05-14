@@ -10,7 +10,7 @@ target-version = ["py311"]
 count = ''
 ignore-words = "configs/dev/ignore.txt"
 quiet-level = 3
-skip = '.mypy/*,.mypy_cache/*,.vscore/*,.tox/*,*~,*.cache,*.lock,venv/*,data_knacr/*'
+skip = '.mypy/*,.mypy_cache/*,.vscore/*,.tox/*,*~,*.cache,*.lock,venv/*,data/*'
 
 [tool.mypy]
 allow_redefinition = false
@@ -55,7 +55,9 @@ authors = [
 ]
 description = """This project acts as a registry for \
 biological resource centers (BRC) used acronyms."""
-include = ["data_knacr/*"]
+include = [
+  {path = "data/*", format = "sdist"}
+]
 keywords = ["python", "data"]
 license = "MIT"
 name = "knacr"

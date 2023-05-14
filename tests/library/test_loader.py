@@ -1,18 +1,11 @@
 import json
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 import pytest
 
 from knacr.errors.custom_exceptions import ValJsonEx, ReqURIEx
 from knacr.library.loader import load_acr_db
 
-
-@pytest.fixture()
-def load_fix_acr_db() -> bytes:
-    with Path(__file__).parent.joinpath(
-        Path("../" * 2), Path("data_knacr/acr_db.json")
-    ).open("rb") as fhd:
-        return fhd.read()
+pytest_plugins = ("tests.fixture.data",)
 
 
 class TestLoader:
