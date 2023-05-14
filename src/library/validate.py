@@ -14,8 +14,13 @@ def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
     for ind in range(1, max(to_eval_acr.keys()) + 1):
         if ind not in to_eval_acr:
             raise ValJsonEx(f"missing acr id {ind}")
+    uniqueness = set()
     for acr_db in to_eval_acr.values():
         check_uri_template(acr_db.catalogue)
+        unique_id = (acr_db.code, acr_db.acr, acr_db.name)
+        if unique_id in uniqueness:
+            raise ValJsonEx(f"{unique_id} was seen more than once, but should be unique")
+        uniqueness.add(unique_id)
 
 
 def validate_acr_db_schema(to_eval: _TJ, /) -> None:
