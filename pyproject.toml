@@ -58,7 +58,7 @@ biological resource centers (BRC) used acronyms."""
 include = [
   {path = "data/*", format = "sdist"}
 ]
-keywords = ["python", "data"]
+keywords = ["python", "data", "brc", "acronym"]
 license = "MIT"
 name = "knacr"
 packages = [
