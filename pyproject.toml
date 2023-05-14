@@ -10,7 +10,7 @@ target-version = ["py311"]
 count = ''
 ignore-words = "configs/dev/ignore.txt"
 quiet-level = 3
-skip = '.mypy/*,.mypy_cache/*,.vscore/*,.tox/*,*~,*.cache,*.lock,venv/*,data/*'
+skip = '.mypy/*,.mypy_cache/*,.vscore/*,.tox/*,*~,*.cache,*.lock,venv/*,data_knacr/*'
 
 [tool.mypy]
 allow_redefinition = false
@@ -55,15 +55,12 @@ authors = [
 ]
 description = """This project acts as a registry for \
 biological resource centers (BRC) used acronyms."""
-include = [
-  {path = "configs/src_ex/*"},
-  {path = "data/*"}
-]
-keywords = ["python", "skeleton"]
+include = ["data_knacr/*"]
+keywords = ["python", "data"]
 license = "MIT"
 name = "knacr"
 packages = [
-  {include = "src"}
+  {include = "knacr", from = "src"}
 ]
 readme = "README.md"
 repository = "https://github.com/artdotlis/knAcr"
@@ -99,7 +96,7 @@ pytest = ">= 7.3,<8"
 tox = ">=4.5,<5"
 
 [tool.poetry.scripts]
-acr_db = "src.main:run"
+acr_db = "knacr.main:run"
 
 [tool.ruff]
 # Allow unused variables when underscore-prefixed.

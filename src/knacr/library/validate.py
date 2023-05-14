@@ -1,11 +1,11 @@
 from typing import TypeVar
 
 from jsonschema import ValidationError, validate
-from src.container.acr_db import AcrDb
-from src.container.fun.acr_db import check_uri_template, create_acr_db
-from src.errors.custom_exceptions import ValJsonEx
+from knacr.container.acr_db import AcrDb
+from knacr.container.fun.acr_db import check_uri_template, create_acr_db
+from knacr.errors.custom_exceptions import ValJsonEx
 
-from src.schemas.acr_db import ACR_DB
+from knacr.schemas.acr_db import ACR_DB
 
 _TJ = TypeVar("_TJ")
 

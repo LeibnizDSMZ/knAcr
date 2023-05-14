@@ -1,4 +1,4 @@
-from src.container.fun.acr_db import get_brc_merge_type
+from knacr.container.fun.acr_db import get_brc_merge_type
 
 
 ACR_DB = {

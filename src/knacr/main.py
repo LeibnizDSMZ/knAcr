@@ -1,10 +1,12 @@
 import json
 from pathlib import Path
-from src.library.validate import validate_acr_db_schema
+from knacr.library.validate import validate_acr_db_schema
 
 
 def run() -> None:
-    data_path = Path(__file__).parent.joinpath(Path("../"), Path("data/acr_db.json"))
+    data_path = Path(__file__).parent.joinpath(
+        Path("../"), Path("data_knacr/acr_db.json")
+    )
     with data_path.open() as fdb:
         validate_acr_db_schema(json.load(fdb))
 

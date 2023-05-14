@@ -2,9 +2,9 @@ from re import Pattern
 import re
 from typing import Callable, Final, TypeVar
 
-from src.container.acr_db import AcrDb, AcrChaT, CatArgs
+from knacr.container.acr_db import AcrDb, AcrChaT, CatArgs
 from dacite import from_dict
-from src.errors.custom_exceptions import ValJsonEx
+from knacr.errors.custom_exceptions import ValJsonEx
 
 
 def get_brc_merge_type() -> list[str]:

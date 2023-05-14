@@ -1,10 +1,10 @@
 from typing import Final
 
 import requests
-from src.container.acr_db import AcrDb
-from src.container.fun.acr_db import create_acr_db
-from src.errors.custom_exceptions import ReqURIEx, ValJsonEx
-from src.library.validate import validate_acr_db_schema
+from knacr.container.acr_db import AcrDb
+from knacr.container.fun.acr_db import create_acr_db
+from knacr.errors.custom_exceptions import ReqURIEx, ValJsonEx
+from knacr.library.validate import validate_acr_db_schema
 
 
 LATEST_VER: Final[str] = "latest"

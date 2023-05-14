@@ -1,5 +1,5 @@
 # Known Acronyms - knAcr
 
-::: src
+::: knacr
     options:
         show_submodules: true

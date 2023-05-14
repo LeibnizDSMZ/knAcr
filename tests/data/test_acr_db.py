@@ -1,6 +1,7 @@
 import pytest
-from src.errors.custom_exceptions import ValJsonEx
-from src.main import run
+
+from knacr.errors.custom_exceptions import ValJsonEx
+from knacr.main import run
 
 
 def test_main_run() -> None:
