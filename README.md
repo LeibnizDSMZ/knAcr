@@ -6,7 +6,7 @@
 
 ---
 
-This project acts as a registry for biological resource centers (BRC) used acronyms.
+This project serves as a registry for acronyms used by biological resource centers (BRCs).
 
 ## Requirements (development)
 
