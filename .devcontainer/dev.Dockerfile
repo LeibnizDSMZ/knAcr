@@ -14,4 +14,6 @@ WORKDIR /
 
 RUN rm -rf /tmp/app
 
+RUN git config --global --add safe.directory /workspace
+
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
