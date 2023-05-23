@@ -1,5 +1,4 @@
 {
-  "containerUser": "root",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -34,7 +33,7 @@
   ],
   "name": "knacr",
   "postAttachCommand": "make devC",
-  "remoteUser": "root",
+  "remoteUser": "vscode",
   "runServices": [
     "dev"
   ],
