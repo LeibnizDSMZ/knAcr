@@ -5,6 +5,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG WORK_DIR=/workspace
 ENV HOME="/home/${USERNAME}"
+ENV PATH="$HOME/.local/bin:$PATH"
 
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd -m -d $HOME \
