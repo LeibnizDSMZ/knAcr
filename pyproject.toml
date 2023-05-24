@@ -12,6 +12,14 @@ ignore-words = "configs/dev/ignore.txt"
 quiet-level = 3
 skip = '.mypy/*,.mypy_cache/*,.vscore/*,.tox/*,*~,*.cache,*.lock,venv/*,data/*'
 
+[tool.commitizen]
+major_version_zero = true
+name = "cz_conventional_commits"
+tag_format = "v$version"
+update_changelog_on_bump = true
+version_provider = "poetry"
+version_type = "semver"
+
 [tool.mypy]
 allow_redefinition = false
 # misc
@@ -78,6 +86,7 @@ requests = ">=2.28,<3"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
+commitizen = "^3.2,<4"
 pre-commit = ">=3.1,<4"
 
 [tool.poetry.group.docs]

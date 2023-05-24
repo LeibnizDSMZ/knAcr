@@ -36,6 +36,9 @@ runAct:
 runCheck:
 	$(POETRY) run pre-commit run --all-files
 
+runBump:
+	$(POETRY) run cz bump
+
 runDocs:
 	$(POETRY) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
 
