@@ -5,6 +5,7 @@ dev: setup
 	$(POETRY) install --with test,docs,dev
 	$(POETRY) run pre-commit clean
 	$(POETRY) run pre-commit install
+	$(POETRY) run pre-commit install --hook-type commit-msg --hook-type pre-push
 
 devC: dev
 	bash bin/deploy/post.sh
@@ -54,4 +55,5 @@ runUpdate:
 	--repo https://github.com/jendrikseipp/vulture \
 	--repo https://github.com/macisamuele/language-formatters-pre-commit-hooks \
 	--repo https://github.com/codespell-project/codespell \
-	--repo https://github.com/shellcheck-py/shellcheck-py
+	--repo https://github.com/shellcheck-py/shellcheck-py \
+	--repo https://github.com/commitizen-tools/commitizen
