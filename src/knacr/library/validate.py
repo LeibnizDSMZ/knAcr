@@ -51,5 +51,5 @@ def validate_acr_db_schema(to_eval: _TJ, /) -> None:
             _validate_acr_db_dc(acr_db)
     except ValidationError as exc:
         raise ValJsonEx(
-            f"Acronym Data is incorrectly formatted! [{str(exc.cause)}]"
+            f"Acronym Data is incorrectly formatted! [{exc.cause!s}]"
         ) from exc
