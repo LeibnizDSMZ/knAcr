@@ -60,3 +60,6 @@ runUpdate:
 	--repo https://github.com/codespell-project/codespell \
 	--repo https://github.com/shellcheck-py/shellcheck-py \
 	--repo https://github.com/commitizen-tools/commitizen
+
+commit:
+	$(POETRY) run cz commit
