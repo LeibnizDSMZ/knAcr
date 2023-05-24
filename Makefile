@@ -5,7 +5,6 @@ dev: setup
 	$(POETRY) install --with test,docs,dev
 	$(POETRY) run pre-commit clean
 	$(POETRY) run pre-commit install
-	$(POETRY) run pre-commit install --hook-type commit-msg
 
 devC: dev
 	bash bin/deploy/post.sh
