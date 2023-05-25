@@ -1,96 +1,149 @@
 repos:
-- hooks:
-  - id: poetry-check
-  - id: poetry-lock
-  - args:
-    - -f
-    - requirements.txt
-    - --without-hashes
-    - -o
-    - requirements.txt
-    id: poetry-export
-  repo: https://github.com/python-poetry/poetry
+###################################### Poetry ###################################
+- repo: https://github.com/python-poetry/poetry
   rev: 1.5.0
-- hooks:
-  - entry: bash -c 'make runTests'
-    id: tox
-    language: system
+  hooks:
+  - id: poetry-check
+    stages: [pre-commit]
+  - id: poetry-lock
+    stages: [pre-commit]
+  - id: poetry-export
+    args: [-f, requirements.txt, --without-hashes, -o, requirements.txt]
+    stages: [pre-commit]
+
+  ###################################### Local ####################################
+- repo: local
+  hooks:
+  - id: tox
     name: tox test
-    pass_filenames: false
-  - entry: bash -c 'make runDocs'
-    id: docs
+    entry: bash -c 'make runTests'
     language: system
-    name: mkdocs
     pass_filenames: false
-  repo: local
-- hooks:
-  - id: check-ast
-  - id: check-yaml
-  - id: check-json
-  - id: check-toml
-  - args:
-    - --autofix
-    id: pretty-format-json
-  - id: check-merge-conflict
-  - exclude: tests/media/.+
-    id: check-added-large-files
-  - id: detect-private-key
-  - id: check-case-conflict
-  - id: check-symlinks
-  - id: check-executables-have-shebangs
-  - id: check-shebang-scripts-are-executable
-  - id: mixed-line-ending
-  - args:
-    - --markdown-linebreak-ext=md
-    id: trailing-whitespace
-  - exclude: requirements.txt
-    id: end-of-file-fixer
-  - id: check-builtin-literals
-  - id: check-docstring-first
-  - id: debug-statements
-  - id: fix-byte-order-marker
-  repo: https://github.com/pre-commit/pre-commit-hooks
+    stages: [pre-commit]
+  - id: docs
+    name: mkdocs
+    entry: bash -c 'make runDocs'
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]
+
+  ###################################### Default ###################################
+- repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.4.0
-- hooks:
-  - id: black
-  repo: https://github.com/psf/black
+  hooks:
+      # Identify invalid files
+  - id: check-ast
+    stages: [pre-commit]
+  - id: check-yaml
+    stages: [pre-commit]
+  - id: check-json
+    stages: [pre-commit]
+  - id: check-toml
+    stages: [pre-commit]
+  - id: pretty-format-json
+    args: [--autofix]
+    stages: [pre-commit]
+
+      # git checks
+  - id: check-merge-conflict
+    stages: [pre-commit]
+  - id: check-added-large-files
+    exclude: tests/media/.+
+    stages: [pre-commit]
+  - id: detect-private-key
+    stages: [pre-commit]
+  - id: check-case-conflict
+    stages: [pre-commit]
+      # General quality checks
+  - id: check-symlinks
+    stages: [pre-commit]
+  - id: check-executables-have-shebangs
+    stages: [pre-commit]
+  - id: check-shebang-scripts-are-executable
+    stages: [pre-commit]
+  - id: mixed-line-ending
+    stages: [pre-commit]
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+    stages: [pre-commit]
+  - id: end-of-file-fixer
+    exclude: requirements.txt
+    stages: [pre-commit]
+
+      ###################################### Python ##################################
+      # Python checks
+  - id: check-builtin-literals
+    stages: [pre-commit]
+  - id: check-docstring-first
+    stages: [pre-commit]
+  - id: debug-statements
+    stages: [pre-commit]
+  - id: fix-byte-order-marker
+    stages: [pre-commit]
+
+  # python formatter
+- repo: https://github.com/psf/black
   rev: 23.3.0
-- hooks:
-  - id: ruff
-  repo: https://github.com/charliermarsh/ruff-pre-commit
+  hooks:
+  - id: black
+    stages: [pre-commit]
+
+  # ruff linter
+- repo: https://github.com/charliermarsh/ruff-pre-commit
   rev: v0.0.269
-- hooks:
-  - entry: bash -c 'mypy --install-types --non-interactive "$@"'
-    id: mypy
-  repo: https://github.com/pre-commit/mirrors-mypy
+  hooks:
+  - id: ruff
+    stages: [pre-commit]
+
+  # python mypy
+- repo: https://github.com/pre-commit/mirrors-mypy
   rev: v1.3.0
-- hooks:
-  - id: vulture
-  repo: https://github.com/jendrikseipp/vulture
+  hooks:
+  - id: mypy
+    entry: bash -c 'mypy --install-types --non-interactive "$@"'
+    stages: [pre-commit]
+
+  # dead code
+- repo: https://github.com/jendrikseipp/vulture
   rev: v2.7
-- hooks:
-  - args:
-    - --autofix
-    id: pretty-format-ini
-  - args:
-    - --autofix
-    id: pretty-format-toml
-  - args:
-    - --autofix
-    id: pretty-format-yaml
-  repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  hooks:
+  - id: vulture
+    stages: [pre-commit]
+
+  ###################################### INI/TOML/YAML ###########################
+  # ini formatter
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
   rev: v2.9.0
-- hooks:
-  - additional_dependencies:
-    - tomli
-    id: codespell
-  repo: https://github.com/codespell-project/codespell
+  hooks:
+  - id: pretty-format-ini
+    args: [--autofix]
+    stages: [pre-commit]
+  - id: pretty-format-toml
+    args: [--autofix]
+    stages: [pre-commit]
+  - id: pretty-format-yaml
+    args: [--autofix]
+    stages: [pre-commit]
+
+  ###################################### SpellChecker ############################
+- repo: https://github.com/codespell-project/codespell
   rev: v2.2.4
-- hooks:
-  - id: shellcheck
-  repo: https://github.com/shellcheck-py/shellcheck-py
+  hooks:
+  - id: codespell
+    additional_dependencies:
+    - tomli
+    stages: [pre-commit]
+
+  ###################################### Shell ###################################
+- repo: https://github.com/shellcheck-py/shellcheck-py
   rev: v0.9.0.2
-- hooks:
-  - id: commitizen
-  repo: https://github.com/commitizen-tools/commitizen
+  hooks:
+  - id: shellcheck
+    stages: [pre-commit]
+
+  ###################################### GIT #####################################
+- repo: https://github.com/commitizen-tools/commitizen
   rev: 3.2.2
+  hooks:
+  - id: commitizen
+    stages: [commit-msg]
