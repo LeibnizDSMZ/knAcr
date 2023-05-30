@@ -1,9 +1,9 @@
 # ---> Custom
 
-public/*
-configs/src/*
-.ruff_cache/*
-.VSCodeCounter
+public/
+configs/src/
+.ruff_cache/
+.VSCodeCounter/
 
 # https://github.com/github/gitignore
 # CC0 1.0 Universal
