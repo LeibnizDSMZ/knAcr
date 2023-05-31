@@ -264,7 +264,6 @@
   },
   "3": {
     "acr": "CCUG",
-    "acr_syn": [],
     "active": true,
     "catalogue": "https://www.ccug.se/strain?id={id}",
     "code": "CCUG",
@@ -303,7 +302,6 @@
   },
   "32": {
     "acr": "CECT",
-    "acr_syn": [],
     "active": true,
     "catalogue": "https://www.cect.org/vstrn.php?lan=en&cect={id}",
     "code": "CECT",
@@ -357,7 +355,7 @@
     "catalogue": "http://culturecollection.vtt.fi/m/html?p=sti&code={id}",
     "code": "VTT",
     "homepage": "http://culturecollection.vtt.fi/",
-    "name": "VTT Culture Collection",
+    "name": "Technical Research Center of Finland - VTT Culture Collection",
     "regex_ccno": "^VTT\\s*[ABCDE]-\\d+$",
     "regex_id": "^[ABCDE]-\\d+$"
   },
@@ -392,7 +390,6 @@
   },
   "4": {
     "acr": "ATCC",
-    "acr_syn": [],
     "active": true,
     "catalogue": "https://www.atcc.org/products/{id}",
     "code": "ATCC",
@@ -609,6 +606,19 @@
     "regex_ccno": "^DBVPG\\s*\\d+$",
     "regex_id": "^\\d+$"
   },
+  "59": {
+    "acr": "CFBP",
+    "acr_syn": [
+      "CIRM:CFBP"
+    ],
+    "active": true,
+    "catalogue": "https://cirm-cfbp.fr/page/strain-display/{id}",
+    "code": "CIRM:CFBP",
+    "homepage": "https://cirm-cfbp.fr/page/Home",
+    "name": "International Center for Microbial Resources / French Collection of Plant associated bacteria",
+    "regex_ccno": "^CFBP\\s*\\d+$",
+    "regex_id": "^\\d+$"
+  },
   "6": {
     "acr": "ICMP",
     "acr_syn": [
@@ -622,9 +632,18 @@
     "regex_ccno": "^ICMP\\s*\\d+$",
     "regex_id": "^\\d+$"
   },
+  "60": {
+    "acr": "VKM",
+    "active": true,
+    "catalogue": "http://www.vkm.ru/strains.php?vkm={id}",
+    "code": "VKM",
+    "homepage": "http://www.vkm.ru/Catalogue.htm",
+    "name": "All-Russian Collection of Microorganisms - Institute of Biochemistry and Physiology of Microorganisms",
+    "regex_ccno": "^VKM\\s*(Ac|B|F|Y)-\\d+$",
+    "regex_id": "^(Ac|B|F|Y)-\\d+$"
+  },
   "7": {
     "acr": "FGSC",
-    "acr_syn": [],
     "active": true,
     "code": "FGSC",
     "homepage": "https://www.fgsc.net/",
