@@ -70,7 +70,8 @@ keywords = ["python", "data", "brc", "acronym"]
 license = "MIT"
 name = "knacr"
 packages = [
-  {include = "knacr", from = "src"}
+  {include = "knacr", from = "src"},
+  {include = "knacr/py.typed", from = "src"}
 ]
 readme = "README.md"
 repository = "https://github.com/artdotlis/knAcr"
