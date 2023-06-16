@@ -32,7 +32,7 @@
     "dev.docker-compose.yml"
   ],
   "name": "knacr",
-  "postAttachCommand": "make devC",
+  "postAttachCommand": "make dev",
   "remoteUser": "vscode",
   "runServices": [
     "dev"
