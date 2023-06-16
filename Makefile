@@ -17,11 +17,11 @@ docs: setup
 	$(POETRY) install --with docs --without test,dev
 
 setup:
+	pyenv install $(PYV) -s
+	pyenv local $(PYV)
 	curl -sSL https://install.python-poetry.org | python3 -
 	$(POETRY) env remove --all
 	$(POETRY) config virtualenvs.in-project true
-	pyenv install $(PYV) -s
-	pyenv local $(PYV)
 	$(POETRY) env use `pyenv which python`
 
 uninstall:
@@ -33,9 +33,6 @@ runAct:
 runCheck:
 	$(POETRY) run pre-commit run --all-files
 
-runBump:
-	$(POETRY) run cz bump
-
 runDocs:
 	$(POETRY) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
 
@@ -44,6 +41,9 @@ runTests:
 
 runBuild:
 	$(POETRY) build
+
+runBump:
+	$(POETRY) run cz bump
 
 runUpdate:
 	$(POETRY) run pre-commit autoupdate \
