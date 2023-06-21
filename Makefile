@@ -57,6 +57,8 @@ runUpdate:
 	--repo https://github.com/codespell-project/codespell \
 	--repo https://github.com/shellcheck-py/shellcheck-py \
 	--repo https://github.com/commitizen-tools/commitizen
+	$(POETRY) update
+	$(POETRY) export -f requirements.txt --without-hashes -o requirements.txt
 
 commit:
 	$(POETRY) run cz commit

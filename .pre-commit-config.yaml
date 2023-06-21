@@ -5,11 +5,6 @@ repos:
   hooks:
   - id: poetry-check
     stages: [pre-commit]
-  - id: poetry-lock
-    stages: [pre-commit]
-  - id: poetry-export
-    args: [-f, requirements.txt, --without-hashes, -o, requirements.txt]
-    stages: [pre-commit]
 
   ###################################### Local ####################################
 - repo: local
@@ -90,14 +85,14 @@ repos:
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.0.270
+  rev: v0.0.274
   hooks:
   - id: ruff
     stages: [pre-commit]
 
   # python mypy
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.3.0
+  rev: v1.4.0
   hooks:
   - id: mypy
     entry: bash -c 'mypy --install-types --non-interactive "$@"'
@@ -127,7 +122,7 @@ repos:
 
   ###################################### SpellChecker ############################
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.4
+  rev: v2.2.5
   hooks:
   - id: codespell
     additional_dependencies:
@@ -143,7 +138,7 @@ repos:
 
   ###################################### GIT #####################################
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: 3.2.2
+  rev: 3.4.0
   hooks:
   - id: commitizen
     stages: [commit-msg]

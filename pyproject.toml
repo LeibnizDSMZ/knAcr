@@ -10,7 +10,7 @@ target-version = ["py311"]
 count = ''
 ignore-words = "configs/dev/ignore.txt"
 quiet-level = 3
-skip = '.mypy,.mypy_cache,.vscore,.tox,*~,*.cache,*.lock,venv'
+skip = '.mypy,.mypy_cache,.vscore,.tox,*~,*.cache,*.lock,venv,data/*.json'
 
 [tool.commitizen]
 major_version_zero = true
