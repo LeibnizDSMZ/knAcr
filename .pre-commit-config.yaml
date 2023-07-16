@@ -78,21 +78,21 @@ repos:
 
   # python formatter
 - repo: https://github.com/psf/black
-  rev: 23.3.0
+  rev: 23.7.0
   hooks:
   - id: black
     stages: [pre-commit]
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.0.274
+  rev: v0.0.278
   hooks:
   - id: ruff
     stages: [pre-commit]
 
   # python mypy
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.4.0
+  rev: v1.4.1
   hooks:
   - id: mypy
     entry: bash -c 'mypy --install-types --non-interactive "$@"'
@@ -108,7 +108,7 @@ repos:
   ###################################### INI/TOML/YAML ###########################
   # ini formatter
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.9.0
+  rev: v2.10.0
   hooks:
   - id: pretty-format-ini
     args: [--autofix]
@@ -138,7 +138,7 @@ repos:
 
   ###################################### GIT #####################################
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: 3.4.0
+  rev: 3.5.3
   hooks:
   - id: commitizen
     stages: [commit-msg]

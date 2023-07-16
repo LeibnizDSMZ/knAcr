@@ -49,3 +49,21 @@ ACR_DB = {
         }
     },
 }
+
+
+ACR_MIN_DB = {
+    "type": "object",
+    "properties": {
+        "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
+        "additionalProperties": False,
+    },
+    "required": [],
+    "definitions": {
+        "AcrCon": {
+            "type": "object",
+            "properties": {"acr": {"type": "string", "minLength": 2}},
+            "required": ["acr"],
+            "additionalProperties": False,
+        }
+    },
+}
