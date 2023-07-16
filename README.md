@@ -23,6 +23,13 @@ This project serves as a registry for acronyms used by biological resource cente
 
 ---
 
+## Contributors
+
+- Isabel Schober
+- Julius Witte
+
+---
+
 ## License
 
 All source code is licensed under the MIT License (see LICENSE).
