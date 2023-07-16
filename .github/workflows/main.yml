@@ -4,8 +4,6 @@ on:
   pull_request:
   push:
     branches: [main]
-  release:
-    types: [created]
 
 jobs:
   mac_win_test:
