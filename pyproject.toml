@@ -10,7 +10,7 @@ target-version = ["py311"]
 count = ''
 ignore-words = "configs/dev/ignore.txt"
 quiet-level = 3
-skip = '.mypy/*,.mypy_cache/*,.vscore/*,.tox/*,*~,*.cache,*.lock,venv/*,data/*'
+skip = '.mypy,.mypy_cache,.vscore,.tox,*~,*.cache,*.lock,venv,data/*.json'
 
 [tool.commitizen]
 major_version_zero = true
@@ -70,11 +70,12 @@ keywords = ["python", "data", "brc", "acronym"]
 license = "MIT"
 name = "knacr"
 packages = [
-  {include = "knacr", from = "src"}
+  {include = "knacr", from = "src"},
+  {include = "knacr/py.typed", from = "src"}
 ]
 readme = "README.md"
 repository = "https://github.com/artdotlis/knAcr"
-version = "0.1.0"
+version = "0.2.0"
 
 [tool.poetry.dependencies]
 dacite = ">=1.8,<2"

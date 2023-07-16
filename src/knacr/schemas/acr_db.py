@@ -29,13 +29,40 @@ ACR_DB = {
                     },
                 },
                 "name": {"type": "string", "minLength": 2},
+                "country": {"type": "string", "minLength": 2, "maxLength": 2},
                 "active": {"type": "boolean"},
                 "homepage": {"type": "string", "format": "uri"},
                 "catalogue": {"type": "string", "format": "uri-template"},
                 "regex_ccno": {"type": "string", "format": "regex"},
                 "regex_id": {"type": "string", "format": "regex"},
             },
-            "required": ["code", "acr", "name", "active", "regex_ccno", "regex_id"],
+            "required": [
+                "code",
+                "acr",
+                "name",
+                "active",
+                "country",
+                "regex_ccno",
+                "regex_id",
+            ],
+            "additionalProperties": False,
+        }
+    },
+}
+
+
+ACR_MIN_DB = {
+    "type": "object",
+    "properties": {
+        "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
+        "additionalProperties": False,
+    },
+    "required": [],
+    "definitions": {
+        "AcrCon": {
+            "type": "object",
+            "properties": {"acr": {"type": "string", "minLength": 2}},
+            "required": ["acr"],
             "additionalProperties": False,
         }
     },

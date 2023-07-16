@@ -16,6 +16,7 @@ class AcrDb:
     acr: str
     code: str
     name: str
+    country: str
     active: bool
     regex_ccno: str
     regex_id: str

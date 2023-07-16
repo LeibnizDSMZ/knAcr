@@ -5,8 +5,6 @@ dev: setup
 	$(POETRY) install --with test,docs,dev
 	$(POETRY) run pre-commit clean
 	$(POETRY) run pre-commit install
-
-devC: dev
 	bash bin/deploy/post.sh
 
 tests: setup
@@ -19,11 +17,11 @@ docs: setup
 	$(POETRY) install --with docs --without test,dev
 
 setup:
+	pyenv install $(PYV) -s
+	pyenv local $(PYV)
 	curl -sSL https://install.python-poetry.org | python3 -
 	$(POETRY) env remove --all
 	$(POETRY) config virtualenvs.in-project true
-	pyenv install $(PYV) -s
-	pyenv local $(PYV)
 	$(POETRY) env use `pyenv which python`
 
 uninstall:
@@ -35,9 +33,6 @@ runAct:
 runCheck:
 	$(POETRY) run pre-commit run --all-files
 
-runBump:
-	$(POETRY) run cz bump
-
 runDocs:
 	$(POETRY) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
 
@@ -46,6 +41,9 @@ runTests:
 
 runBuild:
 	$(POETRY) build
+
+runBump:
+	$(POETRY) run cz bump
 
 runUpdate:
 	$(POETRY) run pre-commit autoupdate \
@@ -59,6 +57,8 @@ runUpdate:
 	--repo https://github.com/codespell-project/codespell \
 	--repo https://github.com/shellcheck-py/shellcheck-py \
 	--repo https://github.com/commitizen-tools/commitizen
+	$(POETRY) update
+	$(POETRY) export -f requirements.txt --without-hashes -o requirements.txt
 
 commit:
 	$(POETRY) run cz commit

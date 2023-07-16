@@ -2,14 +2,27 @@ import json
 import pytest
 
 from knacr.errors.custom_exceptions import ValJsonEx
-from knacr.library.loader import parse_acr_db
+from knacr.library.loader import parse_acr_db, parse_min_acr_db
 
 
 pytest_plugins = ("tests.fixture.data",)
 
 
-def test_acr_db(load_fix_acr_db: bytes) -> None:
-    try:
-        parse_acr_db(json.loads(load_fix_acr_db))
-    except ValJsonEx as val_ex:
-        pytest.fail(f"acr data malformed - {val_ex.message}")
+class TestAcrDb:
+    def test_acr_db(self, load_fix_acr_db: bytes) -> None:
+        try:
+            parse_acr_db(json.loads(load_fix_acr_db))
+        except ValJsonEx as val_ex:
+            pytest.fail(f"acr data malformed - {val_ex.message}")
+
+    def test_acr_db_stability(
+        self, load_fix_acr_db: bytes, load_fix_min_acr_db: bytes
+    ) -> None:
+        main_db = parse_min_acr_db(json.loads(load_fix_min_acr_db))
+        new_db = parse_acr_db(json.loads(load_fix_acr_db))
+        for acr_id, acr in main_db.items():
+            acr_db = new_db.get(acr_id, None)
+            if acr_db is None:
+                pytest.fail(f"missing main id in the new database - {acr_id}")
+            elif acr != acr_db.acr:
+                pytest.fail(f"acr changed for id {acr_id} - {acr} -> {acr_db.acr}")
