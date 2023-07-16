@@ -14,7 +14,7 @@ def load_fix_acr_db() -> bytes:
 @pytest.fixture()
 def load_fix_min_acr_db() -> bytes:
     sub_proc = subprocess.Popen(
-        ["/usr/bin/git", "show", "main:data/acr_db.json"],
+        ["git", "show", "main:data/acr_db.json"],  # noqa: S607
         shell=False,  # noqa: S603
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
