@@ -235,7 +235,7 @@
     "regex_id": "^\\d+$"
   },
   "28": {
-    "acr": "NCIB",
+    "acr": "NCMB",
     "acr_changed_to": [
       {
         "id": 25,
