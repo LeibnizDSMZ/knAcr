@@ -17,6 +17,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
@@ -48,6 +50,8 @@ jobs:
         echo "$CU_HOME/$PY_DIR/shims" >> $GITHUB_PATH
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
     - name: lint and test
       run: |
         make dev
