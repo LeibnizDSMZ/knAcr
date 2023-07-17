@@ -47,16 +47,28 @@ def _check_acr_in_reg(acr: str, ccno_reg: str, /) -> None:
             raise ValJsonEx(f"{acr} mismatches the acronym in regex: {ccno_reg}")
 
 
+def _check_loops(cur: AcrDb, full: dict[int, AcrDb], ids: set[int], /) -> None:
+    for changed in cur.acr_changed_to:
+        changed_to = full.get(changed.id, None)
+        if changed.id in ids:
+            raise ValJsonEx(f"loop detected in {ids} for {cur.acr}")
+        if changed_to is None:
+            raise ValJsonEx(f"missing changed to id {changed.id} for acronym {cur.acr}")
+        ids.add(changed.id)
+        _check_loops(changed_to, full, ids)
+
+
 def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
     all_ids = set(to_eval_acr.keys())
     _check_missing_link_id(all_ids)
     uniqueness: set[tuple[str, str, str, str]] = set()
-    for acr_db in to_eval_acr.values():
+    for acr_id, acr_db in to_eval_acr.items():
         check_uri_template(acr_db.catalogue)
         uniqueness.add(_check_unique(uniqueness, acr_db))
         _check_changed_to_id(all_ids, acr_db)
         _check_acr(acr_db.acr)
         _check_acr_in_reg(acr_db.acr, acr_db.regex_ccno)
+        _check_loops(acr_db, to_eval_acr, {acr_id})
 
 
 def validate_acr_db_schema(to_eval: _TJ, /) -> None:
