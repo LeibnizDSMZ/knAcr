@@ -3,20 +3,19 @@ from knacr.container.fun.acr_db import get_brc_merge_type
 
 ACR_DB = {
     "type": "object",
-    "properties": {
-        "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
-        "additionalProperties": False,
-    },
+    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
+    "additionalProperties": False,
     "required": [],
     "definitions": {
         "AcrCon": {
             "type": "object",
             "properties": {
-                "code": {"type": "string", "minLength": 2},
-                "acr": {"type": "string", "minLength": 2},
+                "code": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
+                "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
                 "acr_syn": {
                     "type": "array",
-                    "items": {"type": "string", "minLength": 2},
+                    "items": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
+                    "minLength": 1,
                 },
                 "acr_changed_to": {
                     "type": "array",
@@ -27,14 +26,19 @@ ACR_DB = {
                             "type": {"type": "string", "enum": get_brc_merge_type()},
                         },
                     },
+                    "minLength": 1,
                 },
                 "name": {"type": "string", "minLength": 2},
-                "country": {"type": "string", "minLength": 2, "maxLength": 2},
+                "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
                 "active": {"type": "boolean"},
-                "homepage": {"type": "string", "format": "uri"},
-                "catalogue": {"type": "string", "format": "uri-template"},
-                "regex_ccno": {"type": "string", "format": "regex"},
-                "regex_id": {"type": "string", "format": "regex"},
+                "homepage": {"type": "string", "pattern": "^http.*$", "format": "uri"},
+                "catalogue": {
+                    "type": "string",
+                    "pattern": "^http.*$",
+                    "format": "uri-template",
+                },
+                "regex_ccno": {"type": "string", "format": "regex", "minLength": 4},
+                "regex_id": {"type": "string", "format": "regex", "minLength": 4},
             },
             "required": [
                 "code",
@@ -53,17 +57,17 @@ ACR_DB = {
 
 ACR_MIN_DB = {
     "type": "object",
-    "properties": {
-        "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
-        "additionalProperties": False,
-    },
+    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
+    "additionalProperties": False,
     "required": [],
     "definitions": {
         "AcrCon": {
             "type": "object",
-            "properties": {"acr": {"type": "string", "minLength": 2}},
+            "properties": {
+                "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"}
+            },
             "required": ["acr"],
-            "additionalProperties": False,
+            "additionalProperties": True,
         }
     },
 }

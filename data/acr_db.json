@@ -101,7 +101,7 @@
     ],
     "active": false,
     "code": "IFO",
-    "country": "JP ",
+    "country": "JP",
     "name": "Institute for Fermentation",
     "regex_ccno": "^IFO\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -109,10 +109,10 @@
   "17": {
     "acr": "NRRL",
     "acr_syn": [
-      "USDA-ARS:NRRL"
+      "USDA:ARS:NRRL"
     ],
     "active": true,
-    "code": "USDA-ARS:NRRL",
+    "code": "USDA:ARS:NRRL",
     "country": "US",
     "homepage": "https://nrrl.ncaur.usda.gov/",
     "name": "USDA Agricultural Research Service (ARS): Culture Collection (NRRL)",
@@ -732,7 +732,7 @@
     "active": true,
     "code": "PTCC",
     "country": "IR",
-    "hompage": "https://irost.org/ptcc/en",
+    "homepage": "https://irost.org/ptcc/en",
     "name": "Iranian Research Organization for Science and Technology (I.R.O.S.T.): Persian Type Culture Collection",
     "regex_ccno": "^PTCC\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -743,7 +743,7 @@
     "catalogue": "https://mcc.nies.go.jp/strainList.do?strainId=1620&strainNumberEn={acr}-{id}",
     "code": "NIES",
     "country": "JP",
-    "hompage": "https://mcc.nies.go.jp/",
+    "homepage": "https://mcc.nies.go.jp/",
     "name": "Microbial Culture Collection at National Institute for Environmental Studies",
     "regex_ccno": "^NIES-\\d+$",
     "regex_id": "^\\d+$"
@@ -753,7 +753,7 @@
     "active": true,
     "code": "NBIMCC",
     "country": "BG",
-    "hompage": "http://www.nbimcc.org/www_2020/en/index.php",
+    "homepage": "http://www.nbimcc.org/www_2020/en/index.php",
     "name": "University of Chemical Technology and Metallurgy: National Bank for Industrial Microorganisms and Cell Cultures",
     "regex_ccno": "^NBIMCC\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -763,7 +763,7 @@
     "active": true,
     "code": "MUM",
     "country": "PT",
-    "hompage": "http://www.micoteca.deb.uminho.pt",
+    "homepage": "http://www.micoteca.deb.uminho.pt",
     "name": "Micoteca da Universidade do Minho",
     "regex_ccno": "^MUM\\s*\\d+(\\.\\d+)?$",
     "regex_id": "^\\d+(\\.\\d+)?$"
@@ -814,7 +814,7 @@
     "catalogue": "https://cirm-levures.bio-aware.com/page/CLIB_display/{id}",
     "code": "CIRM:CLIB",
     "country": "FR",
-    "hompage": "https://cirm-levures.bio-aware.com/page/Home",
+    "homepage": "https://cirm-levures.bio-aware.com/page/Home",
     "name": "International Center for Microbial Resources: Collection of Yeasts of Biotechnological Interest",
     "regex_ccno": "^CLIB\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -825,7 +825,7 @@
     "catalogue": "https://collection-cirmbia.fr/page/Display_souches/{id}",
     "code": "CIRM:BIA",
     "country": "FR",
-    "hompage": "https://collection-cirmbia.fr/page/Homepage",
+    "homepage": "https://collection-cirmbia.fr/page/Homepage",
     "name": "International Center for Microbial Resources: BIA food-associated bacteria",
     "regex_ccno": "^CIRM-BIA\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -838,7 +838,7 @@
     "active": true,
     "code": "CIRM:BP",
     "country": "FR",
-    "hompage": "https://catalogue-cirm-bp.tours.inra.fr/isp/collection/IIindex.php",
+    "homepage": "https://catalogue-cirm-bp.tours.inra.fr/isp/collection/IIindex.php",
     "name": "International Center for Microbial Resources: BP Pathogenic bacteria",
     "regex_ccno": "^CIRMBP(\\s+|-)\\d+$",
     "regex_id": "^\\d+$"
@@ -851,7 +851,7 @@
     "active": true,
     "code": "CIRM:CF",
     "country": "FR",
-    "hompage": "https://www.cirm-fungi.fr/",
+    "homepage": "https://www.cirm-fungi.fr/",
     "name": "International Center for Microbial Resources: CF Filamentous Fungi",
     "regex_ccno": "^BRFM\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -862,7 +862,7 @@
     "catalogue": "https://www.uni-due.de/biology/ccac/details.php?strain={acr} {id}",
     "code": "CCAC",
     "country": "DE",
-    "hompage": "https://www.uni-due.de/biology/ccac/",
+    "homepage": "https://www.uni-due.de/biology/ccac/",
     "name": "University of Duisburg-Essen (UDE): Central Collection of Algal Cultures",
     "regex_ccno": "^CCAC\\s*\\d+(\\s+B)?$",
     "regex_id": "^\\d+(\\s+B)?$"
@@ -872,7 +872,7 @@
     "active": true,
     "code": "CBMAI",
     "country": "BR",
-    "hompage": "https://cbmai.cpqba.unicamp.br/?lang=en",
+    "homepage": "https://cbmai.cpqba.unicamp.br/?lang=en",
     "name": "Brazilian Collection of Microorganisms from the Environment and Industry",
     "regex_ccno": "^CBMAI\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -883,7 +883,7 @@
     "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
     "code": "TBRC",
     "country": "TH",
-    "hompage": "https://www.tbrcnetwork.org/index.php",
+    "homepage": "https://www.tbrcnetwork.org/index.php",
     "name": "Thailand Bioresource Research Center",
     "regex_ccno": "^TBRC\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -894,7 +894,7 @@
     "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
     "code": "TBRC:BCC",
     "country": "TH",
-    "hompage": "https://www.tbrcnetwork.org/index.php",
+    "homepage": "https://www.tbrcnetwork.org/index.php",
     "name": "Thailand Bioresource Research Center: BIOTEC Culture Collection",
     "regex_ccno": "^TBRC-BCC\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -923,7 +923,7 @@
     "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
     "code": "TBRC:TISTR",
     "country": "TH",
-    "hompage": "https://www.tbrcnetwork.org/index.php",
+    "homepage": "https://www.tbrcnetwork.org/index.php",
     "name": "Thailand Bioresource Research Center: Thailand Institute of Scientific and Technological Research",
     "regex_ccno": "^TISTR\\s*\\d+$",
     "regex_id": "^\\d+$"
@@ -951,7 +951,7 @@
     "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
     "code": "TBRC:MSCU",
     "country": "TH",
-    "hompage": "https://www.tbrcnetwork.org/index.php",
+    "homepage": "https://www.tbrcnetwork.org/index.php",
     "name": "Thailand Bioresource Research Center: Department of Microbiology, Faculty of Science, Chulalongkorn University",
     "regex_ccno": "^MSCU\\s*\\d+$",
     "regex_id": "^\\d+$"
