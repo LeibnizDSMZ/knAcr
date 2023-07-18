@@ -17,6 +17,7 @@ ACR_DB = {
                 "acr_syn": {
                     "type": "array",
                     "items": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
+                    "minLength": 1,
                 },
                 "acr_changed_to": {
                     "type": "array",
@@ -27,6 +28,7 @@ ACR_DB = {
                             "type": {"type": "string", "enum": get_brc_merge_type()},
                         },
                     },
+                    "minLength": 1,
                 },
                 "name": {"type": "string", "minLength": 2},
                 "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
