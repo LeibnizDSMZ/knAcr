@@ -1,7 +1,7 @@
 # ---> Custom
 
-public/
-configs/src/
+/public/
+/configs/src/
 .ruff_cache/
 .VSCodeCounter/
 
