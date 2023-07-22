@@ -20,6 +20,7 @@ class AcrDb:
     active: bool
     regex_ccno: str
     regex_id: str
+    deprecated: bool = False
     homepage: str = ""
     catalogue: str = ""
     acr_changed_to: list[AcrChaCon] = field(default_factory=list)

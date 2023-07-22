@@ -21,15 +21,18 @@ def create_acr_db(to_eval: dict[str, _TJ], /) -> dict[int, AcrDb]:
     }
 
 
-def create_acr_min_db(to_eval: dict[str, _TJ], /) -> dict[int, str]:
-    min_db: dict[int, str] = {}
+def create_acr_min_db(to_eval: dict[str, _TJ], /) -> dict[int, tuple[str, bool]]:
+    min_db: dict[int, tuple[str, bool]] = {}
     for acr_id, acr_db in to_eval.items():
         if not isinstance(acr_db, dict):
             raise ValJsonEx(f"expected dict got {type(acr_db)} for id {acr_id}")
         acr = acr_db.get("acr", None)
-        if acr is None:
+        acr_dep = acr_db.get("deprecated", False)
+        if not isinstance(acr, str):
             raise ValJsonEx(f"ID {acr_id} does not define an acronym {acr_db!s}")
-        min_db[int(acr_id)] = acr
+        if not isinstance(acr_dep, bool):
+            raise ValJsonEx(f"ID {acr_id} does not define deprecation status {acr_db!s}")
+        min_db[int(acr_id)] = (acr, acr_dep)
     return min_db
 
 

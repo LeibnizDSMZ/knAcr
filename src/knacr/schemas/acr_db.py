@@ -31,6 +31,7 @@ ACR_DB = {
                 "name": {"type": "string", "minLength": 2},
                 "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
                 "active": {"type": "boolean"},
+                "deprecated": {"type": "boolean"},
                 "homepage": {"type": "string", "pattern": "^http.*$", "format": "uri"},
                 "catalogue": {
                     "type": "string",
@@ -64,7 +65,8 @@ ACR_MIN_DB = {
         "AcrCon": {
             "type": "object",
             "properties": {
-                "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"}
+                "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
+                "deprecated": {"type": "boolean"},
             },
             "required": ["acr"],
             "additionalProperties": True,

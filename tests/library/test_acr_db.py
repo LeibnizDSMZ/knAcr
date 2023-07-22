@@ -20,9 +20,11 @@ class TestAcrDb:
     ) -> None:
         main_db = parse_min_acr_db(json.loads(load_fix_min_acr_db))
         new_db = parse_acr_db(json.loads(load_fix_acr_db))
-        for acr_id, acr in main_db.items():
+        for acr_id, (acr, dep) in main_db.items():
             acr_db = new_db.get(acr_id, None)
             if acr_db is None:
                 pytest.fail(f"missing main id in the new database - {acr_id}")
             elif acr != acr_db.acr:
                 pytest.fail(f"acr changed for id {acr_id} - {acr} -> {acr_db.acr}")
+            elif dep and not acr_db.deprecated:
+                pytest.fail(f"acr [{acr_id}] can not be re-validated")

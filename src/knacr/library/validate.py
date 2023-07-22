@@ -24,10 +24,24 @@ def _check_unique(
     return unique_id
 
 
-def _check_changed_to_id(all_ids: set[int], acr_db: AcrDb, /) -> None:
-    for acr_cha in acr_db.acr_changed_to:
-        if acr_cha.id not in all_ids:
+def _check_changed_to_id(cur_acr_con: AcrDb, acr_db: dict[int, AcrDb], /) -> None:
+    if cur_acr_con.deprecated and len(cur_acr_con.acr_synonym) > 0:
+        raise ValJsonEx(
+            f"{cur_acr_con.acr}: 'deprecated' can not have a 'synonyms' field"
+        )
+    if cur_acr_con.deprecated and len(cur_acr_con.acr_changed_to) > 0:
+        raise ValJsonEx(
+            f"{cur_acr_con.acr}: 'deprecated' can not have a 'changed to' field"
+        )
+    for acr_cha in cur_acr_con.acr_changed_to:
+        next_acr_con = acr_db.get(acr_cha.id, None)
+        if next_acr_con is None:
             raise ValJsonEx(f"missing 'changed to' acr id {acr_cha.id}")
+        if next_acr_con.deprecated:
+            raise ValJsonEx(
+                f"{cur_acr_con.acr}: acr can not change into "
+                + f"a deprecated acr {acr_cha.id}"
+            )
 
 
 def _check_missing_link_id(all_ids: set[int], /) -> None:
@@ -65,7 +79,7 @@ def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
     for acr_id, acr_db in to_eval_acr.items():
         check_uri_template(acr_db.catalogue)
         uniqueness.add(_check_unique(uniqueness, acr_db))
-        _check_changed_to_id(all_ids, acr_db)
+        _check_changed_to_id(acr_db, to_eval_acr)
         _check_acr(acr_db.acr)
         _check_acr_in_reg(acr_db.acr, acr_db.regex_ccno)
         _check_loops(acr_db, to_eval_acr, {acr_id})

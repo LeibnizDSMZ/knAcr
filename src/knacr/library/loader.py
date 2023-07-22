@@ -20,7 +20,7 @@ def load_acr_db(version: str = LATEST_VER, /) -> dict[int, AcrDb]:
         raise ReqURIEx(f"Could not get {req}")
 
 
-def load_min_acr_db() -> dict[int, str]:
+def load_min_acr_db() -> dict[int, tuple[str, bool]]:
     req = "https://raw.githubusercontent.com/artdotlis/knAcr/main/data/acr_db.json"
     print("downloading from github collection")
     if (res := requests.get(req, timeout=60)).ok:
@@ -39,8 +39,11 @@ def parse_acr_db(acr_db: _TJ) -> dict[int, AcrDb]:
     return validate_acr_db(acr_db)
 
 
-def parse_min_acr_db(acr_db: _TJ) -> dict[int, str]:
+def parse_min_acr_db(acr_db: _TJ) -> dict[int, tuple[str, bool]]:
     if not isinstance(acr_db, dict):
         raise ValJsonEx("JSON is not a dictionary")
     validate_min_acr_db_schema(acr_db)
     return create_acr_min_db(acr_db)
+
+
+load_min_acr_db()
