@@ -61,6 +61,13 @@ def _check_acr_in_reg(acr: str, ccno_reg: str, /) -> None:
             raise ValJsonEx(f"{acr} mismatches the acronym in regex: {ccno_reg}")
 
 
+def _check_regex(r_ccno: str, r_id: str, /) -> None:
+    if len(r_id) <= 1:
+        raise ValJsonEx(f"regex for id must be longer than 1 {r_id}")
+    if r_id[1:] not in r_ccno:
+        raise ValJsonEx(f"regex for ccno must contain regex for id: {r_id} -> {r_ccno}")
+
+
 def _check_loops(cur: AcrDb, full: dict[int, AcrDb], ids: set[int], /) -> None:
     for changed in cur.acr_changed_to:
         changed_to = full.get(changed.id, None)
@@ -81,6 +88,7 @@ def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
         uniqueness.add(_check_unique(uniqueness, acr_db))
         _check_changed_to_id(acr_db, to_eval_acr)
         _check_acr(acr_db.acr)
+        _check_regex(acr_db.regex_ccno, acr_db.regex_id)
         _check_acr_in_reg(acr_db.acr, acr_db.regex_ccno)
         _check_loops(acr_db, to_eval_acr, {acr_id})
 
