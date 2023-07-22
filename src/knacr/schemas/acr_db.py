@@ -12,7 +12,7 @@ ACR_DB = {
             "properties": {
                 "code": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
                 "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
-                "acr_syn": {
+                "acr_synonym": {
                     "type": "array",
                     "items": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
                     "minLength": 1,

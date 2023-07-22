@@ -1,7 +1,7 @@
 {
   "1": {
     "acr": "DSM",
-    "acr_syn": [
+    "acr_synonym": [
       "DSMZ"
     ],
     "active": true,
@@ -15,7 +15,7 @@
   },
   "10": {
     "acr": "ITM",
-    "acr_syn": [
+    "acr_synonym": [
       "BCCM:ITM"
     ],
     "active": true,
@@ -29,7 +29,7 @@
   },
   "11": {
     "acr": "ULC",
-    "acr_syn": [
+    "acr_synonym": [
       "BCCM:ULC"
     ],
     "active": true,
@@ -54,7 +54,7 @@
   },
   "13": {
     "acr": "IMI",
-    "acr_syn": [
+    "acr_synonym": [
       "CABI:IMI"
     ],
     "active": true,
@@ -108,7 +108,7 @@
   },
   "17": {
     "acr": "NRRL",
-    "acr_syn": [
+    "acr_synonym": [
       "USDA:ARS:NRRL"
     ],
     "active": true,
@@ -121,7 +121,7 @@
   },
   "18": {
     "acr": "CIP",
-    "acr_syn": [
+    "acr_synonym": [
       "CRBIP:CIP"
     ],
     "active": true,
@@ -135,7 +135,7 @@
   },
   "19": {
     "acr": "PCC",
-    "acr_syn": [
+    "acr_synonym": [
       "CRBIP:PCC"
     ],
     "active": true,
@@ -149,7 +149,7 @@
   },
   "2": {
     "acr": "LMG",
-    "acr_syn": [
+    "acr_synonym": [
       "BCCM:LMG"
     ],
     "active": true,
@@ -341,7 +341,7 @@
   },
   "33": {
     "acr": "NCTC",
-    "acr_syn": [
+    "acr_synonym": [
       "UKHSA:NCTC"
     ],
     "active": true,
@@ -355,7 +355,7 @@
   },
   "34": {
     "acr": "NCPV",
-    "acr_syn": [
+    "acr_synonym": [
       "UKHSA:NCPV"
     ],
     "active": true,
@@ -369,7 +369,7 @@
   },
   "35": {
     "acr": "NCPF",
-    "acr_syn": [
+    "acr_synonym": [
       "UKHSA:NCPF"
     ],
     "active": true,
@@ -541,7 +541,7 @@
   },
   "5": {
     "acr": "CBS",
-    "acr_syn": [
+    "acr_synonym": [
       "WI:CBS"
     ],
     "active": true,
@@ -585,7 +585,7 @@
   },
   "53": {
     "acr": "NCCB",
-    "acr_syn": [
+    "acr_synonym": [
       "WI:NCCB"
     ],
     "active": true,
@@ -664,7 +664,7 @@
   },
   "59": {
     "acr": "CFBP",
-    "acr_syn": [
+    "acr_synonym": [
       "CIRM:CFBP"
     ],
     "active": true,
@@ -678,7 +678,7 @@
   },
   "6": {
     "acr": "ICMP",
-    "acr_syn": [
+    "acr_synonym": [
       "LCR:ICMP"
     ],
     "active": true,
@@ -703,7 +703,7 @@
   },
   "61": {
     "acr": "FBCC",
-    "acr_syn": [
+    "acr_synonym": [
       "HAMBI:FBCC"
     ],
     "active": true,
@@ -716,7 +716,7 @@
   },
   "62": {
     "acr": "UHCC",
-    "acr_syn": [
+    "acr_synonym": [
       "HAMBI:UHCC"
     ],
     "active": true,
@@ -807,7 +807,7 @@
   },
   "70": {
     "acr": "CLIB",
-    "acr_syn": [
+    "acr_synonym": [
       "CIRM:CLIB"
     ],
     "active": true,
@@ -832,7 +832,7 @@
   },
   "72": {
     "acr": "CIRMBP",
-    "acr_syn": [
+    "acr_synonym": [
       "CIRM:BP"
     ],
     "active": true,
@@ -845,7 +845,7 @@
   },
   "73": {
     "acr": "BRFM",
-    "acr_syn": [
+    "acr_synonym": [
       "CIRM:CF"
     ],
     "active": true,
@@ -916,7 +916,7 @@
   },
   "79": {
     "acr": "TISTR",
-    "acr_syn": [
+    "acr_synonym": [
       "TBRC:TISTR"
     ],
     "active": true,
@@ -930,7 +930,7 @@
   },
   "8": {
     "acr": "MUCL",
-    "acr_syn": [
+    "acr_synonym": [
       "BCCM:MUCL"
     ],
     "active": true,
@@ -944,7 +944,7 @@
   },
   "80": {
     "acr": "MSCU",
-    "acr_syn": [
+    "acr_synonym": [
       "TBRC:MSCU"
     ],
     "active": true,
@@ -967,7 +967,7 @@
   },
   "9": {
     "acr": "IHEM",
-    "acr_syn": [
+    "acr_synonym": [
       "BCCM:IHEM"
     ],
     "active": true,

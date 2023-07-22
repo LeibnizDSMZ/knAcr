@@ -23,7 +23,7 @@ class AcrDb:
     homepage: str = ""
     catalogue: str = ""
     acr_changed_to: list[AcrChaCon] = field(default_factory=list)
-    acr_syn: list[str] = field(default_factory=list)
+    acr_synonym: list[str] = field(default_factory=list)
 
 
 # TODO increase

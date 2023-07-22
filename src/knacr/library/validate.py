@@ -71,7 +71,7 @@ def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
         _check_loops(acr_db, to_eval_acr, {acr_id})
 
 
-def validate_acr_db_schema(to_eval: _TJ, /) -> None:
+def validate_acr_db(to_eval: _TJ, /) -> dict[int, AcrDb]:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     try:
@@ -83,6 +83,8 @@ def validate_acr_db_schema(to_eval: _TJ, /) -> None:
         raise ValJsonEx(
             f"Acronym Data is incorrectly formatted! [{exc.message}]"
         ) from exc
+    else:
+        return acr_db
 
 
 def validate_min_acr_db_schema(to_eval: _TJ, /) -> None:
