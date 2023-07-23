@@ -12,7 +12,7 @@ ACR_DB = {
             "properties": {
                 "code": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
                 "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
-                "acr_syn": {
+                "acr_synonym": {
                     "type": "array",
                     "items": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
                     "minLength": 1,
@@ -25,20 +25,41 @@ ACR_DB = {
                             "id": {"type": "integer", "minimum": 1},
                             "type": {"type": "string", "enum": get_brc_merge_type()},
                         },
+                        "additionalProperties": False,
+                        "required": ["id", "type"],
                     },
                     "minLength": 1,
                 },
                 "name": {"type": "string", "minLength": 2},
                 "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
                 "active": {"type": "boolean"},
+                "deprecated": {"type": "boolean"},
                 "homepage": {"type": "string", "pattern": "^http.*$", "format": "uri"},
                 "catalogue": {
                     "type": "string",
                     "pattern": "^http.*$",
                     "format": "uri-template",
                 },
-                "regex_ccno": {"type": "string", "format": "regex", "minLength": 4},
-                "regex_id": {"type": "string", "format": "regex", "minLength": 4},
+                "regex_ccno": {"type": "string", "format": "regex", "minLength": 5},
+                "regex_id": {
+                    "type": "object",
+                    "properties": {
+                        "full": {"type": "string", "format": "regex", "minLength": 5},
+                        "core": {"type": "string", "format": "regex", "minLength": 3},
+                        "pre": {
+                            "type": "array",
+                            "items": {"type": "string", "minLength": 1},
+                            "minLength": 1,
+                        },
+                        "suf": {
+                            "type": "array",
+                            "items": {"type": "string", "minLength": 1},
+                            "minLength": 1,
+                        },
+                    },
+                    "additionalProperties": False,
+                    "required": ["full"],
+                },
             },
             "required": [
                 "code",
@@ -64,7 +85,8 @@ ACR_MIN_DB = {
         "AcrCon": {
             "type": "object",
             "properties": {
-                "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"}
+                "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
+                "deprecated": {"type": "boolean"},
             },
             "required": ["acr"],
             "additionalProperties": True,

@@ -1,3 +1,17 @@
+## v0.3.0 (2023-07-23)
+
+### Feat
+
+- add new regex_id structure
+- check whether regex_id is in regex_ccno
+- add deprecated status to acr
+
+### Refactor
+
+- change acr_syn to acr_synonym and improve code structure
+
+## v0.2.1 (2023-07-18)
+
 ## v0.2.0 (2023-07-16)
 
 ### Feat

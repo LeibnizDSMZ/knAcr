@@ -11,5 +11,5 @@ services:
       - USER_GID=1000
       - WORK_DIR=/workspace
     volumes:
-    - .:/workspace:cached
-    - ~/.gitconfig:/etc/gitconfig
+    - .:/workspace
+    - ~/.gitconfig:/etc/gitconfig:ro
