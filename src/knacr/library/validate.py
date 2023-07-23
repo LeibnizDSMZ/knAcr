@@ -2,7 +2,7 @@ from typing import Final, TypeVar
 import re
 
 from jsonschema import ValidationError, validate
-from knacr.container.acr_db import AcrDb
+from knacr.container.acr_db import AcrCoreReg, AcrDb
 from knacr.container.fun.acr_db import check_uri_template, create_acr_db
 from knacr.errors.custom_exceptions import ValJsonEx
 
@@ -61,11 +61,48 @@ def _check_acr_in_reg(acr: str, ccno_reg: str, /) -> None:
             raise ValJsonEx(f"{acr} mismatches the acronym in regex: {ccno_reg}")
 
 
-def _check_regex(r_ccno: str, r_id: str, /) -> None:
-    if len(r_id) <= 1:
-        raise ValJsonEx(f"regex for id must be longer than 1 {r_id}")
-    if r_id[1:] not in r_ccno:
-        raise ValJsonEx(f"regex for ccno must contain regex for id: {r_id} -> {r_ccno}")
+def _check_regex_start_end(reg_full: list[str], reg_part: list[str], /) -> None:
+    for reg in reg_full:
+        if reg[0] != r"^" or reg[-1] != r"$":
+            raise ValJsonEx(f"invalid full regex {reg}")
+    for reg in reg_part:
+        if reg[0] == r"^" or reg[-1] == r"$":
+            raise ValJsonEx(f"invalid part regex {reg}")
+
+
+def _check_list_uniqueness(typ: str, con: list[str], /) -> None:
+    if len(set(con)) != len(con):
+        raise ValJsonEx(f"duplicates in {typ} - {con} found")
+
+
+def _check_pre_suf(typ: str, pr_su: str, pr_su_con: list[str], /) -> None:
+    if pr_su != "" and len(pr_su_con) == 0:
+        raise ValJsonEx(f"{typ} defines {pr_su} but given list is empty")
+    for ps_el in pr_su_con:
+        if ps_el not in pr_su:
+            raise ValJsonEx(f"given list for {typ} has unknown element {ps_el}")
+
+
+def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
+    _check_list_uniqueness("prefix", r_id.pre)
+    _check_list_uniqueness("suffix", r_id.suf)
+    _check_regex_start_end([r_ccno, r_id.full], [r_id.core, *r_id.pre, *r_id.suf])
+    if len(r_id.full) <= 2:
+        raise ValJsonEx(f"regex for id must be longer than 2 {r_id.full}")
+    if r_id.full[1:] not in r_ccno:
+        raise ValJsonEx(
+            f"regex for ccno must contain regex for id: {r_id.full} -> {r_ccno}"
+        )
+    if (
+        pre_suf := re.compile(rf"^(.*){re.escape(r_id.core)}(.*)$").match(r_id.full)
+    ) is not None:
+        pre, suf = pre_suf.groups()
+        _check_pre_suf("prefix", pre[1:], r_id.pre)
+        _check_pre_suf("suffix", suf[0:-2], r_id.suf)
+    else:
+        raise ValJsonEx(
+            f"regex for id must contain regex for core: {r_id.core} -> {r_id.full}"
+        )
 
 
 def _check_loops(cur: AcrDb, full: dict[int, AcrDb], ids: set[int], /) -> None:

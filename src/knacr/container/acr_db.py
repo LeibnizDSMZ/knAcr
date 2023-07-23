@@ -12,6 +12,15 @@ class AcrChaCon:
 
 @final
 @dataclass(frozen=True, slots=True, kw_only=True)
+class AcrCoreReg:
+    full: str
+    core: str = ""
+    pre: list[str] = field(default_factory=list)
+    suf: list[str] = field(default_factory=list)
+
+
+@final
+@dataclass(frozen=True, slots=True, kw_only=True)
 class AcrDb:
     acr: str
     code: str
@@ -19,7 +28,7 @@ class AcrDb:
     country: str
     active: bool
     regex_ccno: str
-    regex_id: str
+    regex_id: AcrCoreReg
     deprecated: bool = False
     homepage: str = ""
     catalogue: str = ""

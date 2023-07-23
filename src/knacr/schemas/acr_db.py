@@ -25,6 +25,8 @@ ACR_DB = {
                             "id": {"type": "integer", "minimum": 1},
                             "type": {"type": "string", "enum": get_brc_merge_type()},
                         },
+                        "additionalProperties": False,
+                        "required": ["id", "type"],
                     },
                     "minLength": 1,
                 },
@@ -38,8 +40,26 @@ ACR_DB = {
                     "pattern": "^http.*$",
                     "format": "uri-template",
                 },
-                "regex_ccno": {"type": "string", "format": "regex", "minLength": 4},
-                "regex_id": {"type": "string", "format": "regex", "minLength": 4},
+                "regex_ccno": {"type": "string", "format": "regex", "minLength": 5},
+                "regex_id": {
+                    "type": "object",
+                    "properties": {
+                        "full": {"type": "string", "format": "regex", "minLength": 5},
+                        "core": {"type": "string", "format": "regex", "minLength": 3},
+                        "pre": {
+                            "type": "array",
+                            "items": {"type": "string", "minLength": 1},
+                            "minLength": 1,
+                        },
+                        "suf": {
+                            "type": "array",
+                            "items": {"type": "string", "minLength": 1},
+                            "minLength": 1,
+                        },
+                    },
+                    "additionalProperties": False,
+                    "required": ["full"],
+                },
             },
             "required": [
                 "code",

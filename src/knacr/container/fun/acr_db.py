@@ -1,3 +1,4 @@
+from dataclasses import asdict
 from re import Pattern
 import re
 from typing import Callable, Final, TypeVar
@@ -14,11 +15,21 @@ def get_brc_merge_type() -> list[str]:
 _TJ = TypeVar("_TJ")
 
 
+def _amend_regex_id(acr_db: dict[int, AcrDb], /) -> dict[int, AcrDb]:
+    for acr_id, acr_con in acr_db.items():
+        if acr_con.regex_id.core == "":
+            buf = asdict(acr_con)
+            buf.get("regex_id", {})["core"] = acr_con.regex_id.full[1:-2]
+            acr_db[acr_id] = from_dict(data_class=AcrDb, data=buf)
+    return acr_db
+
+
 def create_acr_db(to_eval: dict[str, _TJ], /) -> dict[int, AcrDb]:
-    return {
+    acr_db = {
         int(acr_id): from_dict(data_class=AcrDb, data=acr_db)
         for acr_id, acr_db in to_eval.items()
     }
+    return _amend_regex_id(acr_db)
 
 
 def create_acr_min_db(to_eval: dict[str, _TJ], /) -> dict[int, tuple[str, bool]]:
