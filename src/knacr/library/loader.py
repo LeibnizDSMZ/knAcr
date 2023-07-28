@@ -44,6 +44,3 @@ def parse_min_acr_db(acr_db: _TJ) -> dict[int, tuple[str, bool]]:
         raise ValJsonEx("JSON is not a dictionary")
     validate_min_acr_db_schema(acr_db)
     return create_acr_min_db(acr_db)
-
-
-load_min_acr_db()
