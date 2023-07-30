@@ -1,3 +1,19 @@
+## v0.4.0 (2023-07-30)
+
+### Feat
+
+- add core id separation
+
+### Refactor
+
+- prepare for bump
+
+## v0.3.1 (2023-07-28)
+
+### Fix
+
+- remove load_min_acr_db function call from module
+
 ## v0.3.0 (2023-07-23)
 
 ### Feat
