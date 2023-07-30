@@ -170,7 +170,7 @@
     "name": "Biological Resource Center of Institut Pasteur (CRBIP): Collection of Institut Pasteur",
     "regex_ccno": "^CIP\\s*[A]?\\d+(\\.\\d+)?$",
     "regex_id": {
-      "core": "\\d+(\\.\\d+)",
+      "core": "\\d+(\\.\\d+)?",
       "full": "^[A]?\\d+(\\.\\d+)?$",
       "pre": [
         "A"
@@ -199,14 +199,14 @@
       "BCCM:LMG"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/lmg-strain-details?NUM={id}",
+    "catalogue": "https://bccm.belspo.be/catalogues/lmg-strain-details?NUM={core:1}<&COLTYPE=>{core:2}",
     "code": "BCCM:LMG",
     "country": "BE",
     "homepage": "https://bccm.belspo.be/",
     "name": "Belgian Coordinated Collections of Microorganisms: LMG - Bacteria Collection",
-    "regex_ccno": "^LMG\\s*\\d+$",
+    "regex_ccno": "^LMG\\s*\\d+(\\.\\d+)?$",
     "regex_id": {
-      "full": "^\\d+$"
+      "full": "^\\d+(\\.\\d+)?$"
     }
   },
   "20": {
