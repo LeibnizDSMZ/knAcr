@@ -85,14 +85,14 @@ repos:
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.0.280
+  rev: v0.0.284
   hooks:
   - id: ruff
     stages: [pre-commit]
 
   # python mypy
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.4.1
+  rev: v1.5.1
   hooks:
   - id: mypy
     entry: bash -c 'mypy --install-types --non-interactive "$@"'
@@ -100,7 +100,7 @@ repos:
 
   # dead code
 - repo: https://github.com/jendrikseipp/vulture
-  rev: v2.7
+  rev: v2.8
   hooks:
   - id: vulture
     stages: [pre-commit]
@@ -138,7 +138,7 @@ repos:
 
   ###################################### GIT #####################################
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: 3.5.3
+  rev: 3.6.0
   hooks:
   - id: commitizen
     stages: [commit-msg]

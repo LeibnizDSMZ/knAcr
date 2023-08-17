@@ -85,7 +85,7 @@ def _parse_id_core(mat: str, id_core: str, /) -> dict[str, str]:
     num = _CAT_CORE.match(mat)
     if num is None:
         raise ValJsonEx(f"mismatched core id tag: {mat} -> {id_core}")
-    if num.group(1) == "":
+    if num.group(1) is None or num.group(1) == "":
         return {mat: id_core}
     id_num = int(num.group(1).strip(":"))
     if id_num > len(ids):
@@ -138,7 +138,6 @@ def _fix_opt(href: str, match: tuple[str, str], args: CatArgs, /) -> str:
     if "" in [left, right]:
         return _rm_opt(href, left, right)
     left_p, right_p = _get_left_right(left, right, args)
-    print(left_p, right_p)
     if _are_params_empty(left_p) or _are_params_empty(right_p):
         return _rm_opt(href, left, right)
     return re.compile(re.escape(left) + r"<(.+?)>" + re.escape(right)).sub(
