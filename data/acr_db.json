@@ -37,7 +37,7 @@
       "BCCM:ULC"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {id}",
+    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {core0:4}",
     "code": "BCCM:ULC",
     "country": "BE",
     "homepage": "https://bccm.belspo.be/",
@@ -1233,6 +1233,22 @@
     "country": "AU",
     "name": "Australian Collection of Microorganisms",
     "regex_ccno": "^ACM\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "82": {
+    "acr": "DCG",
+    "acr_synonym": [
+      "BCCM:DCG"
+    ],
+    "active": true,
+    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {core0:4}",
+    "code": "BCCM:DCG",
+    "country": "BE",
+    "homepage": "https://bccm.belspo.be/",
+    "name": "Belgian Coordinated Collections of Microorganisms: DCG - Diatoms Collection",
+    "regex_ccno": "^DCG\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
     }

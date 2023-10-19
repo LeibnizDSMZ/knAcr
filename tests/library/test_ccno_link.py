@@ -58,3 +58,21 @@ class TestCcnoLink:
         acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
         assert acr_db is not None
         assert "" == create_catalogue_link(acr_db, cat_args)
+
+    def test_link_simple_catalogue_zero_core(
+        self, load_fix_acr_db: bytes, ccno_dcg_1: tuple[int, CatArgs]
+    ) -> None:
+        cat_id, cat_args = ccno_dcg_1
+        acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
+        assert acr_db is not None
+        cat = "https://bccm.belspo.be/catalogues/bm-details?accession_number=DCG 0001"
+        assert cat == create_catalogue_link(acr_db, cat_args)
+
+    def test_link_simple_catalogue_split_core(
+        self, load_fix_acr_db: bytes, ccno_lmg_1_1: tuple[int, CatArgs]
+    ) -> None:
+        cat_id, cat_args = ccno_lmg_1_1
+        acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
+        assert acr_db is not None
+        cat = "https://bccm.belspo.be/catalogues/lmg-strain-details?NUM=1&COLTYPE=1"
+        assert cat == create_catalogue_link(acr_db, cat_args)

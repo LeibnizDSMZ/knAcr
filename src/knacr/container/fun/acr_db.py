@@ -52,13 +52,14 @@ _CAT_ACR: Final[Pattern[str]] = re.compile(r"\{acr\}")
 _CAT_ID: Final[Pattern[str]] = re.compile(r"\{id\}")
 _CAT_PRE: Final[Pattern[str]] = re.compile(r"\{pre\}")
 _CAT_CORE: Final[Pattern[str]] = re.compile(r"\{core(:\d+)?\}")
+_CAT_CORE_0: Final[Pattern[str]] = re.compile(r"\{core0(:\d+)?\}")
 _CAT_SUF: Final[Pattern[str]] = re.compile(r"\{suf\}")
 
 _OPT_VAL: Final[Pattern[str]] = re.compile(r"({[^{]+})?<.+?>({.+?})?")
 
 _VALID_URI: Final[Pattern[str]] = re.compile(r"\{([^}]+?)\}")
-_VALID_PAR: Final[set[str]] = {"acr", "id", "pre", "core", "suf"}
-_VALID_PAR_SUB: Final[set[str]] = {"core"}
+_VALID_PAR: Final[set[str]] = {"acr", "id", "pre", "core", "core0", "suf"}
+_VALID_PAR_SUB: Final[set[str]] = {"core", "core0"}
 _ID_SUB: Final[Pattern[str]] = re.compile("^(.+?)(:\d+)?$")
 _ID_SEP: Final[Pattern[str]] = re.compile(r"[^A-Za-z0-9]")
 
@@ -93,11 +94,25 @@ def _parse_id_core(mat: str, id_core: str, /) -> dict[str, str]:
     return {mat: ids[id_num - 1]}
 
 
+def _parse_id_core_0(mat: str, id_core: str, /) -> dict[str, str]:
+    ids = _ID_SEP.split(id_core)
+    num = _CAT_CORE_0.match(mat)
+    if num is None:
+        raise ValJsonEx(f"mismatched core0 id tag: {mat} -> {id_core}")
+    if len(ids) > 1:
+        raise ValJsonEx(
+            f"zero core only available for integer structured ids: {mat} -> {id_core}"
+        )
+    id_num = int(num.group(1).strip(":"))
+    return {mat: "0" * (id_num - len(id_core)) + id_core}
+
+
 _REPL_PARAM: Final[dict[Pattern[str], Callable[[str, CatArgs], dict[str, str]]]] = {
     _CAT_ACR: lambda mat, cat: {mat: cat.acr},
     _CAT_ID: lambda mat, cat: {mat: cat.id},
     _CAT_PRE: lambda mat, cat: {mat: cat.pre},
     _CAT_CORE: lambda mat, cat: _parse_id_core(mat, cat.core),
+    _CAT_CORE_0: lambda mat, cat: _parse_id_core_0(mat, cat.core),
     _CAT_SUF: lambda mat, cat: {mat: cat.suf},
 }
 
