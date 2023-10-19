@@ -60,7 +60,7 @@ _OPT_VAL: Final[Pattern[str]] = re.compile(r"({[^{]+})?<.+?>({.+?})?")
 _VALID_URI: Final[Pattern[str]] = re.compile(r"\{([^}]+?)\}")
 _VALID_PAR: Final[set[str]] = {"acr", "id", "pre", "core", "core0", "suf"}
 _VALID_PAR_SUB: Final[set[str]] = {"core", "core0"}
-_ID_SUB: Final[Pattern[str]] = re.compile("^(.+?)(:\d+)?$")
+_ID_SUB: Final[Pattern[str]] = re.compile(r"^(.+?)(:\d+)?$")
 _ID_SEP: Final[Pattern[str]] = re.compile(r"[^A-Za-z0-9]")
 
 
@@ -156,7 +156,7 @@ def _fix_opt(href: str, match: tuple[str, str], args: CatArgs, /) -> str:
     if _are_params_empty(left_p) or _are_params_empty(right_p):
         return _rm_opt(href, left, right)
     return re.compile(re.escape(left) + r"<(.+?)>" + re.escape(right)).sub(
-        f"{left}\g<1>{right}", href, 1
+        rf"{left}\g<1>{right}", href, 1
     )
 
 
