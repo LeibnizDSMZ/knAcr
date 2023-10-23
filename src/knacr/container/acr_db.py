@@ -28,6 +28,7 @@ class AcrDb:
     country: str
     active: bool
     regex_ccno: str
+    ror: str = ""
     regex_id: AcrCoreReg
     deprecated: bool = False
     homepage: str = ""

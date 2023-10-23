@@ -15,11 +15,20 @@ _ACR: Final[re.Pattern[str]] = re.compile("^[A-Z:]+$")
 _ACR_SPL: Final[re.Pattern[str]] = re.compile(":")
 
 
-def _check_unique(
-    uniqueness: set[tuple[str, str, str, str]], acr_db: AcrDb, /
+def _check_unique_gen(
+    unique: set[tuple[str, str, str, str]], acr_db: AcrDb, /
 ) -> tuple[str, str, str, str]:
     unique_id = (acr_db.code, acr_db.acr, acr_db.name, acr_db.country)
-    if unique_id in uniqueness:
+    if unique_id in unique:
+        raise ValJsonEx(f"{unique_id} was seen more than once, but should be unique")
+    return unique_id
+
+
+def _check_unique_ror(unique: set[tuple[str, str]], acr_db: AcrDb, /) -> tuple[str, str]:
+    if acr_db.ror == "":
+        return "_", "_"
+    unique_id = (acr_db.acr, acr_db.ror)
+    if unique_id in unique:
         raise ValJsonEx(f"{unique_id} was seen more than once, but should be unique")
     return unique_id
 
@@ -119,10 +128,12 @@ def _check_loops(cur: AcrDb, full: dict[int, AcrDb], ids: set[int], /) -> None:
 def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
     all_ids = set(to_eval_acr.keys())
     _check_missing_link_id(all_ids)
-    uniqueness: set[tuple[str, str, str, str]] = set()
+    unique_gen: set[tuple[str, str, str, str]] = set()
+    unique_ror: set[tuple[str, str]] = set()
     for acr_id, acr_db in to_eval_acr.items():
         check_uri_template(acr_db.catalogue)
-        uniqueness.add(_check_unique(uniqueness, acr_db))
+        unique_gen.add(_check_unique_gen(unique_gen, acr_db))
+        unique_ror.add(_check_unique_ror(unique_ror, acr_db))
         _check_changed_to_id(acr_db, to_eval_acr)
         _check_acr(acr_db.acr)
         _check_regex(acr_db.regex_ccno, acr_db.regex_id)
