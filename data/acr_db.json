@@ -13,7 +13,8 @@
     "regex_ccno": "^DSM\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/02tyer376"
   },
   "10": {
     "acr": "ITM",
@@ -80,7 +81,8 @@
         "*",
         "ii"
       ]
-    }
+    },
+    "ror": "https://ror.org/02y5sbr94"
   },
   "14": {
     "acr": "JCM",
@@ -127,7 +129,8 @@
     "regex_ccno": "^IFO\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/05nq89q24"
   },
   "17": {
     "acr": "NRRL",
@@ -155,7 +158,8 @@
         "YB",
         "Y"
       ]
-    }
+    },
+    "ror": "https://ror.org/02d2m2044"
   },
   "18": {
     "acr": "CIP",
@@ -175,7 +179,8 @@
       "pre": [
         "A"
       ]
-    }
+    },
+    "ror": "https://ror.org/0495fxg12"
   },
   "19": {
     "acr": "PCC",
@@ -191,7 +196,8 @@
     "regex_ccno": "^PCC\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/0495fxg12"
   },
   "2": {
     "acr": "LMG",
@@ -220,7 +226,8 @@
     "regex_ccno": "^CRBIP\\s*\\d+\\.\\d+$",
     "regex_id": {
       "full": "^\\d+\\.\\d+$"
-    }
+    },
+    "ror": "https://ror.org/0495fxg12"
   },
   "21": {
     "acr": "BCRC",
@@ -446,7 +453,8 @@
     "regex_ccno": "^NCTC\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/018h10037"
   },
   "34": {
     "acr": "NCPV",
@@ -462,7 +470,8 @@
     "regex_ccno": "^NCPV\\s*\\d+v$",
     "regex_id": {
       "full": "^\\d+v$"
-    }
+    },
+    "ror": "https://ror.org/018h10037"
   },
   "35": {
     "acr": "NCPF",
@@ -478,7 +487,8 @@
     "regex_ccno": "^NCPF\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/018h10037"
   },
   "36": {
     "acr": "VTT",
@@ -499,7 +509,8 @@
         "D",
         "E"
       ]
-    }
+    },
+    "ror": "https://ror.org/04b181w54"
   },
   "37": {
     "acr": "UTEX",
@@ -565,7 +576,8 @@
         "TSD",
         "MYA"
       ]
-    }
+    },
+    "ror": "https://ror.org/03thhhv76"
   },
   "40": {
     "acr": "CCAP",
@@ -731,7 +743,8 @@
     "regex_ccno": "^CBS\\s*\\d+(\\.\\d+)?$",
     "regex_id": {
       "full": "^\\d+(\\.\\d+)?$"
-    }
+    },
+    "ror": "https://ror.org/030a5r161"
   },
   "50": {
     "acr": "RCC",
@@ -971,7 +984,8 @@
     "regex_ccno": "^NIES-\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/02hw5fp67"
   },
   "65": {
     "acr": "NBIMCC",
@@ -1121,7 +1135,8 @@
       "suf": [
         "B"
       ]
-    }
+    },
+    "ror": "https://ror.org/04mz5ra38"
   },
   "75": {
     "acr": "CBMAI",
@@ -1192,7 +1207,8 @@
     "regex_ccno": "^TISTR\\s*\\d+$",
     "regex_id": {
       "full": "^\\d+$"
-    }
+    },
+    "ror": "https://ror.org/042pbz202"
   },
   "8": {
     "acr": "MUCL",
