@@ -34,6 +34,11 @@ ACR_DB = {
                 "country": {"type": "string", "pattern": "^[A-Z]{2}$"},
                 "active": {"type": "boolean"},
                 "deprecated": {"type": "boolean"},
+                "ror": {
+                    "type": "string",
+                    "pattern": "^https://ror.org/.+$",
+                    "format": "uri",
+                },
                 "homepage": {"type": "string", "pattern": "^http.*$", "format": "uri"},
                 "catalogue": {
                     "type": "string",
