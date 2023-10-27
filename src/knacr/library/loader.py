@@ -11,7 +11,7 @@ LATEST_VER: Final[str] = "latest"
 
 
 def load_acr_db(version: str = LATEST_VER, /) -> dict[int, AcrDb]:
-    req = f"https://raw.githubusercontent.com/artdotlis/knAcr/{version}/data/acr_db.json"
+    req = f"https://raw.githubusercontent.com/StrainInfo/knAcr/{version}/data/acr_db.json"
     print("downloading from github collection")
     if (res := requests.get(req, timeout=60)).ok:
         con = res.json()
@@ -21,7 +21,7 @@ def load_acr_db(version: str = LATEST_VER, /) -> dict[int, AcrDb]:
 
 
 def load_min_acr_db() -> dict[int, tuple[str, bool]]:
-    req = "https://raw.githubusercontent.com/artdotlis/knAcr/main/data/acr_db.json"
+    req = "https://raw.githubusercontent.com/StrainInfo/knAcr/main/data/acr_db.json"
     print("downloading from github collection")
     if (res := requests.get(req, timeout=60)).ok:
         con = res.json()
