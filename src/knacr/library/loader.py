@@ -8,9 +8,10 @@ from knacr.library.validate import validate_acr_db, validate_min_acr_db_schema
 
 
 LATEST_VER: Final[str] = "latest"
+CURRENT_VER: Final[str] = "v0.5.0"
 
 
-def load_acr_db(version: str = LATEST_VER, /) -> dict[int, AcrDb]:
+def load_acr_db(version: str = CURRENT_VER, /) -> dict[int, AcrDb]:
     req = f"https://raw.githubusercontent.com/StrainInfo/knAcr/{version}/data/acr_db.json"
     print("downloading from github collection")
     if (res := requests.get(req, timeout=60)).ok:
