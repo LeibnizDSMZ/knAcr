@@ -96,8 +96,8 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 mkdocs = ">=1.4,<2"
 mkdocs-material = ">=9.1,<10"
-mkdocstrings = ">=0.20,<1"
-mkdocstrings-python = ">=0.9,<1"
+mkdocstrings = ">=0.23,<1"
+mkdocstrings-python = ">=1.7,<2"
 
 [tool.poetry.group.test]
 optional = true
