@@ -8,6 +8,7 @@ plugins:
     default_handler: python
     handlers:
       python:
+        paths: [../../src]
         options:
           show_submodules: true
 markdown_extensions:
