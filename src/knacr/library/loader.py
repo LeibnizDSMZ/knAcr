@@ -25,7 +25,8 @@ _V = TypeVar("_V")
 
 
 def _load_acr_db(version: str, create: Callable[[_V], _T], /) -> _T:
-    req = f"https://raw.githubusercontent.com/StrainInfo/knAcr/{version}/data/acr_db.json"
+    knacr = "https://raw.githubusercontent.com/StrainInfo/knAcr"
+    req = f"{knacr}/{version}/src/knacr/data/acr_db.json"
     if version == CURRENT_VER:
         print("loading from local file")
         return create(json.loads(_load_acr_db_from_file()))
