@@ -10,7 +10,7 @@ target-version = ["py311"]
 count = ''
 ignore-words = "configs/dev/ignore.txt"
 quiet-level = 3
-skip = '.mypy,.mypy_cache,.vscore,.tox,*~,*.cache,*.lock,venv,data/*.json,*ignore.txt'
+skip = '.mypy,.mypy_cache,.vscore,.tox,*~,*.cache,*.lock,venv,**/data/*.json,*ignore.txt'
 
 [tool.commitizen]
 major_version_zero = true
@@ -64,14 +64,14 @@ authors = [
 description = """This project acts as a registry for \
 biological resource centers (BRC) used acronyms."""
 include = [
-  {path = "data/*", format = "sdist"}
+  "src/knacr/data/*",
+  "src/knacr/py.typed"
 ]
 keywords = ["python", "data", "brc", "acronym"]
 license = "MIT"
 name = "knacr"
 packages = [
-  {include = "knacr", from = "src"},
-  {include = "knacr/py.typed", from = "src"}
+  {include = "knacr", from = "src"}
 ]
 readme = "README.md"
 repository = "https://github.com/StrainInfo/knAcr"

@@ -3,7 +3,13 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from knacr.errors.custom_exceptions import ValJsonEx, ReqURIEx
-from knacr.library.loader import load_acr_db, load_min_acr_db
+from knacr.library.loader import (
+    CURRENT_VER,
+    LATEST_VER,
+    STABLE_VER,
+    load_acr_db,
+    load_min_acr_db,
+)
 
 pytest_plugins = ("tests.fixture.data",)
 
@@ -16,7 +22,7 @@ class TestLoader:
         resp.json.return_value = json.loads(load_fix_acr_db)
         req.get.return_value = resp
         try:
-            load_acr_db()
+            load_acr_db(LATEST_VER)
         except (ValJsonEx, ReqURIEx) as val_ex:
             pytest.fail(f"acr data malformed - {val_ex.message}")
 
@@ -29,12 +35,22 @@ class TestLoader:
             load_acr_db("never_tag")
 
     @patch("knacr.library.loader.requests")
+    def test_load_acr_db_current_success(self, req: MagicMock) -> None:
+        resp = MagicMock()
+        resp.ok = False
+        req.get.return_value = resp
+        try:
+            load_acr_db(CURRENT_VER)
+        except (ValJsonEx, ReqURIEx) as val_ex:
+            pytest.fail(f"acr data malformed - {val_ex.message}")
+
+    @patch("knacr.library.loader.requests")
     def test_load_min_acr_db_fail(self, req: MagicMock) -> None:
         resp = MagicMock()
         resp.ok = False
         req.get.return_value = resp
         with pytest.raises(ReqURIEx):
-            load_min_acr_db()
+            load_min_acr_db("never_tag")
 
     @patch("knacr.library.loader.requests")
     def test_load_min_acr_db_success(
@@ -45,6 +61,6 @@ class TestLoader:
         resp.json.return_value = json.loads(load_fix_acr_db)
         req.get.return_value = resp
         try:
-            load_min_acr_db()
+            load_min_acr_db(STABLE_VER)
         except (ValJsonEx, ReqURIEx) as val_ex:
             pytest.fail(f"acr data malformed - {val_ex.message}")
