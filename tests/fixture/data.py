@@ -1,18 +1,17 @@
-from pathlib import Path
+from importlib import resources
 import subprocess
 import pytest
+from knacr import data
 
 
 @pytest.fixture()
 def load_fix_acr_db() -> bytes:
-    with Path(__file__).parent.joinpath(Path("../" * 2), Path("data/acr_db.json")).open(
-        "rb"
-    ) as fhd:
+    with resources.files(data).joinpath("acr_db.json").open("rb") as fhd:
         return fhd.read()
 
 
 @pytest.fixture()
-def load_fix_min_acr_db() -> bytes:
+def load_fix_min_main_acr_db() -> bytes:
     sub_proc = subprocess.Popen(
         ["git", "show", "origin/main:data/acr_db.json"],  # noqa: S607
         shell=False,  # noqa: S603

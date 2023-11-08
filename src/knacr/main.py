@@ -3,6 +3,7 @@ from knacr.library.loader import load_acr_db
 
 
 def run() -> None:
+    # TODO no real functionality yet
     try:
         load_acr_db()
     except ValJsonEx:
