@@ -20,11 +20,13 @@ setup:
 	pyenv install $(PYV) -s
 	pyenv local $(PYV)
 	curl -sSL https://install.python-poetry.org | python3 -
+	python3 -m pip install poetry-plugin-export
 	$(POETRY) env remove --all
 	$(POETRY) config virtualenvs.in-project true
 	$(POETRY) env use `pyenv which python`
 
 uninstall:
+	pyenv local $(PYV)
 	curl -sSL https://install.python-poetry.org | python3 - --uninstall
 
 runAct:
@@ -36,6 +38,9 @@ runCheck:
 runDocs:
 	$(POETRY) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
 
+serveDocs:
+	$(POETRY) run mkdocs serve -f configs/dev/mkdocs.yml
+
 runTests:
 	$(POETRY) run tox
 
@@ -44,6 +49,10 @@ runBuild:
 
 runBump:
 	$(POETRY) run cz bump
+
+runLock:
+	$(POETRY) lock
+	$(POETRY) export -f requirements.txt --without-hashes -o requirements.txt
 
 runUpdate:
 	$(POETRY) run pre-commit autoupdate \
