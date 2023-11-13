@@ -88,6 +88,7 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 commitizen = "^3.12,<4"
+mypy = ">=1.7,<2"
 pre-commit = ">=3.5,<4"
 
 [tool.poetry.group.docs]

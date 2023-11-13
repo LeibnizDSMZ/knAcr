@@ -6,7 +6,7 @@ repos:
   - id: poetry-check
     stages: [pre-commit]
   - id: poetry-export
-    args: [-f, requirements.txt, -o, requirements.txt, --without-hashes]
+    args: [-f, requirements.txt, -o, requirements.txt]
     stages: [pre-commit]
 
   ###################################### Local ####################################
@@ -94,11 +94,13 @@ repos:
     stages: [pre-commit]
 
   # python mypy
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.7.0
+- repo: local
   hooks:
   - id: mypy
-    entry: bash -c 'mypy --install-types --non-interactive "$@"'
+    name: mypy
+    language: system
+    entry: bash -c 'make runAct && mypy --install-types --non-interactive "$@"'
+    files: \.py$
     stages: [pre-commit]
 
   # dead code
