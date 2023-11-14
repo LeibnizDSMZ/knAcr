@@ -1269,6 +1269,128 @@
       "full": "^\\d+$"
     }
   },
+  "83": {
+    "acr": "RIA",
+    "active": false,
+    "code": "RIA",
+    "country": "RU",
+    "name": "The Russia Research Institute for Antibiotics - Culture Collection",
+    "regex_ccno": "^RIA\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "84": {
+    "acr": "IMRU",
+    "active": false,
+    "code": "IMRU",
+    "country": "US",
+    "name": "Waksman Institute of Microbiology",
+    "regex_ccno": "^IMRU\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "85": {
+    "acr": "CCTCC",
+    "active": true,
+    "code": "CCTCC",
+    "country": "CN",
+    "homepage": "http://cctcc.whu.edu.cn/",
+    "name": "China Center for Type Culture Collection",
+    "regex_ccno": "^CCTCC\\s*(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA)\\s*\\d+$",
+    "regex_id": {
+      "core": "\\d+",
+      "full": "^(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA)\\s*\\d+$",
+      "pre": [
+        "AF",
+        "AB",
+        "S",
+        "CB",
+        "DB",
+        "GB",
+        "HB",
+        "JB",
+        "KB",
+        "LB",
+        "NB",
+        "WB",
+        "ZB",
+        "CF",
+        "DF",
+        "HF",
+        "KF",
+        "WF",
+        "KY",
+        "WY",
+        "DY",
+        "AY",
+        "HY",
+        "CY",
+        "NY",
+        "KA",
+        "DA",
+        "AA",
+        "HA",
+        "CA",
+        "NA"
+      ]
+    }
+  },
+  "86": {
+    "acr": "YIM",
+    "active": false,
+    "code": "YIM",
+    "country": "CN",
+    "name": "Yunnan Institute of Microbiology",
+    "regex_ccno": "^YIM\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "87": {
+    "acr": "ETH",
+    "active": false,
+    "code": "ETH",
+    "country": "CH",
+    "name": "Federal Institute of Technology Zurich - Culture Colltection",
+    "regex_ccno": "^ETH\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/05a28rw58"
+  },
+  "88": {
+    "acr": "HKI",
+    "acr_changed_to": [
+      {
+        "id": 89,
+        "type": "transfer"
+      }
+    ],
+    "active": false,
+    "code": "HKI",
+    "country": "DE",
+    "name": "Hans Knoell Institute - Culture Collection",
+    "regex_ccno": "^HKI\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/055s37c97"
+  },
+  "89": {
+    "acr": "JMRC",
+    "active": true,
+    "code": "JMRC",
+    "country": "DE",
+    "homepage": "https://www.mikrobiologie.uni-jena.de/en/institute/jena-microbial-resource-collection-jmrc",
+    "name": "The Jena Microbial Resource Collection",
+    "regex_ccno": "^JMRC\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/05qpz1x62"
+  },
   "9": {
     "acr": "IHEM",
     "acr_synonym": [
@@ -1284,5 +1406,21 @@
     "regex_id": {
       "full": "^\\d+$"
     }
+  },
+  "90": {
+    "acr": "MTCC",
+    "acr_synonym": [
+      "IMTECH:MTCC"
+    ],
+    "active": true,
+    "code": "IMTECH",
+    "country": "IN",
+    "homepage": "https://www.imtech.res.in/",
+    "name": "The Microbial Type Culture Collection and Gene Bank",
+    "regex_ccno": "^MTCC\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/055rjs771"
   }
 }
