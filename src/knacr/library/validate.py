@@ -2,11 +2,12 @@ from typing import Final, TypeVar
 import re
 
 from jsonschema import ValidationError, validate
+
 from knacr.container.acr_db import AcrCoreReg, AcrDb
 from knacr.container.fun.acr_db import check_uri_template, create_acr_db
 from knacr.errors.custom_exceptions import ValJsonEx
-
 from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB
+
 
 _TJ = TypeVar("_TJ")
 
