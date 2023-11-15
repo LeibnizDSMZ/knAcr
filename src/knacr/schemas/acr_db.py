@@ -49,7 +49,7 @@ ACR_DB = {
                 "regex_id": {
                     "type": "object",
                     "properties": {
-                        "full": {"type": "string", "format": "regex", "minLength": 5},
+                        "full": {"type": "string", "format": "regex", "minLength": 3},
                         "core": {"type": "string", "format": "regex", "minLength": 3},
                         "pre": {
                             "type": "array",
