@@ -25,7 +25,7 @@ def _check_unique_gen(
 
 
 def _check_unique_ror(unique: set[tuple[str, str]], acr_db: AcrDb, /) -> tuple[str, str]:
-    if acr_db.ror == "":
+    if acr_db.ror == "" or acr_db.deprecated:
         return "_", "_"
     unique_id = (acr_db.acr, acr_db.ror)
     if unique_id in unique:
