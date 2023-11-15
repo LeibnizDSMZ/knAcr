@@ -105,8 +105,8 @@ repos:
   - id: mypy
     name: mypy
     language: system
-    entry: bash -c 'make runPoetry CMD="mypy --install-types --non-interactive $@"'
-    files: \.py$
+    types: [python]
+    entry: bash -c 'set -e; for file in "$@"; do make runPoetry CMD="mypy $file"; done' --
     stages: [pre-commit]
 
   # dead code
