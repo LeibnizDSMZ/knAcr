@@ -8,6 +8,12 @@ repos:
   - id: poetry-export
     args: [-f, requirements.txt, -o, requirements.txt]
     stages: [pre-commit]
+  - id: poetry-export
+    args: [--only=dev, -f, requirements.txt, -o, configs/dev/requirements.dev.txt]
+    stages: [pre-commit]
+  - id: poetry-export
+    args: [--only=test, -f, requirements.txt, -o, configs/dev/requirements.test.txt]
+    stages: [pre-commit]
 
   ###################################### Local ####################################
 - repo: local
@@ -99,7 +105,7 @@ repos:
   - id: mypy
     name: mypy
     language: system
-    entry: bash -c 'make runAct && mypy --install-types --non-interactive "$@"'
+    entry: bash -c 'make runPoetry CMD="mypy --install-types --non-interactive $@"'
     files: \.py$
     stages: [pre-commit]
 
