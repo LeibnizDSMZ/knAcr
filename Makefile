@@ -32,7 +32,7 @@ uninstall:
 runAct:
 	$(POETRY) shell
 
-runCheck:
+runChecks:
 	$(POETRY) run pre-commit run --all-files
 
 runDocs:
@@ -50,11 +50,18 @@ runBuild:
 runBump:
 	$(POETRY) run cz bump
 
-runLock:
-	$(POETRY) lock
-	$(POETRY) export -f requirements.txt -o requirements.txt
+runPoetry:
+	$(POETRY) run $(CMD)
 
-runUpdate:
+runLock runUpdate: %: export_%
+	$(POETRY) export -f requirements.txt -o requirements.txt
+	$(POETRY) export --only=dev -f requirements.txt -o configs/dev/requirements.dev.txt
+	$(POETRY) export --only=test -f requirements.txt -o configs/dev/requirements.test.txt
+
+export_runLock:
+	$(POETRY) lock
+
+export_runUpdate:
 	$(POETRY) run pre-commit autoupdate \
 	--repo https://github.com/python-poetry/poetry \
 	--repo https://github.com/pre-commit/pre-commit-hooks \
@@ -67,7 +74,6 @@ runUpdate:
 	--repo https://github.com/shellcheck-py/shellcheck-py \
 	--repo https://github.com/commitizen-tools/commitizen
 	$(POETRY) update
-	$(POETRY) export -f requirements.txt -o requirements.txt
 
 commit:
 	$(POETRY) run cz commit
