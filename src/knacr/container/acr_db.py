@@ -21,15 +21,15 @@ class AcrCoreReg:
 
 @final
 @dataclass(frozen=True, slots=True, kw_only=True)
-class AcrDb:
+class AcrDbEntry:
     acr: str
     code: str
     name: str
     country: str
     active: bool
     regex_ccno: str
-    ror: str = ""
     regex_id: AcrCoreReg
+    ror: str = ""
     deprecated: bool = False
     homepage: str = ""
     catalogue: str = ""
