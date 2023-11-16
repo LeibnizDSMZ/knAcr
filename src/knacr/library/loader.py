@@ -3,7 +3,7 @@ import json
 from typing import Callable, Final, TypeVar
 
 import requests
-from knacr.container.acr_db import AcrDb
+from knacr.container.acr_db import AcrDbEntry
 from knacr.container.fun.acr_db import create_acr_min_db
 from knacr.errors.custom_exceptions import ReqURIEx, ValJsonEx
 from knacr.library.validate import validate_acr_db, validate_min_acr_db_schema
@@ -20,7 +20,7 @@ def _load_acr_db_from_file() -> bytes:
         return fhd.read()
 
 
-_T = TypeVar("_T", dict[int, AcrDb], dict[int, tuple[str, bool]])
+_T = TypeVar("_T", dict[int, AcrDbEntry], dict[int, tuple[str, bool]])
 _V = TypeVar("_V")
 
 
@@ -38,7 +38,7 @@ def _load_acr_db(version: str, create: Callable[[_V], _T], /) -> _T:
         raise ReqURIEx(f"Could not get {req}")
 
 
-def load_acr_db(version: str = CURRENT_VER, /) -> dict[int, AcrDb]:
+def load_acr_db(version: str = CURRENT_VER, /) -> dict[int, AcrDbEntry]:
     return _load_acr_db(version, parse_acr_db)
 
 
@@ -49,7 +49,7 @@ def load_min_acr_db(version: str = CURRENT_VER, /) -> dict[int, tuple[str, bool]
 _TJ = TypeVar("_TJ")
 
 
-def parse_acr_db(acr_db: _TJ) -> dict[int, AcrDb]:
+def parse_acr_db(acr_db: _TJ) -> dict[int, AcrDbEntry]:
     if not isinstance(acr_db, dict):
         raise ValJsonEx("JSON is not a dictionary")
     return validate_acr_db(acr_db)

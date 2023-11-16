@@ -1,9 +1,9 @@
-from typing import Final, TypeVar
+from typing import Final, TypeAlias, TypeVar
 import re
 
 from jsonschema import ValidationError, validate
 
-from knacr.container.acr_db import AcrCoreReg, AcrDb
+from knacr.container.acr_db import AcrCoreReg, AcrDbEntry
 from knacr.container.fun.acr_db import check_uri_template, create_acr_db
 from knacr.errors.custom_exceptions import ValJsonEx
 from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB
@@ -14,19 +14,19 @@ _TJ = TypeVar("_TJ")
 
 _ACR: Final[re.Pattern[str]] = re.compile("^[A-Z:]+$")
 _ACR_SPL: Final[re.Pattern[str]] = re.compile(":")
+_UNIQUE_GEN: TypeAlias = tuple[str, str, str, str]
+_UNIQUE_ROR: TypeAlias = tuple[str, str]
 
 
-def _check_unique_gen(
-    unique: set[tuple[str, str, str, str]], acr_db: AcrDb, /
-) -> tuple[str, str, str, str]:
+def _check_unique_gen(unique: set[_UNIQUE_GEN], acr_db: AcrDbEntry, /) -> _UNIQUE_GEN:
     unique_id = (acr_db.code, acr_db.acr, acr_db.name, acr_db.country)
     if unique_id in unique:
         raise ValJsonEx(f"{unique_id} was seen more than once, but should be unique")
     return unique_id
 
 
-def _check_unique_ror(unique: set[tuple[str, str]], acr_db: AcrDb, /) -> tuple[str, str]:
-    if acr_db.ror == "" or acr_db.deprecated:
+def _check_unique_ror(unique: set[_UNIQUE_ROR], acr_db: AcrDbEntry, /) -> _UNIQUE_ROR:
+    if acr_db.ror == "":
         return "_", "_"
     unique_id = (acr_db.acr, acr_db.ror)
     if unique_id in unique:
@@ -34,7 +34,22 @@ def _check_unique_ror(unique: set[tuple[str, str]], acr_db: AcrDb, /) -> tuple[s
     return unique_id
 
 
-def _check_changed_to_id(cur_acr_con: AcrDb, acr_db: dict[int, AcrDb], /) -> None:
+def _check_active(cur_acr_con: AcrDbEntry, /) -> None:
+    if not cur_acr_con.active and cur_acr_con.homepage != "":
+        raise ValJsonEx(
+            f"{cur_acr_con.acr}: 'inactive' BRC can not have a 'homepage' link"
+        )
+    if not cur_acr_con.active and cur_acr_con.catalogue != "":
+        raise ValJsonEx(
+            f"{cur_acr_con.acr}: 'inactive' BRC can not have a 'catalogue' link"
+        )
+    if cur_acr_con.active and len(cur_acr_con.acr_changed_to) > 0:
+        raise ValJsonEx(
+            f"{cur_acr_con.acr}: 'active' BRC can not have a 'changed to' field"
+        )
+
+
+def _check_deprecated(cur_acr_con: AcrDbEntry, /) -> None:
     if cur_acr_con.deprecated and len(cur_acr_con.acr_synonym) > 0:
         raise ValJsonEx(
             f"{cur_acr_con.acr}: 'deprecated' can not have a 'synonyms' field"
@@ -43,15 +58,36 @@ def _check_changed_to_id(cur_acr_con: AcrDb, acr_db: dict[int, AcrDb], /) -> Non
         raise ValJsonEx(
             f"{cur_acr_con.acr}: 'deprecated' can not have a 'changed to' field"
         )
+    if cur_acr_con.deprecated and cur_acr_con.active:
+        raise ValJsonEx(
+            f"{cur_acr_con.acr}: 'deprecated' can not have an 'active' status"
+        )
+
+
+def _check_changed_to_id(
+    cur_acr_con: AcrDbEntry, acr_db: dict[int, AcrDbEntry], /
+) -> None:
+    changed_to_ids = set()
     for acr_cha in cur_acr_con.acr_changed_to:
         next_acr_con = acr_db.get(acr_cha.id, None)
         if next_acr_con is None:
             raise ValJsonEx(f"missing 'changed to' acr id {acr_cha.id}")
+        if acr_cha.id in changed_to_ids:
+            raise ValJsonEx(f"found duplicate acr id {acr_cha.id} in 'changed to'")
+        changed_to_ids.add(acr_cha.id)
         if next_acr_con.deprecated:
             raise ValJsonEx(
                 f"{cur_acr_con.acr}: acr can not change into "
                 + f"a deprecated acr {acr_cha.id}"
             )
+
+
+def _check_db_composition(
+    cur_acr_con: AcrDbEntry, acr_db: dict[int, AcrDbEntry], /
+) -> None:
+    _check_changed_to_id(cur_acr_con, acr_db)
+    _check_deprecated(cur_acr_con)
+    _check_active(cur_acr_con)
 
 
 def _check_missing_link_id(all_ids: set[int], /) -> None:
@@ -115,7 +151,7 @@ def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
         )
 
 
-def _check_loops(cur: AcrDb, full: dict[int, AcrDb], ids: set[int], /) -> None:
+def _check_loops(cur: AcrDbEntry, full: dict[int, AcrDbEntry], ids: set[int], /) -> None:
     for changed in cur.acr_changed_to:
         changed_to = full.get(changed.id, None)
         if changed.id in ids:
@@ -126,23 +162,23 @@ def _check_loops(cur: AcrDb, full: dict[int, AcrDb], ids: set[int], /) -> None:
         _check_loops(changed_to, full, ids)
 
 
-def _validate_acr_db_dc(to_eval_acr: dict[int, AcrDb], /) -> None:
-    all_ids = set(to_eval_acr.keys())
+def _validate_acr_db_dc(acr_db: dict[int, AcrDbEntry], /) -> None:
+    all_ids = set(acr_db.keys())
     _check_missing_link_id(all_ids)
     unique_gen: set[tuple[str, str, str, str]] = set()
     unique_ror: set[tuple[str, str]] = set()
-    for acr_id, acr_db in to_eval_acr.items():
-        check_uri_template(acr_db.catalogue)
-        unique_gen.add(_check_unique_gen(unique_gen, acr_db))
-        unique_ror.add(_check_unique_ror(unique_ror, acr_db))
-        _check_changed_to_id(acr_db, to_eval_acr)
-        _check_acr(acr_db.acr)
-        _check_regex(acr_db.regex_ccno, acr_db.regex_id)
-        _check_acr_in_reg(acr_db.acr, acr_db.regex_ccno)
-        _check_loops(acr_db, to_eval_acr, {acr_id})
+    for acr_id, acr_con in acr_db.items():
+        check_uri_template(acr_con.catalogue)
+        unique_gen.add(_check_unique_gen(unique_gen, acr_con))
+        unique_ror.add(_check_unique_ror(unique_ror, acr_con))
+        _check_db_composition(acr_con, acr_db)
+        _check_acr(acr_con.acr)
+        _check_regex(acr_con.regex_ccno, acr_con.regex_id)
+        _check_acr_in_reg(acr_con.acr, acr_con.regex_ccno)
+        _check_loops(acr_con, acr_db, {acr_id})
 
 
-def validate_acr_db(to_eval: _TJ, /) -> dict[int, AcrDb]:
+def validate_acr_db(to_eval: _TJ, /) -> dict[int, AcrDbEntry]:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     try:

@@ -2,9 +2,9 @@ from collections import defaultdict
 from dataclasses import asdict
 from re import Pattern
 import re
-from typing import Callable, Final, TypeVar
+from typing import Any, Callable, Final, Mapping, TypeVar
 
-from knacr.container.acr_db import AcrDb, AcrChaT, CatArgs
+from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs
 from dacite import from_dict
 from knacr.errors.custom_exceptions import ValJsonEx
 
@@ -13,37 +13,37 @@ def get_brc_merge_type() -> list[str]:
     return [str(cha.value) for cha in AcrChaT]
 
 
-_TJ = TypeVar("_TJ")
+_TJ = TypeVar("_TJ", bound=Mapping[str, Any])
 
 
-def _amend_regex_id(acr_db: dict[int, AcrDb], /) -> dict[int, AcrDb]:
+def _amend_regex_id(acr_db: dict[int, AcrDbEntry], /) -> dict[int, AcrDbEntry]:
     for acr_id, acr_con in acr_db.items():
         if acr_con.regex_id.core == "":
             buf = asdict(acr_con)
             buf.get("regex_id", {})["core"] = acr_con.regex_id.full[1:-2]
-            acr_db[acr_id] = from_dict(data_class=AcrDb, data=buf)
+            acr_db[acr_id] = from_dict(data_class=AcrDbEntry, data=buf)
     return acr_db
 
 
-def create_acr_db(to_eval: dict[str, _TJ], /) -> dict[int, AcrDb]:
+def create_acr_db(to_eval: dict[str, _TJ], /) -> dict[int, AcrDbEntry]:
     acr_db = {
-        int(acr_id): from_dict(data_class=AcrDb, data=acr_db)
-        for acr_id, acr_db in to_eval.items()
+        int(acr_id): from_dict(data_class=AcrDbEntry, data=acr_db_entry)
+        for acr_id, acr_db_entry in to_eval.items()
     }
     return _amend_regex_id(acr_db)
 
 
 def create_acr_min_db(to_eval: dict[str, _TJ], /) -> dict[int, tuple[str, bool]]:
     min_db: dict[int, tuple[str, bool]] = {}
-    for acr_id, acr_db in to_eval.items():
-        if not isinstance(acr_db, dict):
-            raise ValJsonEx(f"expected dict got {type(acr_db)} for id {acr_id}")
-        acr = acr_db.get("acr", None)
-        acr_dep = acr_db.get("deprecated", False)
+    for acr_id, db_ent in to_eval.items():
+        if not isinstance(db_ent, dict):
+            raise ValJsonEx(f"expected dict got {type(db_ent)} for id {acr_id}")
+        acr = db_ent.get("acr", None)
+        acr_dep = db_ent.get("deprecated", False)
         if not isinstance(acr, str):
-            raise ValJsonEx(f"ID {acr_id} does not define an acronym {acr_db!s}")
+            raise ValJsonEx(f"ID {acr_id} does not define an acronym {db_ent!s}")
         if not isinstance(acr_dep, bool):
-            raise ValJsonEx(f"ID {acr_id} does not define deprecation status {acr_db!s}")
+            raise ValJsonEx(f"ID {acr_id} does not define deprecation status {db_ent!s}")
         min_db[int(acr_id)] = (acr, acr_dep)
     return min_db
 
