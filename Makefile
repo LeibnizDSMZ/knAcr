@@ -75,5 +75,8 @@ export_runUpdate:
 	--repo https://github.com/commitizen-tools/commitizen
 	$(POETRY) update
 
-commit:
+com commit:
 	$(POETRY) run cz commit
+
+recom recommit:
+	$(POETRY) run cz commit --retry
