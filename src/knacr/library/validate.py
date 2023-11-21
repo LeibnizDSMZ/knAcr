@@ -2,11 +2,12 @@ from typing import Final, TypeAlias, TypeVar
 import re
 
 from jsonschema import ValidationError, validate
+from knacr.constants.types import ACR_DB_T, REG_DB_T
 
 from knacr.container.acr_db import AcrCoreReg, AcrDbEntry
-from knacr.container.fun.acr_db import check_uri_template, create_acr_db
+from knacr.container.fun.acr_db import check_uri_template, create_acr_db, create_regex_db
 from knacr.errors.custom_exceptions import ValJsonEx
-from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB
+from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB, REGEX_DB
 
 
 _TJ = TypeVar("_TJ")
@@ -64,9 +65,7 @@ def _check_deprecated(cur_acr_con: AcrDbEntry, /) -> None:
         )
 
 
-def _check_changed_to_id(
-    cur_acr_con: AcrDbEntry, acr_db: dict[int, AcrDbEntry], /
-) -> None:
+def _check_changed_to_id(cur_acr_con: AcrDbEntry, acr_db: ACR_DB_T, /) -> None:
     changed_to_ids = set()
     for acr_cha in cur_acr_con.acr_changed_to:
         next_acr_con = acr_db.get(acr_cha.id, None)
@@ -82,9 +81,7 @@ def _check_changed_to_id(
             )
 
 
-def _check_db_composition(
-    cur_acr_con: AcrDbEntry, acr_db: dict[int, AcrDbEntry], /
-) -> None:
+def _check_db_composition(cur_acr_con: AcrDbEntry, acr_db: ACR_DB_T, /) -> None:
     _check_changed_to_id(cur_acr_con, acr_db)
     _check_deprecated(cur_acr_con)
     _check_active(cur_acr_con)
@@ -151,7 +148,7 @@ def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
         )
 
 
-def _check_loops(cur: AcrDbEntry, full: dict[int, AcrDbEntry], ids: set[int], /) -> None:
+def _check_loops(cur: AcrDbEntry, full: ACR_DB_T, ids: set[int], /) -> None:
     for changed in cur.acr_changed_to:
         changed_to = full.get(changed.id, None)
         if changed.id in ids:
@@ -162,7 +159,34 @@ def _check_loops(cur: AcrDbEntry, full: dict[int, AcrDbEntry], ids: set[int], /)
         _check_loops(changed_to, full, ids)
 
 
-def _validate_acr_db_dc(acr_db: dict[int, AcrDbEntry], /) -> None:
+def _check_ids_overlap(reg_db: set[int], acr_db: set[int], equal_sized: bool, /) -> None:
+    if equal_sized and len(reg_db) != len(acr_db):
+        raise ValJsonEx("regex db and acronym db have different sizes")
+    if len(mis_ids := reg_db - acr_db) != 0:
+        raise ValJsonEx(f"acronym db missing the following ids: {mis_ids!s}")
+
+
+def _check_empty_list(reg_db: REG_DB_T, /) -> None:
+    for reg_id, reg_con in reg_db.items():
+        if len(list(filter(lambda ccno: ccno != "", reg_con))) == 0:
+            raise ValJsonEx(f"{reg_id} does not have any valid examples")
+
+
+def _apply_regex(acr_id: int, acr_con: AcrDbEntry, ccnos: list[str], /) -> None:
+    reg_ccno = re.compile(acr_con.regex_ccno)
+    reg_ccno_id = re.compile(acr_con.regex_id.full[1:])
+    for ccno in ccnos:
+        if reg_ccno.match(ccno) is None:
+            raise ValJsonEx(
+                f"CCNo {ccno} does not match the default ccno regex - ID {acr_id}"
+            )
+        if reg_ccno_id.search(ccno) is None:
+            raise ValJsonEx(
+                f"CCNo {ccno} does not match the default ccno id regex - ID {acr_id}"
+            )
+
+
+def _validate_acr_db_dc(acr_db: ACR_DB_T, /) -> None:
     all_ids = set(acr_db.keys())
     _check_missing_link_id(all_ids)
     unique_gen: set[tuple[str, str, str, str]] = set()
@@ -178,7 +202,17 @@ def _validate_acr_db_dc(acr_db: dict[int, AcrDbEntry], /) -> None:
         _check_loops(acr_con, acr_db, {acr_id})
 
 
-def validate_acr_db(to_eval: _TJ, /) -> dict[int, AcrDbEntry]:
+def _validate_regex_dc(reg_db: REG_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /) -> None:
+    all_reg_ids = set(reg_db.keys())
+    _check_missing_link_id(all_reg_ids)
+    _check_empty_list(reg_db)
+    _check_ids_overlap(all_reg_ids, set(acr_db.keys()), equal_sized)
+    for acr_id, acr_con in acr_db.items():
+        if acr_id in reg_db:
+            _apply_regex(acr_id, acr_con, reg_db[acr_id])
+
+
+def validate_acr_db(to_eval: _TJ, /) -> ACR_DB_T:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     try:
@@ -203,3 +237,16 @@ def validate_min_acr_db_schema(to_eval: _TJ, /) -> None:
         raise ValJsonEx(
             f"Acronym Data is incorrectly formatted! [{exc.message}]"
         ) from exc
+
+
+def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> REG_DB_T:
+    if not isinstance(to_eval, dict):
+        raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
+    try:
+        validate(instance=to_eval, schema=REGEX_DB)
+        regex_db = create_regex_db(to_eval)
+        _validate_regex_dc(regex_db, acr_db, equal_sized)
+    except ValidationError as exc:
+        raise ValJsonEx(f"Regex Data is incorrectly formatted! [{exc.message}]") from exc
+    else:
+        return regex_db

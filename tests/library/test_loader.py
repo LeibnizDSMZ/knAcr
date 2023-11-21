@@ -9,6 +9,8 @@ from knacr.library.loader import (
     STABLE_VER,
     load_acr_db,
     load_min_acr_db,
+    load_regex_db,
+    parse_acr_db,
 )
 
 pytest_plugins = ("tests.fixture.data",)
@@ -64,3 +66,25 @@ class TestLoader:
             load_min_acr_db(STABLE_VER)
         except (ValJsonEx, ReqURIEx) as val_ex:
             pytest.fail(f"acr data malformed - {val_ex.message}")
+
+    @patch("knacr.library.loader.requests")
+    def test_load_regex_db_fail(self, req: MagicMock) -> None:
+        resp = MagicMock()
+        resp.ok = False
+        req.get.return_value = resp
+        with pytest.raises(ReqURIEx):
+            load_regex_db({}, "never_tag")
+
+    @patch("knacr.library.loader.requests")
+    def test_load_regex_db_success(
+        self, req: MagicMock, load_fix_regex_db: bytes, load_fix_acr_db: bytes
+    ) -> None:
+        resp = MagicMock()
+        resp.ok = True
+        resp.json.return_value = json.loads(load_fix_regex_db)
+        req.get.return_value = resp
+        acr_db = parse_acr_db(json.loads(load_fix_acr_db))
+        try:
+            load_regex_db(acr_db, STABLE_VER)
+        except (ValJsonEx, ReqURIEx) as val_ex:
+            pytest.fail(f"regex data malformed - {val_ex.message}")
