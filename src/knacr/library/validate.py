@@ -166,10 +166,13 @@ def _check_ids_overlap(reg_db: set[int], acr_db: set[int], equal_sized: bool, /)
         raise ValJsonEx(f"acronym db missing the following ids: {mis_ids!s}")
 
 
-def _check_empty_list(reg_db: REG_DB_T, /) -> None:
+def _check_malformed_list(reg_db: REG_DB_T, /) -> None:
     for reg_id, reg_con in reg_db.items():
-        if len(list(filter(lambda ccno: ccno != "", reg_con))) == 0:
+        filtered = list(filter(lambda ccno: ccno != "", reg_con))
+        if len(filtered) == 0:
             raise ValJsonEx(f"{reg_id} does not have any valid examples")
+        if len(filtered) != len(set(filtered)):
+            raise ValJsonEx(f"{reg_id} does have duplicate examples")
 
 
 def _apply_regex(acr_id: int, acr_con: AcrDbEntry, ccnos: list[str], /) -> None:
@@ -205,7 +208,7 @@ def _validate_acr_db_dc(acr_db: ACR_DB_T, /) -> None:
 def _validate_regex_dc(reg_db: REG_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /) -> None:
     all_reg_ids = set(reg_db.keys())
     _check_missing_link_id(all_reg_ids)
-    _check_empty_list(reg_db)
+    _check_malformed_list(reg_db)
     _check_ids_overlap(all_reg_ids, set(acr_db.keys()), equal_sized)
     for acr_id, acr_con in acr_db.items():
         if acr_id in reg_db:
