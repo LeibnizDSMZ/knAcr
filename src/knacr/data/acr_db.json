@@ -1419,5 +1419,96 @@
       "full": "^\\d+$"
     },
     "ror": "https://ror.org/055rjs771"
+  },
+  "91": {
+    "acr": "SN",
+    "acr_changed_to": [
+      {
+        "id": 92,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "SN",
+    "country": "AU",
+    "name": "Australian Mycological Panel",
+    "regex_ccno": "^SN\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "92": {
+    "acr": "AMP",
+    "active": false,
+    "code": "AMP",
+    "country": "AU",
+    "name": "Australian Mycological Panel",
+    "regex_ccno": "^AMP\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "93": {
+    "acr": "KMM",
+    "active": true,
+    "code": "KMM",
+    "country": "RU",
+    "homepage": "http://piboc.dvo.ru/en/",
+    "name": "Pacific Institute of Bioorganic Chemistry - Collection of Marine Microorganisms",
+    "regex_ccno": "^KMM\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "94": {
+    "acr": "KCCM",
+    "active": true,
+    "catalogue": "http://www.kccm.or.kr/sub12_view.php3?f_kccm={id}",
+    "code": "KCCM",
+    "country": "US",
+    "homepage": "http://www.kccm.or.kr",
+    "name": "Department of Food Engineering - Korean Culture Center of Microorganisms",
+    "regex_ccno": "^KCCM\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "95": {
+    "acr": "OCM",
+    "active": false,
+    "code": "OCM",
+    "country": "US",
+    "name": "Portland State University - Oregon Collection of Methanogens",
+    "regex_ccno": "^OCM\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/00yn2fy02"
+  },
+  "96": {
+    "acr": "CAIM",
+    "active": true,
+    "catalogue": "https://www.ciad.mx/caim/busqueda.php?searchtype=CAIM&criterio={id}",
+    "code": "CAIM",
+    "country": "MX",
+    "homepage": "https://www.ciad.mx/caim",
+    "name": "Center of Research for Nutrition and Development - Collection of Aquacultural Important Microorganisms",
+    "regex_ccno": "^CAIM\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "97": {
+    "acr": "CGSC",
+    "active": true,
+    "code": "CGSC",
+    "country": "US",
+    "homepage": "https://cgsc.biology.yale.edu",
+    "name": "The Coli Genetic Stock Center",
+    "regex_ccno": "^CGSC\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/03v76x132"
   }
 }
