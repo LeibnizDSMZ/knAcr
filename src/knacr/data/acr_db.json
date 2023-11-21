@@ -237,12 +237,12 @@
     "country": "TW",
     "homepage": "https://www.bcrc.firdi.org.tw/en/home/",
     "name": "Bioresource Collection and Research Center",
-    "regex_ccno": "^BCRC\\s*(AL)?\\d+$",
+    "regex_ccno": "^BCRC\\s*(A)?\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^(AL)?\\d+$",
+      "full": "^(A)?\\d+$",
       "pre": [
-        "AL"
+        "A"
       ]
     }
   },
@@ -374,10 +374,10 @@
     "country": "SE",
     "homepage": "https://www.ccug.se/",
     "name": "Culture Collection University of Gothenburg",
-    "regex_ccno": "^CCUG\\s*\\d+(\\s+[AaBbCEQDFG]{1,2})?$",
+    "regex_ccno": "^CCUG\\s*\\d+(\\s*[AaBbCEQDFG]{1,2})?$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^\\d+(\\s+[AaBbCEQDFG]{1,2})?$",
+      "full": "^\\d+(\\s*[AaBbCEQDFG]{1,2})?$",
       "suf": [
         "A",
         "a",
@@ -567,14 +567,17 @@
     "country": "US",
     "homepage": "https://www.atcc.org/",
     "name": "American Type Culture Collection",
-    "regex_ccno": "^ATCC\\s*((BAA|TSD|MYA)-)?\\d+$",
+    "regex_ccno": "^ATCC\\s*((BAA|TSD|MYA|SD|VR|PTA)-)?\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^((BAA|TSD|MYA)-)?\\d+$",
+      "full": "^((BAA|TSD|MYA|SD|VR|PTA)-)?\\d+$",
       "pre": [
         "BAA",
         "TSD",
-        "MYA"
+        "MYA",
+        "SD",
+        "VR",
+        "PTA"
       ]
     },
     "ror": "https://ror.org/03thhhv76"
@@ -648,10 +651,10 @@
     "country": "HU",
     "homepage": "http://ncaim.etk.szie.hu/",
     "name": "National Collection of Agricultural and Industrial Microorganisms",
-    "regex_ccno": "^NCAIM\\s*[BYF]\\.\\d+$",
+    "regex_ccno": "^NCAIM\\s*[BYF][.\\s-]\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^[BYF]\\.\\d+$",
+      "full": "^[BYF][.\\s-]\\d+$",
       "pre": [
         "B",
         "Y",
@@ -679,13 +682,10 @@
     "country": "US",
     "homepage": "https://fat.org.br/catalogo-de-culturas-online/",
     "name": "National Center for Marine Algae and Microbiota",
-    "regex_ccno": "^CCMP\\s*B?\\d+$",
+    "regex_ccno": "^CCMP\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^B?\\d+$",
-      "pre": [
-        "B"
-      ]
+      "full": "^\\d+$"
     }
   },
   "47": {
@@ -981,7 +981,7 @@
     "country": "JP",
     "homepage": "https://mcc.nies.go.jp/",
     "name": "Microbial Culture Collection at National Institute for Environmental Studies",
-    "regex_ccno": "^NIES-\\d+$",
+    "regex_ccno": "^NIES[-\\s]\\d+$",
     "regex_id": {
       "full": "^\\d+$"
     },
@@ -1051,14 +1051,10 @@
     "country": "US",
     "homepage": "https://www.fgsc.net/",
     "name": "Fungal Genetics Stock Center",
-    "regex_ccno": "^FGSC\\s*[A#]?\\d+$",
+    "regex_ccno": "^FGSC\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^[A#]?\\d+$",
-      "pre": [
-        "A",
-        "#"
-      ]
+      "full": "^\\d+$"
     }
   },
   "70": {
@@ -1298,14 +1294,15 @@
     "country": "CN",
     "homepage": "http://cctcc.whu.edu.cn/",
     "name": "China Center for Type Culture Collection",
-    "regex_ccno": "^CCTCC\\s*(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA)\\s*\\d+$",
+    "regex_ccno": "^CCTCC\\s*(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA|M)?\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA)\\s*\\d+$",
+      "full": "^(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA|M)?\\s*\\d+$",
       "pre": [
         "AF",
         "AB",
         "S",
+        "M",
         "CB",
         "DB",
         "GB",

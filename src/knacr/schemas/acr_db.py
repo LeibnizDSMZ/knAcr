@@ -83,11 +83,11 @@ ACR_DB = {
 
 ACR_MIN_DB = {
     "type": "object",
-    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrCon"}},
+    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/AcrMinCon"}},
     "additionalProperties": False,
     "required": [],
     "definitions": {
-        "AcrCon": {
+        "AcrMinCon": {
             "type": "object",
             "properties": {
                 "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
@@ -95,6 +95,21 @@ ACR_MIN_DB = {
             },
             "required": ["acr"],
             "additionalProperties": True,
+        }
+    },
+}
+
+
+REGEX_DB = {
+    "type": "object",
+    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/RegCon"}},
+    "additionalProperties": False,
+    "required": [],
+    "definitions": {
+        "RegCon": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 3},
+            "minLength": 1,
         }
     },
 }

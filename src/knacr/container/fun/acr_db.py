@@ -2,7 +2,8 @@ from collections import defaultdict
 from dataclasses import asdict
 from re import Pattern
 import re
-from typing import Any, Callable, Final, Mapping, TypeVar
+from typing import Callable, Final, Mapping, Sequence, TypeVar
+from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, REG_DB_T
 
 from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs
 from dacite import from_dict
@@ -13,10 +14,10 @@ def get_brc_merge_type() -> list[str]:
     return [str(cha.value) for cha in AcrChaT]
 
 
-_TJ = TypeVar("_TJ", bound=Mapping[str, Any])
+_TJ = TypeVar("_TJ")
 
 
-def _amend_regex_id(acr_db: dict[int, AcrDbEntry], /) -> dict[int, AcrDbEntry]:
+def _amend_regex_id(acr_db: ACR_DB_T, /) -> ACR_DB_T:
     for acr_id, acr_con in acr_db.items():
         if acr_con.regex_id.core == "":
             buf = asdict(acr_con)
@@ -25,7 +26,7 @@ def _amend_regex_id(acr_db: dict[int, AcrDbEntry], /) -> dict[int, AcrDbEntry]:
     return acr_db
 
 
-def create_acr_db(to_eval: dict[str, _TJ], /) -> dict[int, AcrDbEntry]:
+def create_acr_db(to_eval: dict[str, Mapping[str, _TJ]], /) -> ACR_DB_T:
     acr_db = {
         int(acr_id): from_dict(data_class=AcrDbEntry, data=acr_db_entry)
         for acr_id, acr_db_entry in to_eval.items()
@@ -33,8 +34,8 @@ def create_acr_db(to_eval: dict[str, _TJ], /) -> dict[int, AcrDbEntry]:
     return _amend_regex_id(acr_db)
 
 
-def create_acr_min_db(to_eval: dict[str, _TJ], /) -> dict[int, tuple[str, bool]]:
-    min_db: dict[int, tuple[str, bool]] = {}
+def create_acr_min_db(to_eval: dict[str, Mapping[str, _TJ]], /) -> ACR_MIN_DB_T:
+    min_db: ACR_MIN_DB_T = {}
     for acr_id, db_ent in to_eval.items():
         if not isinstance(db_ent, dict):
             raise ValJsonEx(f"expected dict got {type(db_ent)} for id {acr_id}")
@@ -46,6 +47,15 @@ def create_acr_min_db(to_eval: dict[str, _TJ], /) -> dict[int, tuple[str, bool]]
             raise ValJsonEx(f"ID {acr_id} does not define deprecation status {db_ent!s}")
         min_db[int(acr_id)] = (acr, acr_dep)
     return min_db
+
+
+def create_regex_db(to_eval: dict[str, Sequence[_TJ]], /) -> REG_DB_T:
+    reg_db: REG_DB_T = {}
+    for acr_id, db_ent in to_eval.items():
+        if not isinstance(db_ent, list):
+            raise ValJsonEx(f"expected list got {type(db_ent)} for id {acr_id}")
+        reg_db[int(acr_id)] = [ccno for ccno in db_ent if isinstance(ccno, str)]
+    return reg_db
 
 
 _CAT_ACR: Final[Pattern[str]] = re.compile(r"\{acr\}")

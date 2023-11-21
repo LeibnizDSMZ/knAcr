@@ -11,6 +11,12 @@ def load_fix_acr_db() -> bytes:
 
 
 @pytest.fixture()
+def load_fix_regex_db() -> bytes:
+    with resources.files(data).joinpath("regex_db.json").open("rb") as fhd:
+        return fhd.read()
+
+
+@pytest.fixture()
 def load_fix_min_main_acr_db() -> bytes:
     sub_proc = subprocess.Popen(
         ["git", "show", "origin/main:data/acr_db.json"],  # noqa: S607
