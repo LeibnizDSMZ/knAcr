@@ -1,3 +1,36 @@
+## v0.5.0 (2023-11-22)
+
+### Feat
+
+- update db to 97 collections
+- check whether duplicates exist in the test examples
+- add test data for regex checks
+- check acronym db composition
+- ignore deprecated ror uniqueness
+- update to 90 acronyms
+- load current db version locally
+- add current version and use it in the loader
+- update ror data in acr db
+- add ror to schema
+- add ror to db
+- add function to fill core ids with leading zeroes
+- add detailed link creation function
+
+### Fix
+
+- reduce minlength for id full to 3
+- remove sym link to data
+
+### Refactor
+
+- update project github uri
+
+## v0.4.1 (2023-08-17)
+
+### Fix
+
+- remove red. print and check for none group
+
 ## v0.4.0 (2023-07-30)
 
 ### Feat
