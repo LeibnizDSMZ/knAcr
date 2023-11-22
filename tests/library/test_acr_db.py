@@ -2,7 +2,7 @@ import json
 import pytest
 
 from knacr.errors.custom_exceptions import ValJsonEx
-from knacr.library.loader import parse_acr_db, parse_min_acr_db
+from knacr.library.loader import parse_acr_db, parse_min_acr_db, parse_regex_db
 
 
 pytest_plugins = ("tests.fixture.data",)
@@ -28,3 +28,9 @@ class TestAcrDb:
                 pytest.fail(f"acr changed for id {acr_id} - {acr} -> {acr_db.acr}")
             elif dep and not acr_db.deprecated:
                 pytest.fail(f"acr [{acr_id}] can not be re-validated")
+
+    def test_regex_stability(
+        self, load_fix_acr_db: bytes, load_fix_main_regex_db: bytes
+    ) -> None:
+        acr_db = parse_acr_db(json.loads(load_fix_acr_db))
+        parse_regex_db(json.loads(load_fix_main_regex_db), acr_db, False)
