@@ -30,7 +30,14 @@ class TestAcrDb:
                 pytest.fail(f"acr [{acr_id}] can not be re-validated")
 
     def test_regex_stability(
-        self, load_fix_acr_db: bytes, load_fix_main_regex_db: bytes
+        self,
+        load_fix_acr_db: bytes,
+        load_fix_main_regex_db: bytes,
+        load_fix_regex_db: bytes,
     ) -> None:
         acr_db = parse_acr_db(json.loads(load_fix_acr_db))
-        parse_regex_db(json.loads(load_fix_main_regex_db), acr_db, False)
+        main_reg = parse_regex_db(json.loads(load_fix_main_regex_db), acr_db, False)
+        cur_reg = parse_regex_db(json.loads(load_fix_regex_db), acr_db, True)
+        for acr_id in main_reg.keys():
+            if cur_reg.get(acr_id, None) is None:
+                pytest.fail(f"missing main id in the new database - {acr_id}")
