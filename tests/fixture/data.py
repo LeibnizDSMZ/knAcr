@@ -16,10 +16,9 @@ def load_fix_regex_db() -> bytes:
         return fhd.read()
 
 
-@pytest.fixture()
-def load_fix_min_main_acr_db() -> bytes:
+def _get_data_from_main_branch(data_name: str, /) -> bytes:
     sub_proc = subprocess.Popen(
-        ["git", "show", "origin/main:src/knacr/data/acr_db.json"],  # noqa: S607
+        ["git", "show", f"origin/main:src/knacr/data/{data_name}.json"],  # noqa: S607
         shell=False,  # noqa: S603
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -27,5 +26,15 @@ def load_fix_min_main_acr_db() -> bytes:
     )
     out, err = sub_proc.communicate()
     if not out or err:
-        pytest.fail(f"could not read from main acr_db {err!s}")
+        pytest.fail(f"could not read from main {data_name} {err!s}")
     return out.encode("utf-8")
+
+
+@pytest.fixture()
+def load_fix_min_main_acr_db() -> bytes:
+    return _get_data_from_main_branch("acr_db")
+
+
+@pytest.fixture()
+def load_fix_main_regex_db() -> bytes:
+    return _get_data_from_main_branch("regex_db")
