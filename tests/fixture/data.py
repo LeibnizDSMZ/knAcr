@@ -19,7 +19,7 @@ def load_fix_regex_db() -> bytes:
 @pytest.fixture()
 def load_fix_min_main_acr_db() -> bytes:
     sub_proc = subprocess.Popen(
-        ["git", "show", "origin/main:data/acr_db.json"],  # noqa: S607
+        ["git", "show", "origin/main:src/knacr/data/acr_db.json"],  # noqa: S607
         shell=False,  # noqa: S603
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
