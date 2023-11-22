@@ -17,6 +17,9 @@ major_version_zero = true
 name = "cz_conventional_commits"
 tag_format = "v$version"
 update_changelog_on_bump = true
+version_files = [
+  "README.md:^\\[!\\[release:"
+]
 version_provider = "poetry"
 version_type = "semver"
 
@@ -75,7 +78,7 @@ packages = [
 ]
 readme = "README.md"
 repository = "https://github.com/StrainInfo/knAcr"
-version = "0.4.1"
+version = "0.5.0"
 
 [tool.poetry.dependencies]
 dacite = ">=1.8,<2"
