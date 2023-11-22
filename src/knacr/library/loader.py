@@ -16,7 +16,7 @@ from knacr import data
 
 LATEST_VER: Final[str] = "latest"
 STABLE_VER: Final[str] = "main"
-CURRENT_VER: Final[str] = "v0.5.0"
+CURRENT_VER: Final[str] = "v0.5.1"
 
 
 def _load_data_from_file(db_name: str, /) -> bytes:
