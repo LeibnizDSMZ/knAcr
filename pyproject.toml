@@ -82,7 +82,7 @@ version = "0.5.1"
 
 [tool.poetry.dependencies]
 dacite = ">=1.8,<2"
-jsonschema = ">=4.19,<5"
+jsonschema = {version = ">=4.19,<5", extras = ["format"]}
 python = ">=3.11,<4"
 requests = ">=2.31,<3"
 

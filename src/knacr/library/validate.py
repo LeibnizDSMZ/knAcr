@@ -1,7 +1,7 @@
-from typing import Final, TypeAlias, TypeVar
+from typing import Callable, Final, TypeAlias, TypeVar
 import re
 
-from jsonschema import ValidationError, validate
+from jsonschema import Draft202012Validator, ValidationError, validate
 from knacr.constants.types import ACR_DB_T, REG_DB_T
 
 from knacr.container.acr_db import AcrCoreReg, AcrDbEntry
@@ -11,12 +11,13 @@ from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB, REGEX_DB
 
 
 _TJ = TypeVar("_TJ")
+_TV = TypeVar("_TV")
 
 
 _ACR: Final[re.Pattern[str]] = re.compile("^[A-Z:]+$")
 _ACR_SPL: Final[re.Pattern[str]] = re.compile(":")
 _UNIQUE_GEN: TypeAlias = tuple[str, str, str, str]
-_UNIQUE_ROR: TypeAlias = tuple[str, str]
+_UNIQUE_GID: TypeAlias = tuple[str, str, str]
 
 
 def _check_unique_gen(unique: set[_UNIQUE_GEN], acr_db: AcrDbEntry, /) -> _UNIQUE_GEN:
@@ -26,10 +27,16 @@ def _check_unique_gen(unique: set[_UNIQUE_GEN], acr_db: AcrDbEntry, /) -> _UNIQU
     return unique_id
 
 
-def _check_unique_ror(unique: set[_UNIQUE_ROR], acr_db: AcrDbEntry, /) -> _UNIQUE_ROR:
-    if acr_db.ror == "":
-        return "_", "_"
-    unique_id = (acr_db.acr, acr_db.ror)
+def _check_unique_gid(
+    unique: set[_UNIQUE_GID],
+    acr_db: AcrDbEntry,
+    gid: Callable[[AcrDbEntry], str],
+    gid_type: str,
+    /,
+) -> _UNIQUE_GID:
+    if gid(acr_db):
+        return "_", "_", "_"
+    unique_id = (acr_db.acr, gid(acr_db), gid_type)
     if unique_id in unique:
         raise ValJsonEx(f"{unique_id} was seen more than once, but should be unique")
     return unique_id
@@ -192,12 +199,13 @@ def _apply_regex(acr_id: int, acr_con: AcrDbEntry, ccnos: list[str], /) -> None:
 def _validate_acr_db_dc(acr_db: ACR_DB_T, /) -> None:
     all_ids = set(acr_db.keys())
     _check_missing_link_id(all_ids)
-    unique_gen: set[tuple[str, str, str, str]] = set()
-    unique_ror: set[tuple[str, str]] = set()
+    uni_gen: set[tuple[str, str, str, str]] = set()
+    uni_gid: set[tuple[str, str, str]] = set()
     for acr_id, acr_con in acr_db.items():
         check_uri_template(acr_con.catalogue)
-        unique_gen.add(_check_unique_gen(unique_gen, acr_con))
-        unique_ror.add(_check_unique_ror(unique_ror, acr_con))
+        uni_gen.add(_check_unique_gen(uni_gen, acr_con))
+        uni_gid.add(_check_unique_gid(uni_gid, acr_con, lambda db: db.ror, "ror"))
+        uni_gid.add(_check_unique_gid(uni_gid, acr_con, lambda db: db.gbif, "gbif"))
         _check_db_composition(acr_con, acr_db)
         _check_acr(acr_con.acr)
         _check_regex(acr_con.regex_ccno, acr_con.regex_id)
@@ -215,41 +223,37 @@ def _validate_regex_dc(reg_db: REG_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /)
             _apply_regex(acr_id, acr_con, reg_db[acr_id])
 
 
+def _validate_json(to_val_j: _TJ, schema: dict[str, _TV], msg: str, /) -> None:
+    try:
+        validate(
+            instance=to_val_j,
+            schema=schema,
+            format_checker=Draft202012Validator.FORMAT_CHECKER,
+        )
+    except ValidationError as exc:
+        raise ValJsonEx(f"{msg} [{exc.cause!s}]") from exc
+
+
 def validate_acr_db(to_eval: _TJ, /) -> ACR_DB_T:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
-    try:
-        validate(instance=to_eval, schema=ACR_DB)
-        acr_db = create_acr_db(to_eval)
-        if len(acr_db) > 0:
-            _validate_acr_db_dc(acr_db)
-    except ValidationError as exc:
-        raise ValJsonEx(
-            f"Acronym Data is incorrectly formatted! [{exc.message}]"
-        ) from exc
-    else:
-        return acr_db
+    _validate_json(to_eval, ACR_DB, "Acronym Data is incorrectly formatted!")
+    acr_db = create_acr_db(to_eval)
+    if len(acr_db) > 0:
+        _validate_acr_db_dc(acr_db)
+    return acr_db
 
 
 def validate_min_acr_db_schema(to_eval: _TJ, /) -> None:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
-    try:
-        validate(instance=to_eval, schema=ACR_MIN_DB)
-    except ValidationError as exc:
-        raise ValJsonEx(
-            f"Acronym Data is incorrectly formatted! [{exc.message}]"
-        ) from exc
+    _validate_json(to_eval, ACR_MIN_DB, "Acronym Data is incorrectly formatted!")
 
 
 def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> REG_DB_T:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
-    try:
-        validate(instance=to_eval, schema=REGEX_DB)
-        regex_db = create_regex_db(to_eval)
-        _validate_regex_dc(regex_db, acr_db, equal_sized)
-    except ValidationError as exc:
-        raise ValJsonEx(f"Regex Data is incorrectly formatted! [{exc.message}]") from exc
-    else:
-        return regex_db
+    _validate_json(to_eval, REGEX_DB, "Regex Data is incorrectly formatted!")
+    regex_db = create_regex_db(to_eval)
+    _validate_regex_dc(regex_db, acr_db, equal_sized)
+    return regex_db
