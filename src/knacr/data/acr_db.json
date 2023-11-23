@@ -34,6 +34,54 @@
       "full": "^\\d+$"
     }
   },
+  "100": {
+    "acr": "SCCAP",
+    "acr_changed_to": [
+      {
+        "id": 101,
+        "type": "transfer"
+      }
+    ],
+    "acr_synonym": [
+      "UCPH:SCCAP"
+    ],
+    "active": false,
+    "code": "UCPH:SCCAP",
+    "country": "DK",
+    "gbif": "d41fff82-155c-48d1-9324-2cf94a4aed6c",
+    "name": "University of Copenhagen: Scandinavian Culture Collection of Algae & Protozoa",
+    "regex_ccno": "^SCCAP\\s*K-\\d+$",
+    "regex_id": {
+      "core": "\\d+",
+      "full": "^K-\\d+$",
+      "pre": [
+        "K"
+      ]
+    },
+    "ror": "https://ror.org/035b05819"
+  },
+  "101": {
+    "acr": "NORCCA",
+    "acr_synonym": [
+      "UIO:NORCCA"
+    ],
+    "active": true,
+    "catalogue": "https://norcca.scrol.net/strain/{pre}-{core0:4}",
+    "code": "UIO:NORCCA",
+    "country": "NO",
+    "gbif": "a9ab29d6-f380-4193-967f-15a64abc09e7",
+    "homepage": "https://norcca.scrol.net/",
+    "name": "University of Waterloo: The Norwegian Culture Collection of Algae",
+    "regex_ccno": "^NORCCA\\s*K-\\d+$",
+    "regex_id": {
+      "core": "\\d+",
+      "full": "^K-\\d+$",
+      "pre": [
+        "K"
+      ]
+    },
+    "ror": "https://ror.org/01xtthb56"
+  },
   "11": {
     "acr": "ULC",
     "acr_synonym": [
@@ -1619,5 +1667,37 @@
       "full": "^\\d+$"
     },
     "ror": "https://ror.org/03v76x132"
+  },
+  "98": {
+    "acr": "UTCC",
+    "acr_changed_to": [
+      {
+        "id": 99,
+        "type": "unknown"
+      }
+    ],
+    "active": false,
+    "code": "UTCC",
+    "country": "CA",
+    "name": "University of Toronto Culture Collection of Algae and Cyanobacteria",
+    "regex_ccno": "^UTCC\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/03dbr7087"
+  },
+  "99": {
+    "acr": "CPCC",
+    "active": true,
+    "code": "CPCC",
+    "country": "CA",
+    "gbif": "58aaebd9-3feb-413c-8bd7-aa63f917d306",
+    "homepage": "https://uwaterloo.ca/canadian-phycological-culture-centre/",
+    "name": "University of Waterloo: Canadian Phycological Culture Centre",
+    "regex_ccno": "^CPCC\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    },
+    "ror": "https://ror.org/01aff2v68"
   }
 }
