@@ -10,7 +10,15 @@ ACR_DB = {
         "AcrCon": {
             "type": "object",
             "properties": {
-                "code": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
+                "code": {
+                    # Code represents the BRC that uses this acronym.
+                    # Code should depict the case, when the BRC
+                    # is part of a bigger system.
+                    # EXAMPLE: BCCM:LMG
+                    "type": "string",
+                    "minLength": 2,
+                    "pattern": "^[A-Z:]+$",
+                },
                 "acr": {"type": "string", "minLength": 2, "pattern": "^[A-Z:]+$"},
                 "acr_synonym": {
                     "type": "array",
@@ -35,9 +43,17 @@ ACR_DB = {
                 "active": {"type": "boolean"},
                 "deprecated": {"type": "boolean"},
                 "ror": {
+                    # ROR represents the BRC (code) that uses this acronym.
+                    # Goes from left to right in case of a complex code (BCCM:LMG).
                     "type": "string",
                     "pattern": "^https://ror.org/.+$",
                     "format": "uri",
+                },
+                "gbif": {
+                    # GBIF UUID represents the highest individual in code.
+                    # Goes from right to left in case of a complex code (BCCM:LMG).
+                    "type": "string",
+                    "format": "uuid",
                 },
                 "homepage": {"type": "string", "pattern": "^http.*$", "format": "uri"},
                 "catalogue": {

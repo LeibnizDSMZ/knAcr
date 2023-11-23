@@ -30,6 +30,7 @@ class AcrDbEntry:
     regex_ccno: str
     regex_id: AcrCoreReg
     ror: str = ""
+    gbif: str = ""
     deprecated: bool = False
     homepage: str = ""
     catalogue: str = ""
