@@ -102,7 +102,7 @@
   "12": {
     "acr": "NBRC",
     "active": true,
-    "catalogue": "https://www.nite.go.jp/nbrc/catalogue/NBRCCatalogueDetailServlet?ID=NBRC&CAT={id}",
+    "catalogue": "https://www.nite.go.jp/nbrc/catalogue/NBRCCatalogueDetailServlet?ID=NBRC&CAT={core0:8}",
     "code": "NBRC",
     "country": "JP",
     "gbif": "abab42d0-0a95-4166-a0fc-6fe5cd9b66ff",
