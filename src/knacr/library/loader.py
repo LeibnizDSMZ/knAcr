@@ -1,9 +1,10 @@
 from importlib import resources
 import json
-from typing import Callable, Final, TypeVar
+from typing import Callable, TypeVar
 
 import requests
 from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, REG_DB_T
+from knacr.constants.versions import CURRENT_VER
 from knacr.container.fun.acr_db import create_acr_min_db
 from knacr.errors.custom_exceptions import ReqURIEx, ValJsonEx
 from knacr.library.validate import (
@@ -12,11 +13,6 @@ from knacr.library.validate import (
     validate_regex_db,
 )
 from knacr import data
-
-
-LATEST_VER: Final[str] = "latest"
-STABLE_VER: Final[str] = "main"
-CURRENT_VER: Final[str] = "v0.5.1"
 
 
 def _load_data_from_file(db_name: str, /) -> bytes:

@@ -19,7 +19,7 @@ tag_format = "v$version"
 update_changelog_on_bump = true
 version_files = [
   "README.md:^\\[!\\[release:",
-  "src/knacr/library/loader.py:^CURRENT_VER"
+  "src/knacr/constants/versions.py:^CURRENT_VER"
 ]
 version_provider = "poetry"
 version_type = "semver"
