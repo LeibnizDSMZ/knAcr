@@ -1,12 +1,10 @@
 import json
 from unittest.mock import MagicMock, patch
 import pytest
+from knacr.constants.versions import CURRENT_VER, LATEST_VER, STABLE_VER
 
 from knacr.errors.custom_exceptions import ValJsonEx, ReqURIEx
 from knacr.library.loader import (
-    CURRENT_VER,
-    LATEST_VER,
-    STABLE_VER,
     load_acr_db,
     load_min_acr_db,
     load_regex_db,
