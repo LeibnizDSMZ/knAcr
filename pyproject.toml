@@ -18,7 +18,8 @@ name = "cz_conventional_commits"
 tag_format = "v$version"
 update_changelog_on_bump = true
 version_files = [
-  "README.md:^\\[!\\[release:"
+  "README.md:^\\[!\\[release:",
+  "src/knacr/library/loader.py:^CURRENT_VER"
 ]
 version_provider = "poetry"
 version_type = "semver"
