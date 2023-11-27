@@ -1359,7 +1359,7 @@
       "TBRC:MSCU"
     ],
     "active": true,
-    "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
+    "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{core0:4}",
     "code": "TBRC:MSCU",
     "country": "TH",
     "gbif": "a47046da-867a-4a59-a0c2-5747223ffdc8",
