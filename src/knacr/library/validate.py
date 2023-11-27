@@ -1,4 +1,4 @@
-from typing import Callable, Final, TypeAlias, TypeVar
+from typing import Any, Callable, Final, TypeAlias, TypeVar
 import re
 
 from jsonschema import Draft202012Validator, ValidationError, validate
@@ -10,7 +10,7 @@ from knacr.errors.custom_exceptions import ValJsonEx
 from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB, CCNO_DB
 
 
-_TJ = TypeVar("_TJ")
+_TJ = TypeVar("_TJ", bound=dict[str, Any])
 _TV = TypeVar("_TV")
 
 
@@ -246,8 +246,6 @@ def _validate_json(to_val_j: _TJ, schema: dict[str, _TV], msg: str, /) -> None:
 
 
 def validate_acr_db(to_eval: _TJ, /) -> ACR_DB_T:
-    if not isinstance(to_eval, dict):
-        raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     _validate_json(to_eval, ACR_DB, "Acronym Data is incorrectly formatted!")
     acr_db = create_acr_db(to_eval)
     if len(acr_db) > 0:
@@ -256,14 +254,10 @@ def validate_acr_db(to_eval: _TJ, /) -> ACR_DB_T:
 
 
 def validate_min_acr_db_schema(to_eval: _TJ, /) -> None:
-    if not isinstance(to_eval, dict):
-        raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     _validate_json(to_eval, ACR_MIN_DB, "Acronym Data is incorrectly formatted!")
 
 
 def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
-    if not isinstance(to_eval, dict):
-        raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     _validate_json(to_eval, CCNO_DB, "Regex Data is incorrectly formatted!")
     regex_db = create_ccno_db(to_eval)
     _validate_regex_dc(regex_db, acr_db, equal_sized)
@@ -271,8 +265,6 @@ def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> C
 
 
 def validate_catalogue_db(to_eval: _TJ, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
-    if not isinstance(to_eval, dict):
-        raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
     _validate_json(to_eval, CCNO_DB, "Catalogue Data is incorrectly formatted!")
     catalogue = create_ccno_db(to_eval)
     _validate_catalogue_dc(catalogue, acr_db)

@@ -1,0 +1,2 @@
+class LoadWarn(UserWarning):
+    pass

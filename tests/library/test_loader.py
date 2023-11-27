@@ -1,15 +1,19 @@
 import json
 from unittest.mock import MagicMock, patch
 import pytest
-from knacr.constants.versions import CURRENT_VER, LATEST_VER, STABLE_VER
+from knacr.constants.versions import CURRENT_VER, STABLE_VER
 
 from knacr.errors.custom_exceptions import ValJsonEx, ReqURIEx
 from knacr.library.loader import (
+    _load_data,
     load_acr_db,
     load_min_acr_db,
     load_regex_db,
     load_catalogue_db,
     parse_acr_db,
+    parse_catalogue_db,
+    parse_min_acr_db,
+    parse_regex_db,
 )
 
 pytest_plugins = ("tests.fixture.data",)
@@ -23,7 +27,7 @@ class TestLoader:
         resp.json.return_value = json.loads(load_fix_acr_db)
         req.get.return_value = resp
         try:
-            load_acr_db(LATEST_VER)
+            load_acr_db("never_tag")
         except (ValJsonEx, ReqURIEx) as val_ex:
             pytest.fail(f"acr data malformed - {val_ex.message}")
 
@@ -33,7 +37,7 @@ class TestLoader:
         resp.ok = False
         req.get.return_value = resp
         with pytest.raises(ReqURIEx):
-            load_acr_db("never_tag")
+            _load_data("never_tag", "acr_db", parse_acr_db)
 
     @patch("knacr.library.loader.requests")
     def test_load_acr_db_current_success(self, req: MagicMock) -> None:
@@ -51,7 +55,7 @@ class TestLoader:
         resp.ok = False
         req.get.return_value = resp
         with pytest.raises(ReqURIEx):
-            load_min_acr_db("never_tag")
+            _load_data("never_tag", "acr_db", parse_min_acr_db)
 
     @patch("knacr.library.loader.requests")
     def test_load_min_acr_db_success(
@@ -72,7 +76,9 @@ class TestLoader:
         resp.ok = False
         req.get.return_value = resp
         with pytest.raises(ReqURIEx):
-            load_regex_db({}, "never_tag")
+            _load_data(
+                "never_tag", "regex_db", lambda reg_db: parse_regex_db(reg_db, {}, True)
+            )
 
     @patch("knacr.library.loader.requests")
     def test_load_regex_db_success(
@@ -94,7 +100,9 @@ class TestLoader:
         resp.ok = False
         req.get.return_value = resp
         with pytest.raises(ReqURIEx):
-            load_catalogue_db({}, "never_tag")
+            _load_data(
+                "never_tag", "catalogue_db", lambda reg_db: parse_catalogue_db(reg_db, {})
+            )
 
     @patch("knacr.library.loader.requests")
     def test_load_catalogue_db_success(
