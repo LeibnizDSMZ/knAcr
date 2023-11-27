@@ -7,11 +7,7 @@ def create_catalogue_link(acr_db: AcrDbEntry, args: CatArgs, /) -> str:
     return replace_param_value(acr_db.catalogue, args)
 
 
-def create_ccno_links(acr_db: AcrDbEntry, args: CatArgs, /) -> CatalogueLink:
-    if not acr_db.active or acr_db.deprecated:
-        return CatalogueLink(level=LinkLevel.emp)
-    cat_link = replace_param_value(acr_db.catalogue, args)
-    hom_link = str(acr_db.homepage)
+def _create_link_level(cat_link: str, hom_link: str, /) -> LinkLevel:
     match (cat_link, hom_link):
         case ("", ""):
             level = LinkLevel.emp
@@ -19,4 +15,21 @@ def create_ccno_links(acr_db: AcrDbEntry, args: CatArgs, /) -> CatalogueLink:
             level = LinkLevel.home
         case _:
             level = LinkLevel.cat
-    return CatalogueLink(level=level, catalogue=cat_link, homepage=hom_link)
+    return level
+
+
+def create_ccno_links(
+    acr_db: AcrDbEntry, args: CatArgs, exclude: tuple[LinkLevel, ...] = (), /
+) -> CatalogueLink:
+    if not acr_db.active or acr_db.deprecated:
+        return CatalogueLink(level=LinkLevel.emp)
+    cat_link, hom_link = "", ""
+    if LinkLevel.cat not in exclude:
+        cat_link = replace_param_value(acr_db.catalogue, args)
+    if LinkLevel.home not in exclude:
+        hom_link = str(acr_db.homepage)
+    return CatalogueLink(
+        level=_create_link_level(cat_link, hom_link),
+        catalogue=cat_link,
+        homepage=hom_link,
+    )
