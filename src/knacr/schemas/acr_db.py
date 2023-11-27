@@ -116,13 +116,13 @@ ACR_MIN_DB = {
 }
 
 
-REGEX_DB = {
+CCNO_DB = {
     "type": "object",
-    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/RegCon"}},
+    "patternProperties": {"^[1-9][0-9]*$": {"$ref": "#/definitions/CCNoCon"}},
     "additionalProperties": False,
     "required": [],
     "definitions": {
-        "RegCon": {
+        "CCNoCon": {
             "type": "array",
             "items": {"type": "string", "minLength": 3},
             "minLength": 1,

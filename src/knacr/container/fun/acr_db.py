@@ -3,7 +3,7 @@ from dataclasses import asdict
 from re import Pattern
 import re
 from typing import Callable, Final, Mapping, Sequence, TypeVar
-from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, REG_DB_T
+from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T
 
 from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs
 from dacite import from_dict
@@ -49,8 +49,8 @@ def create_acr_min_db(to_eval: dict[str, Mapping[str, _TJ]], /) -> ACR_MIN_DB_T:
     return min_db
 
 
-def create_regex_db(to_eval: dict[str, Sequence[_TJ]], /) -> REG_DB_T:
-    reg_db: REG_DB_T = {}
+def create_ccno_db(to_eval: dict[str, Sequence[_TJ]], /) -> CCNO_DB_T:
+    reg_db: CCNO_DB_T = {}
     for acr_id, db_ent in to_eval.items():
         if not isinstance(db_ent, list):
             raise ValJsonEx(f"expected list got {type(db_ent)} for id {acr_id}")

@@ -16,6 +16,12 @@ def load_fix_regex_db() -> bytes:
         return fhd.read()
 
 
+@pytest.fixture()
+def load_fix_catalogue_db() -> bytes:
+    with resources.files(data).joinpath("catalogue_db.json").open("rb") as fhd:
+        return fhd.read()
+
+
 def _get_data_from_main_branch(data_name: str, /) -> bytes:
     sub_proc = subprocess.Popen(
         ["git", "show", f"origin/main:src/knacr/data/{data_name}.json"],  # noqa: S607

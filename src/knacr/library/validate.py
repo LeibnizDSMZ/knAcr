@@ -2,12 +2,12 @@ from typing import Callable, Final, TypeAlias, TypeVar
 import re
 
 from jsonschema import Draft202012Validator, ValidationError, validate
-from knacr.constants.types import ACR_DB_T, REG_DB_T
+from knacr.constants.types import ACR_DB_T, CCNO_DB_T
 
 from knacr.container.acr_db import AcrCoreReg, AcrDbEntry
-from knacr.container.fun.acr_db import check_uri_template, create_acr_db, create_regex_db
+from knacr.container.fun.acr_db import check_uri_template, create_acr_db, create_ccno_db
 from knacr.errors.custom_exceptions import ValJsonEx
-from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB, REGEX_DB
+from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB, CCNO_DB
 
 
 _TJ = TypeVar("_TJ")
@@ -166,14 +166,15 @@ def _check_loops(cur: AcrDbEntry, full: ACR_DB_T, ids: set[int], /) -> None:
         _check_loops(changed_to, full, ids)
 
 
-def _check_ids_overlap(reg_db: set[int], acr_db: set[int], equal_sized: bool, /) -> None:
-    if equal_sized and len(reg_db) != len(acr_db):
-        raise ValJsonEx("regex db and acronym db have different sizes")
-    if len(mis_ids := reg_db - acr_db) != 0:
-        raise ValJsonEx(f"acronym db missing the following ids: {mis_ids!s}")
+def _check_ids_overlap(ccno_db: set[int], acr_db: set[int], equal_sized: bool, /) -> None:
+    if len(mis_ids := ccno_db - acr_db) != 0:
+        raise ValJsonEx(f"ccno db missing the following ids: {mis_ids!s}")
+    if equal_sized and len(ccno_db) != len(acr_db):
+        mis_ids = acr_db - ccno_db
+        raise ValJsonEx(f"ccno db and acronym db have different sizes: {mis_ids}")
 
 
-def _check_malformed_list(reg_db: REG_DB_T, /) -> None:
+def _check_malformed_list(reg_db: CCNO_DB_T, /) -> None:
     for reg_id, reg_con in reg_db.items():
         filtered = list(filter(lambda ccno: ccno != "", reg_con))
         if len(filtered) == 0:
@@ -213,7 +214,7 @@ def _validate_acr_db_dc(acr_db: ACR_DB_T, /) -> None:
         _check_loops(acr_con, acr_db, {acr_id})
 
 
-def _validate_regex_dc(reg_db: REG_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /) -> None:
+def _validate_regex_dc(reg_db: CCNO_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /) -> None:
     all_reg_ids = set(reg_db.keys())
     _check_missing_link_id(all_reg_ids)
     _check_malformed_list(reg_db)
@@ -221,6 +222,16 @@ def _validate_regex_dc(reg_db: REG_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /)
     for acr_id, acr_con in acr_db.items():
         if acr_id in reg_db:
             _apply_regex(acr_id, acr_con, reg_db[acr_id])
+
+
+def _validate_catalogue_dc(cat_db: CCNO_DB_T, acr_db: ACR_DB_T, /) -> None:
+    all_cat_ids = set(cat_db.keys())
+    all_acr_ids = set(cid for cid, adb in acr_db.items() if adb.catalogue != "")
+    _check_malformed_list(cat_db)
+    _check_ids_overlap(all_cat_ids, all_acr_ids, True)
+    for acr_id, acr_con in acr_db.items():
+        if acr_id in cat_db:
+            _apply_regex(acr_id, acr_con, cat_db[acr_id])
 
 
 def _validate_json(to_val_j: _TJ, schema: dict[str, _TV], msg: str, /) -> None:
@@ -250,10 +261,19 @@ def validate_min_acr_db_schema(to_eval: _TJ, /) -> None:
     _validate_json(to_eval, ACR_MIN_DB, "Acronym Data is incorrectly formatted!")
 
 
-def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> REG_DB_T:
+def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
     if not isinstance(to_eval, dict):
         raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
-    _validate_json(to_eval, REGEX_DB, "Regex Data is incorrectly formatted!")
-    regex_db = create_regex_db(to_eval)
+    _validate_json(to_eval, CCNO_DB, "Regex Data is incorrectly formatted!")
+    regex_db = create_ccno_db(to_eval)
     _validate_regex_dc(regex_db, acr_db, equal_sized)
     return regex_db
+
+
+def validate_catalogue_db(to_eval: _TJ, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
+    if not isinstance(to_eval, dict):
+        raise ValJsonEx(f"expected a dictionary, got {type(to_eval)}")
+    _validate_json(to_eval, CCNO_DB, "Catalogue Data is incorrectly formatted!")
+    catalogue = create_ccno_db(to_eval)
+    _validate_catalogue_dc(catalogue, acr_db)
+    return catalogue

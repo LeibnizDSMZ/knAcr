@@ -3,12 +3,13 @@ import json
 from typing import Callable, TypeVar
 
 import requests
-from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, REG_DB_T
+from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T
 from knacr.constants.versions import CURRENT_VER
 from knacr.container.fun.acr_db import create_acr_min_db
 from knacr.errors.custom_exceptions import ReqURIEx, ValJsonEx
 from knacr.library.validate import (
     validate_acr_db,
+    validate_catalogue_db,
     validate_min_acr_db_schema,
     validate_regex_db,
 )
@@ -20,7 +21,7 @@ def _load_data_from_file(db_name: str, /) -> bytes:
         return fhd.read()
 
 
-_T = TypeVar("_T", ACR_DB_T, ACR_MIN_DB_T, REG_DB_T)
+_T = TypeVar("_T", ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
 _V = TypeVar("_V")
 
 
@@ -46,9 +47,15 @@ def load_min_acr_db(version: str = CURRENT_VER, /) -> ACR_MIN_DB_T:
     return _load_data(version, "acr_db", parse_min_acr_db)
 
 
-def load_regex_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> REG_DB_T:
+def load_regex_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> CCNO_DB_T:
     return _load_data(
         version, "regex_db", lambda reg_db: parse_regex_db(reg_db, acr_db, True)
+    )
+
+
+def load_catalogue_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> CCNO_DB_T:
+    return _load_data(
+        version, "catalogue_db", lambda reg_db: parse_catalogue_db(reg_db, acr_db)
     )
 
 
@@ -68,7 +75,13 @@ def parse_min_acr_db(acr_db: _TJ) -> ACR_MIN_DB_T:
     return create_acr_min_db(acr_db)
 
 
-def parse_regex_db(regex_db: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> REG_DB_T:
+def parse_regex_db(regex_db: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
     if not isinstance(regex_db, dict):
         raise ValJsonEx("JSON is not a dictionary")
     return validate_regex_db(regex_db, acr_db, equal_sized)
+
+
+def parse_catalogue_db(regex_db: _TJ, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
+    if not isinstance(regex_db, dict):
+        raise ValJsonEx("JSON is not a dictionary")
+    return validate_catalogue_db(regex_db, acr_db)
