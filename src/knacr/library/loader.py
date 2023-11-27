@@ -1,12 +1,15 @@
+from functools import reduce
 from importlib import resources
 import json
-from typing import Callable, TypeVar
+from typing import Any, Callable, ParamSpec, TypeVar
+import warnings
 
 import requests
 from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T
 from knacr.constants.versions import CURRENT_VER
 from knacr.container.fun.acr_db import create_acr_min_db
 from knacr.errors.custom_exceptions import ReqURIEx, ValJsonEx
+from knacr.errors.custom_warnings import LoadWarn
 from knacr.library.validate import (
     validate_acr_db,
     validate_catalogue_db,
@@ -23,6 +26,7 @@ def _load_data_from_file(db_name: str, /) -> bytes:
 
 _T = TypeVar("_T", ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
 _V = TypeVar("_V")
+_P = ParamSpec("_P")
 
 
 def _load_data(version: str, db_name: str, create: Callable[[_V], _T], /) -> _T:
@@ -39,20 +43,39 @@ def _load_data(version: str, db_name: str, create: Callable[[_V], _T], /) -> _T:
         raise ReqURIEx(f"Could not get {req}")
 
 
+def _catch_expected_err(loader: Callable[_P, _T]) -> Callable[_P, _T]:
+    def load_f(*args: _P.args, **kwargs: _P.kwargs) -> _T:
+        version = reduce(lambda v_1, v_2: v_1 if isinstance(v_1, str) else v_2, args)
+        try:
+            return loader(*args, **kwargs)
+        except (ReqURIEx, ValJsonEx):
+            warnings.warn(f"Could not load version: {version}", LoadWarn, stacklevel=2)
+        return loader(
+            *tuple(CURRENT_VER if isinstance(arg, str) else arg for arg in args),  # type: ignore
+            **kwargs,
+        )
+
+    return load_f
+
+
+@_catch_expected_err
 def load_acr_db(version: str = CURRENT_VER, /) -> ACR_DB_T:
     return _load_data(version, "acr_db", parse_acr_db)
 
 
+@_catch_expected_err
 def load_min_acr_db(version: str = CURRENT_VER, /) -> ACR_MIN_DB_T:
     return _load_data(version, "acr_db", parse_min_acr_db)
 
 
+@_catch_expected_err
 def load_regex_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> CCNO_DB_T:
     return _load_data(
         version, "regex_db", lambda reg_db: parse_regex_db(reg_db, acr_db, True)
     )
 
 
+@_catch_expected_err
 def load_catalogue_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> CCNO_DB_T:
     return _load_data(
         version, "catalogue_db", lambda reg_db: parse_catalogue_db(reg_db, acr_db)
@@ -62,26 +85,25 @@ def load_catalogue_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> CCNO_D
 _TJ = TypeVar("_TJ")
 
 
-def parse_acr_db(acr_db: _TJ) -> ACR_DB_T:
-    if not isinstance(acr_db, dict):
+def _dict_guard(database: _TJ, /) -> dict[str, Any]:
+    if not isinstance(database, dict):
         raise ValJsonEx("JSON is not a dictionary")
-    return validate_acr_db(acr_db)
+    return database
+
+
+def parse_acr_db(acr_db: _TJ) -> ACR_DB_T:
+    return validate_acr_db(_dict_guard(acr_db))
 
 
 def parse_min_acr_db(acr_db: _TJ) -> ACR_MIN_DB_T:
-    if not isinstance(acr_db, dict):
-        raise ValJsonEx("JSON is not a dictionary")
-    validate_min_acr_db_schema(acr_db)
-    return create_acr_min_db(acr_db)
+    dict_db = _dict_guard(acr_db)
+    validate_min_acr_db_schema(dict_db)
+    return create_acr_min_db(dict_db)
 
 
 def parse_regex_db(regex_db: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
-    if not isinstance(regex_db, dict):
-        raise ValJsonEx("JSON is not a dictionary")
-    return validate_regex_db(regex_db, acr_db, equal_sized)
+    return validate_regex_db(_dict_guard(regex_db), acr_db, equal_sized)
 
 
 def parse_catalogue_db(regex_db: _TJ, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
-    if not isinstance(regex_db, dict):
-        raise ValJsonEx("JSON is not a dictionary")
-    return validate_catalogue_db(regex_db, acr_db)
+    return validate_catalogue_db(_dict_guard(regex_db), acr_db)
