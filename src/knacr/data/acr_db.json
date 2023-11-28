@@ -352,7 +352,7 @@
   "25": {
     "acr": "NCIMB",
     "active": true,
-    "catalogue": "https://store.ncimb.com/page/Strains record name display/{id}",
+    "catalogue": "https://store.ncimb.com/page/Strains record name display/fields/name/{acr} {id}",
     "code": "NCIMB",
     "country": "GB",
     "gbif": "98c7945d-0b93-4016-a748-c6e5fc75a4c6",
@@ -708,7 +708,7 @@
   "43": {
     "acr": "SAG",
     "active": true,
-    "catalogue": "https://sammlungen.uni-goettingen.de/objekt/record_DE-MUS-070420_{core:1}<-><core:2><suf>",
+    "catalogue": "https://sammlungen.uni-goettingen.de/objekt/record_DE-MUS-070420_{core:1}<->{core:2}{suf}",
     "code": "SAG",
     "country": "DE",
     "gbif": "e635ed6d-ff83-4253-addf-ddf6e817a6ce",
@@ -764,7 +764,7 @@
       "NCMA:CCMP"
     ],
     "active": true,
-    "catalogue": "https://ncma.bigelow.org/{acr}{id}",
+    "catalogue": "https://ncma.bigelow.org/search?keywords={acr}{id}",
     "code": "NCMA:CCMP",
     "country": "US",
     "gbif": "501449a3-a24c-4454-9669-3a3a888a7a48",
@@ -1243,7 +1243,7 @@
   "74": {
     "acr": "CCAC",
     "active": true,
-    "catalogue": "https://www.uni-due.de/biology/ccac/details.php?strain={acr} {id}",
+    "catalogue": "https://www.uni-due.de/biology/ccac/details.php?strain={acr} {core0:4} {suf}",
     "code": "CCAC",
     "country": "DE",
     "gbif": "1eedb41b-d9d3-4d7a-871b-874f0e18afc0",
@@ -1342,7 +1342,7 @@
       "BCCM:MUCL"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/mucl-species-details?NUM={acr} {id}",
+    "catalogue": "https://bccm.belspo.be/catalogues/mucl-strain-details?NUM={acr} {id}",
     "code": "BCCM:MUCL",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
