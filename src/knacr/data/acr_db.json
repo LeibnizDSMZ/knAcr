@@ -665,7 +665,7 @@
     "code": "CCAP",
     "country": "GB",
     "gbif": "2d644377-7e04-4aa2-8bea-17f9b2014f25",
-    "homepage": "https://www.ccap.ac.uk/",
+    "homepage": "https://www.ccap.ac.uk/catalogue/",
     "name": "Culture Collection of Algae and Protozoa",
     "regex_ccno": "^CCAP\\s*\\d+/\\d+[ABCD]?$",
     "regex_id": {
@@ -877,7 +877,7 @@
     "code": "KACC",
     "country": "KR",
     "gbif": "a7bd7bea-6bf7-42dd-868c-894b0249306a",
-    "homepage": "https://genebank.rda.go.kr/eng/EgovPageLink.do",
+    "homepage": "https://genebank.rda.go.kr/",
     "name": "Korean Agricultural Culture Collection",
     "regex_ccno": "^KACC\\s*\\d+$",
     "regex_id": {
