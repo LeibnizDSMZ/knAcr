@@ -33,9 +33,9 @@ def _load_data(version: str, db_name: str, create: Callable[[_V], _T], /) -> _T:
     knacr = "https://raw.githubusercontent.com/StrainInfo/knAcr"
     req = f"{knacr}/{version}/src/knacr/data/{db_name}.json"
     if version == CURRENT_VER:
-        print("loading from local file")
+        print("[KnAcr] loading from local file")
         return create(json.loads(_load_data_from_file(db_name)))
-    print("downloading from github collection")
+    print("[KnAcr] downloading from github collection")
     if (res := requests.get(req, timeout=60)).ok:
         con = res.json()
         return create(con)
