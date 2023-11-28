@@ -708,7 +708,7 @@
   "43": {
     "acr": "SAG",
     "active": true,
-    "catalogue": "https://sammlungen.uni-goettingen.de/objekt/record_DE-MUS-070420_{core:1}<->{core:2}{suf}",
+    "catalogue": "https://sagdb.uni-goettingen.de/detailedList.php?str_number={id}",
     "code": "SAG",
     "country": "DE",
     "gbif": "e635ed6d-ff83-4253-addf-ddf6e817a6ce",
