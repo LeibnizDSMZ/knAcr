@@ -531,7 +531,7 @@
       "UKHSA:NCPV"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={acr} {id}&searchScope=Product",
+    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={id}&searchScope=Product",
     "code": "UKHSA:NCPV",
     "country": "GB",
     "gbif": "292973d5-0aec-41d0-95ab-2b9632d4b8d6",
