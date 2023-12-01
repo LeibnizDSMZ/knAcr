@@ -1,3 +1,33 @@
+## v0.6.0 (2023-12-01)
+
+### Feat
+
+- add new examples to uk health security agency
+- update UKHSA web links
+- change two BRCs homepages
+- add library name to print
+- add exclude level to ccno links
+- add incompatibility failsafe
+- add catalogue example db
+- update acronyms to 101
+- add gbif uuid support
+
+### Fix
+
+- correct SAG catalogue link
+- correct catalogue links
+- add zeros to NBRC
+
+### Refactor
+
+- move versions to constants folder
+
+## v0.5.1 (2023-11-22)
+
+### Fix
+
+- correct data path for the main branch
+
 ## v0.5.0 (2023-11-22)
 
 ### Feat
