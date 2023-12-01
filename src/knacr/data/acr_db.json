@@ -513,11 +513,11 @@
       "UKHSA:NCTC"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{id}&collection=nctc",
+    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={acr} {id}&searchScope=Product",
     "code": "UKHSA:NCTC",
     "country": "GB",
     "gbif": "ffd4bb75-a76d-47a9-868c-d53127538ecd",
-    "homepage": "https://www.culturecollections.org.uk/collections/nctc.aspx",
+    "homepage": "https://www.culturecollections.org.uk/",
     "name": "National Collection of Type Cultures",
     "regex_ccno": "^NCTC\\s*\\d+$",
     "regex_id": {
@@ -531,11 +531,11 @@
       "UKHSA:NCPV"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/products/viruses/detail.jsp?refId={id}&collection=ncpv",
+    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={acr} {id}&searchScope=Product",
     "code": "UKHSA:NCPV",
     "country": "GB",
     "gbif": "292973d5-0aec-41d0-95ab-2b9632d4b8d6",
-    "homepage": "https://www.culturecollections.org.uk/collections/ncpv.aspx",
+    "homepage": "https://www.culturecollections.org.uk/",
     "name": "National Collection of Pathogenic Viruses",
     "regex_ccno": "^NCPV\\s*\\d+v$",
     "regex_id": {
@@ -549,11 +549,11 @@
       "UKHSA:NCPF"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/products/fungi/detail.jsp?refId={acr}+{id}&collection=ncpf",
+    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={acr} {id}&searchScope=Product",
     "code": "UKHSA:NCPF",
     "country": "GB",
     "gbif": "8dabebf9-789f-455a-b439-1c510b01fa19",
-    "homepage": "https://www.culturecollections.org.uk/collections/ncpf.aspx",
+    "homepage": "https://www.culturecollections.org.uk/",
     "name": "National Collection of Pathogenic Fungi",
     "regex_ccno": "^NCPF\\s*\\d+$",
     "regex_id": {
