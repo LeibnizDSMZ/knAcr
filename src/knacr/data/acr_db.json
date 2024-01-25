@@ -15,7 +15,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/02tyer376"
+    "ror": "02tyer376"
   },
   "10": {
     "acr": "ITM",
@@ -58,7 +58,7 @@
         "K"
       ]
     },
-    "ror": "https://ror.org/035b05819"
+    "ror": "035b05819"
   },
   "101": {
     "acr": "NORCCA",
@@ -80,7 +80,7 @@
         "K"
       ]
     },
-    "ror": "https://ror.org/01xtthb56"
+    "ror": "01xtthb56"
   },
   "11": {
     "acr": "ULC",
@@ -135,7 +135,7 @@
         "ii"
       ]
     },
-    "ror": "https://ror.org/02y5sbr94"
+    "ror": "02y5sbr94"
   },
   "14": {
     "acr": "JCM",
@@ -186,7 +186,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/05nq89q24"
+    "ror": "05nq89q24"
   },
   "17": {
     "acr": "NRRL",
@@ -216,7 +216,7 @@
         "Y"
       ]
     },
-    "ror": "https://ror.org/02d2m2044"
+    "ror": "02d2m2044"
   },
   "18": {
     "acr": "CIP",
@@ -238,7 +238,7 @@
         "A"
       ]
     },
-    "ror": "https://ror.org/0495fxg12"
+    "ror": "0495fxg12"
   },
   "19": {
     "acr": "PCC",
@@ -256,7 +256,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/0495fxg12"
+    "ror": "0495fxg12"
   },
   "2": {
     "acr": "LMG",
@@ -287,7 +287,7 @@
     "regex_id": {
       "full": "^\\d+\\.\\d+$"
     },
-    "ror": "https://ror.org/0495fxg12"
+    "ror": "0495fxg12"
   },
   "21": {
     "acr": "BCRC",
@@ -523,7 +523,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/018h10037"
+    "ror": "018h10037"
   },
   "34": {
     "acr": "NCPV",
@@ -541,7 +541,7 @@
     "regex_id": {
       "full": "^\\d+v$"
     },
-    "ror": "https://ror.org/018h10037"
+    "ror": "018h10037"
   },
   "35": {
     "acr": "NCPF",
@@ -559,7 +559,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/018h10037"
+    "ror": "018h10037"
   },
   "36": {
     "acr": "VTT",
@@ -582,7 +582,7 @@
         "E"
       ]
     },
-    "ror": "https://ror.org/04b181w54"
+    "ror": "04b181w54"
   },
   "37": {
     "acr": "UTEX",
@@ -656,7 +656,7 @@
         "PTA"
       ]
     },
-    "ror": "https://ror.org/03thhhv76"
+    "ror": "03thhhv76"
   },
   "40": {
     "acr": "CCAP",
@@ -837,7 +837,7 @@
     "regex_id": {
       "full": "^\\d+(\\.\\d+)?$"
     },
-    "ror": "https://ror.org/030a5r161"
+    "ror": "030a5r161"
   },
   "50": {
     "acr": "RCC",
@@ -1093,7 +1093,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/02hw5fp67"
+    "ror": "02hw5fp67"
   },
   "65": {
     "acr": "NBIMCC",
@@ -1257,7 +1257,7 @@
         "B"
       ]
     },
-    "ror": "https://ror.org/04mz5ra38"
+    "ror": "04mz5ra38"
   },
   "75": {
     "acr": "CBMAI",
@@ -1334,7 +1334,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/042pbz202"
+    "ror": "042pbz202"
   },
   "8": {
     "acr": "MUCL",
@@ -1493,7 +1493,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/05a28rw58"
+    "ror": "05a28rw58"
   },
   "88": {
     "acr": "HKI",
@@ -1511,7 +1511,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/055s37c97"
+    "ror": "055s37c97"
   },
   "89": {
     "acr": "JMRC",
@@ -1528,7 +1528,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/05qpz1x62"
+    "ror": "05qpz1x62"
   },
   "9": {
     "acr": "IHEM",
@@ -1563,7 +1563,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/055rjs771"
+    "ror": "055rjs771"
   },
   "91": {
     "acr": "SN",
@@ -1635,7 +1635,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/00yn2fy02"
+    "ror": "00yn2fy02"
   },
   "96": {
     "acr": "CAIM",
@@ -1666,7 +1666,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/03v76x132"
+    "ror": "03v76x132"
   },
   "98": {
     "acr": "UTCC",
@@ -1684,7 +1684,7 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/03dbr7087"
+    "ror": "03dbr7087"
   },
   "99": {
     "acr": "CPCC",
@@ -1698,6 +1698,6 @@
     "regex_id": {
       "full": "^\\d+$"
     },
-    "ror": "https://ror.org/01aff2v68"
+    "ror": "01aff2v68"
   }
 }

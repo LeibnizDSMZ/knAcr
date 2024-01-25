@@ -46,8 +46,7 @@ ACR_DB = {
                     # ROR represents the BRC (code) that uses this acronym.
                     # Goes from left to right in case of a complex code (BCCM:LMG).
                     "type": "string",
-                    "pattern": "^https://ror.org/.+$",
-                    "format": "uri",
+                    "minLength": 1,
                 },
                 "gbif": {
                     # GBIF UUID represents the highest individual in code.
