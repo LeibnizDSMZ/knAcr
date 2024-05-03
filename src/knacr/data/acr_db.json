@@ -513,7 +513,7 @@
       "UKHSA:NCTC"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={acr} {id}&searchScope=Product",
+    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{id}&collection=nctc",
     "code": "UKHSA:NCTC",
     "country": "GB",
     "gbif": "ffd4bb75-a76d-47a9-868c-d53127538ecd",
@@ -531,7 +531,7 @@
       "UKHSA:NCPV"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={core0:7}{suf}&searchScope=Product",
+    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={core0:7}{suf}&collection=ncpv",
     "code": "UKHSA:NCPV",
     "country": "GB",
     "gbif": "292973d5-0aec-41d0-95ab-2b9632d4b8d6",
@@ -549,7 +549,7 @@
       "UKHSA:NCPF"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/search/?searchText={acr} {core0:4}&searchScope=Product",
+    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{core0:4}&collection=ncpf",
     "code": "UKHSA:NCPF",
     "country": "GB",
     "gbif": "8dabebf9-789f-455a-b439-1c510b01fa19",
