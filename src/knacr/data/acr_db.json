@@ -124,15 +124,15 @@
     "gbif": "66fa41cc-3c2d-42b1-9840-e4f097e38393",
     "homepage": "https://www.cabi.org/",
     "name": "CABI (Centre for Agriculture and Biosciences International): Genetic Resource Collection",
-    "regex_ccno": "^IMI\\s*\\d+[ab*]?(ii)?$",
+    "regex_ccno": "^IMI\\s*\\d+[ab*]?(i+)?$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^\\d+[ab*]?(ii)?$",
+      "full": "^\\d+[ab*]?(i+)?$",
       "suf": [
         "a",
         "b",
         "*",
-        "ii"
+        "i"
       ]
     },
     "ror": "02y5sbr94"
@@ -970,11 +970,11 @@
   "58": {
     "acr": "DBVPG",
     "active": true,
-    "catalogue": "http://www.dbvpg.unipg.it/en/lievito/?id={id}",
+    "catalogue": "https://dsa3.unipg.it/DBVPG/en/lievito/?id={id}",
     "code": "DBVPG",
     "country": "IT",
     "gbif": "e079c236-ce49-4359-abc0-febc6cfd160a",
-    "homepage": "http://www.dbvpg.unipg.it/en/",
+    "homepage": "https://dsa3.unipg.it/DBVPG/en/",
     "name": " DBVPG Industrial Yeasts Collection",
     "regex_ccno": "^DBVPG\\s*\\d+$",
     "regex_id": {
@@ -1644,7 +1644,7 @@
     "code": "CAIM",
     "country": "MX",
     "gbif": "e8cb76fc-2a7c-462d-b9f0-5f7f4728a779",
-    "homepage": "https://www.ciad.mx/caim",
+    "homepage": "https://www.ciad.mx/caim/CAIM.html",
     "name": "Center of Research for Nutrition and Development: Collection of Aquacultural Important Microorganisms",
     "regex_ccno": "^CAIM\\s*\\d+$",
     "regex_id": {
