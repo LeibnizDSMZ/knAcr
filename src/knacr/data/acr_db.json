@@ -942,7 +942,7 @@
     "code": "CDBB",
     "country": "MX",
     "gbif": "9994717f-635b-4a0d-b85f-2a97bb40cc9e",
-    "homepage": "http://cdbb.cinvestav.mx/cdbb/",
+    "homepage": "https://cdbb.cinvestav.mx/cdbb/",
     "name": "National Collection of Microbial Strains and Cell Cultures",
     "regex_ccno": "^CDBB\\s*\\d+$",
     "regex_id": {
