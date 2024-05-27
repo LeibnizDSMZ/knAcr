@@ -74,6 +74,16 @@ _ID_SUB: Final[Pattern[str]] = re.compile(r"^(.+?)(:\d+)?$")
 _ID_SEP: Final[Pattern[str]] = re.compile(r"[^A-Za-z0-9]")
 
 
+_LINK: Final[re.Pattern[str]] = re.compile(r"^https?://([^/?]+).*$")
+
+
+def _get_domain(url: str, /) -> str:
+    domain = _LINK.match(url)
+    if domain is None:
+        raise ValJsonEx(f"url malformed [{url}]")
+    return domain.group(1)
+
+
 def _check_uri_template(uri: str, /) -> None:
     sub_parts = defaultdict(list)
     for param in _VALID_URI.findall(uri):
@@ -92,8 +102,12 @@ def _check_uri_template(uri: str, /) -> None:
 
 
 def check_uri_template(uris: list[str], /) -> None:
+    domains = set()
     for uri in uris:
         _check_uri_template(uri)
+        domains.add(_get_domain(uri))
+    if len(domains) > 1:
+        raise ValJsonEx(f"multiple catalogue domains detected [{uris!s}]")
 
 
 def _parse_id_core(mat: str, id_core: str, /) -> dict[str, str]:
