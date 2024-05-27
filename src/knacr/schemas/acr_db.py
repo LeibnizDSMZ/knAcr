@@ -56,9 +56,12 @@ ACR_DB = {
                 },
                 "homepage": {"type": "string", "pattern": "^http.*$", "format": "uri"},
                 "catalogue": {
-                    "type": "string",
-                    "pattern": "^http.*$",
-                    "format": "uri-template",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "pattern": "^http.*$",
+                        "format": "uri-template",
+                    },
                 },
                 "regex_ccno": {"type": "string", "format": "regex", "minLength": 5},
                 "regex_id": {
