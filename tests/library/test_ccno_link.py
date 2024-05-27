@@ -25,7 +25,7 @@ class TestCcnoLink:
         acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
         dsmz_link = "https://www.dsmz.de/collection/catalogue/details/culture/DSM-1"
         assert acr_db is not None
-        assert dsmz_link == create_ccno_links(acr_db, cat_args).catalogue
+        assert dsmz_link in create_ccno_links(acr_db, cat_args).catalogue
 
     def test_link_lvl_empty(
         self, load_fix_acr_db: bytes, ccno_iam_1: tuple[int, CatArgs]
@@ -57,16 +57,17 @@ class TestCcnoLink:
         cat_id, cat_args = ccno_nrrl_1
         acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
         assert acr_db is not None
-        assert "" == create_catalogue_link(acr_db, cat_args)
+        assert len(list(create_catalogue_link(acr_db, cat_args))) == 0
 
     def test_link_simple_catalogue_zero_core(
-        self, load_fix_acr_db: bytes, ccno_dcg_1: tuple[int, CatArgs]
+        self, load_fix_acr_db: bytes, ccno_msu_418: tuple[int, CatArgs]
     ) -> None:
-        cat_id, cat_args = ccno_dcg_1
+        cat_id, cat_args = ccno_msu_418
         acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
         assert acr_db is not None
-        cat = "https://bccm.belspo.be/catalogues/bm-details?accession_number=DCG 0001"
-        assert cat == create_catalogue_link(acr_db, cat_args)
+        cat = "https://www.tbrcnetwork.org/microb_detail.php?code=MSCU_0418"
+        print(set(create_catalogue_link(acr_db, cat_args)))
+        assert cat in set(create_catalogue_link(acr_db, cat_args))
 
     def test_link_simple_catalogue_split_core(
         self, load_fix_acr_db: bytes, ccno_lmg_1_1: tuple[int, CatArgs]
@@ -74,5 +75,5 @@ class TestCcnoLink:
         cat_id, cat_args = ccno_lmg_1_1
         acr_db = parse_acr_db(json.loads(load_fix_acr_db)).get(cat_id, None)
         assert acr_db is not None
-        cat = "https://bccm.belspo.be/catalogues/lmg-strain-details?NUM=1&COLTYPE=1"
-        assert cat == create_catalogue_link(acr_db, cat_args)
+        cat = "https://bccm.belspo.be/page/lmg-catalogue-display/fields/name/LMG 1t1"
+        assert cat in set(create_catalogue_link(acr_db, cat_args))

@@ -33,12 +33,12 @@ class AcrDbEntry:
     gbif: str = ""
     deprecated: bool = False
     homepage: str = ""
-    catalogue: str = ""
+    catalogue: list[str] = field(default_factory=list)
     acr_changed_to: list[AcrChaCon] = field(default_factory=list)
     acr_synonym: list[str] = field(default_factory=list)
 
 
-# TODO increase
+# TODO define more types
 class AcrChaT(Enum):
     unk = "unknown"
     syn = "synonym"

@@ -19,10 +19,10 @@ def ccno_nrrl_1() -> tuple[int, CatArgs]:
 
 
 @pytest.fixture()
-def ccno_dcg_1() -> tuple[int, CatArgs]:
-    return 82, CatArgs(acr="DCG", id="1", pre="", suf="", core="1")
+def ccno_msu_418() -> tuple[int, CatArgs]:
+    return 80, CatArgs(acr="MSCU", id="418", pre="", suf="", core="418")
 
 
 @pytest.fixture()
 def ccno_lmg_1_1() -> tuple[int, CatArgs]:
-    return 2, CatArgs(acr="LMG", id="1.1", pre="", suf="", core="1.1")
+    return 2, CatArgs(acr="LMG", id="1t1", pre="", suf="", core="1t1")

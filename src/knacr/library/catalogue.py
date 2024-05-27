@@ -1,17 +1,19 @@
+from collections.abc import Iterable
 from knacr.container.acr_db import AcrDbEntry, CatArgs
 from knacr.container.fun.acr_db import replace_param_value
 from knacr.container.links import CatalogueLink, LinkLevel
 
 
-def create_catalogue_link(acr_db: AcrDbEntry, args: CatArgs, /) -> str:
-    return replace_param_value(acr_db.catalogue, args)
+def create_catalogue_link(acr_db: AcrDbEntry, args: CatArgs, /) -> Iterable[str]:
+    for cat in acr_db.catalogue:
+        yield replace_param_value(cat, args)
 
 
-def _create_link_level(cat_link: str, hom_link: str, /) -> LinkLevel:
+def _create_link_level(cat_link: list[str], hom_link: str, /) -> LinkLevel:
     match (cat_link, hom_link):
-        case ("", ""):
+        case ([], ""):
             level = LinkLevel.emp
-        case ("", _):
+        case ([], _):
             level = LinkLevel.home
         case _:
             level = LinkLevel.cat
@@ -23,9 +25,9 @@ def create_ccno_links(
 ) -> CatalogueLink:
     if not acr_db.active or acr_db.deprecated:
         return CatalogueLink(level=LinkLevel.emp)
-    cat_link, hom_link = "", ""
+    cat_link, hom_link = [], ""
     if LinkLevel.cat not in exclude:
-        cat_link = replace_param_value(acr_db.catalogue, args)
+        cat_link = [replace_param_value(cat, args) for cat in acr_db.catalogue]
     if LinkLevel.home not in exclude:
         hom_link = str(acr_db.homepage)
     return CatalogueLink(

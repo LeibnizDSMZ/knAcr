@@ -5,7 +5,9 @@
       "DSMZ"
     ],
     "active": true,
-    "catalogue": "https://www.dsmz.de/collection/catalogue/details/culture/{acr}-{id}",
+    "catalogue": [
+      "https://www.dsmz.de/collection/catalogue/details/culture/{acr}-{id}"
+    ],
     "code": "DSMZ",
     "country": "DE",
     "gbif": "883f3d24-35e9-462d-b7a3-13c2b9b7260e",
@@ -19,15 +21,19 @@
   },
   "10": {
     "acr": "ITM",
+    "acr_changed_to": [
+      {
+        "id": 103,
+        "type": "synonym"
+      }
+    ],
     "acr_synonym": [
       "BCCM:ITM"
     ],
-    "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {id}",
+    "active": false,
     "code": "BCCM:ITM",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
-    "homepage": "https://bccm.belspo.be/catalogues/catalogue-search?collection=ITM",
     "name": "Belgian Coordinated Collections of Microorganisms: ITM - Mycobacteria Collection",
     "regex_ccno": "^ITM\\s*\\d+$",
     "regex_id": {
@@ -66,7 +72,9 @@
       "UIO:NORCCA"
     ],
     "active": true,
-    "catalogue": "https://norcca.scrol.net/strain/{pre}-{core0:4}",
+    "catalogue": [
+      "https://norcca.scrol.net/strain/{pre}-{core0:4}"
+    ],
     "code": "UIO:NORCCA",
     "country": "NO",
     "gbif": "a9ab29d6-f380-4193-967f-15a64abc09e7",
@@ -82,17 +90,51 @@
     },
     "ror": "01xtthb56"
   },
+  "102": {
+    "acr": "HER",
+    "active": true,
+    "catalogue": [
+      "https://www.phage.ulaval.ca/?pageDemandee=phage&noPhage={id}&id=41&L=1"
+    ],
+    "code": "HER",
+    "country": "CA",
+    "gbif": "1010d88d-792b-4b6b-998c-0eec5dbf0d6b",
+    "homepage": "https://www.phage.ulaval.ca/en/home/",
+    "name": "Felix d'Herelle Reference Center for Bacterial Viruses",
+    "regex_ccno": "^HER\\s*\\d+$",
+    "regex_id": {
+      "full": "^\\d+$"
+    }
+  },
+  "103": {
+    "acr": "CT",
+    "active": true,
+    "catalogue": [
+      "https://bccm.belspo.be/page/itm-display/fields/name/{acr}{id}"
+    ],
+    "code": "BCCM:ITM",
+    "country": "BE",
+    "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
+    "homepage": "https://bccm.belspo.be/about-ITM",
+    "name": "Belgian Coordinated Collections of Microorganisms: ITM - Mycobacteria Collection",
+    "regex_ccno": "^CT\\s*\\d{4}-\\d{5}$",
+    "regex_id": {
+      "full": "^\\d{4}-\\d{5}$"
+    }
+  },
   "11": {
     "acr": "ULC",
     "acr_synonym": [
       "BCCM:ULC"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {core0:4}",
+    "catalogue": [
+      "https://bccm.belspo.be/page/ulc-display/fields/name/{acr} {id}"
+    ],
     "code": "BCCM:ULC",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
-    "homepage": "https://bccm.belspo.be/catalogues/catalogue-search?collection=ULC",
+    "homepage": "https://bccm.belspo.be/about-ULC",
     "name": "Belgian Coordinated Collections of Microorganisms: ULC - Cyanobacteria Collection",
     "regex_ccno": "^ULC\\s*\\d+$",
     "regex_id": {
@@ -102,7 +144,9 @@
   "12": {
     "acr": "NBRC",
     "active": true,
-    "catalogue": "https://www.nite.go.jp/nbrc/catalogue/NBRCCatalogueDetailServlet?ID=NBRC&CAT={core0:8}",
+    "catalogue": [
+      "https://www.nite.go.jp/nbrc/catalogue/NBRCCatalogueDetailServlet?ID=NBRC&CAT={core0:8}"
+    ],
     "code": "NBRC",
     "country": "JP",
     "gbif": "abab42d0-0a95-4166-a0fc-6fe5cd9b66ff",
@@ -140,7 +184,9 @@
   "14": {
     "acr": "JCM",
     "active": true,
-    "catalogue": "https://www.jcm.riken.jp/cgi-bin/jcm/jcm_number?JCM={id}",
+    "catalogue": [
+      "https://www.jcm.riken.jp/cgi-bin/jcm/jcm_number?JCM={id}"
+    ],
     "code": "JCM",
     "country": "JP",
     "gbif": "fce1f744-ca76-46bb-9428-d92cfebe39d4",
@@ -224,7 +270,9 @@
       "CRBIP:CIP"
     ],
     "active": true,
-    "catalogue": "https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip={acr} {id}",
+    "catalogue": [
+      "https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip={acr} {id}"
+    ],
     "code": "CRBIP:CIP",
     "country": "FR",
     "gbif": "c77394b6-3c70-40d4-94cc-dfe05ec2cfda",
@@ -246,7 +294,9 @@
       "CRBIP:PCC"
     ],
     "active": true,
-    "catalogue": "https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip={acr} {id}",
+    "catalogue": [
+      "https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip={acr} {id}"
+    ],
     "code": "CRBIP:PCC",
     "country": "FR",
     "gbif": "84bed863-05ff-4040-b0fe-145355b97c6b",
@@ -264,21 +314,25 @@
       "BCCM:LMG"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/lmg-strain-details?NUM={core:1}<&COLTYPE=>{core:2}",
+    "catalogue": [
+      "https://bccm.belspo.be/page/lmg-catalogue-display/fields/name/{acr} {id}"
+    ],
     "code": "BCCM:LMG",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
-    "homepage": "https://bccm.belspo.be/catalogues/lmg-catalogue-search",
+    "homepage": "https://bccm.belspo.be/about-LMG",
     "name": "Belgian Coordinated Collections of Microorganisms: LMG - Bacteria Collection",
-    "regex_ccno": "^LMG\\s*\\d+(\\.\\d+)?$",
+    "regex_ccno": "^LMG\\s*\\d+([.t]\\d+)?$",
     "regex_id": {
-      "full": "^\\d+(\\.\\d+)?$"
+      "full": "^\\d+([.t]\\d+)?$"
     }
   },
   "20": {
     "acr": "CRBIP",
     "active": true,
-    "catalogue": "https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip={acr}{id}",
+    "catalogue": [
+      "https://catalogue-crbip.pasteur.fr/fiche_catalogue.xhtml?crbip={acr}{id}"
+    ],
     "code": "CRBIP",
     "country": "FR",
     "homepage": "https://www.pasteur.fr/en/public-health/biological-resource-center",
@@ -292,7 +346,9 @@
   "21": {
     "acr": "BCRC",
     "active": true,
-    "catalogue": "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid={id}",
+    "catalogue": [
+      "https://catalog.bcrc.firdi.org.tw/BcrcContent?bid={id}"
+    ],
     "code": "BCRC",
     "country": "TW",
     "gbif": "e53bb055-7348-483f-86c7-5399d6abf4d8",
@@ -310,7 +366,9 @@
   "22": {
     "acr": "CGMCC",
     "active": true,
-    "catalogue": "https://www.cgmcc.net/english/search?stn={acr}+{id}",
+    "catalogue": [
+      "https://www.cgmcc.net/english/search?stn={acr}+{id}"
+    ],
     "code": "CGMCC",
     "country": "CN",
     "gbif": "ffff0a26-d2c0-46b3-a359-e9e8310ce20b",
@@ -324,7 +382,9 @@
   "23": {
     "acr": "KCTC",
     "active": true,
-    "catalogue": "https://kctc.kribb.re.kr/en/collection/view?sn={id}",
+    "catalogue": [
+      "https://kctc.kribb.re.kr/en/collection/view?sn={id}"
+    ],
     "code": "KCTC",
     "country": "KR",
     "gbif": "6098abf2-5aef-423c-af28-e98aa29c25d6",
@@ -338,7 +398,9 @@
   "24": {
     "acr": "UAMH",
     "active": true,
-    "catalogue": "https://www.uamh.ca/details.php?id={id}",
+    "catalogue": [
+      "https://www.uamh.ca/details.php?id={id}"
+    ],
     "code": "UAMH",
     "country": "CA",
     "gbif": "7f765131-7a3d-4845-aa55-d06f7901b04d",
@@ -352,7 +414,9 @@
   "25": {
     "acr": "NCIMB",
     "active": true,
-    "catalogue": "https://store.ncimb.com/page/Strains record name display/fields/name/{acr} {id}",
+    "catalogue": [
+      "https://store.ncimb.com/page/Strains record name display/fields/name/{acr} {id}"
+    ],
     "code": "NCIMB",
     "country": "GB",
     "gbif": "98c7945d-0b93-4016-a748-c6e5fc75a4c6",
@@ -435,7 +499,9 @@
   "3": {
     "acr": "CCUG",
     "active": true,
-    "catalogue": "https://www.ccug.se/strain?id={id}",
+    "catalogue": [
+      "https://www.ccug.se/strain?id={id}"
+    ],
     "code": "CCUG",
     "country": "SE",
     "gbif": "323cc3eb-16f5-4aa0-8126-f0ccdfe9b56d",
@@ -496,7 +562,9 @@
   "32": {
     "acr": "CECT",
     "active": true,
-    "catalogue": "https://www.cect.org/vstrn.php?lan=en&cect={id}",
+    "catalogue": [
+      "https://www.cect.org/vstrn.php?lan=en&cect={id}"
+    ],
     "code": "CECT",
     "country": "ES",
     "gbif": "8307579d-bc50-4d78-86e3-297868310f09",
@@ -513,7 +581,9 @@
       "UKHSA:NCTC"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{id}&collection=nctc",
+    "catalogue": [
+      "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{id}&collection=nctc"
+    ],
     "code": "UKHSA:NCTC",
     "country": "GB",
     "gbif": "ffd4bb75-a76d-47a9-868c-d53127538ecd",
@@ -531,7 +601,9 @@
       "UKHSA:NCPV"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={core0:7}{suf}&collection=ncpv",
+    "catalogue": [
+      "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={core0:7}{suf}&collection=ncpv"
+    ],
     "code": "UKHSA:NCPV",
     "country": "GB",
     "gbif": "292973d5-0aec-41d0-95ab-2b9632d4b8d6",
@@ -549,7 +621,9 @@
       "UKHSA:NCPF"
     ],
     "active": true,
-    "catalogue": "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{core0:4}&collection=ncpf",
+    "catalogue": [
+      "https://www.culturecollections.org.uk/products/bacteria/detail.jsp?refId={acr}+{core0:4}&collection=ncpf"
+    ],
     "code": "UKHSA:NCPF",
     "country": "GB",
     "gbif": "8dabebf9-789f-455a-b439-1c510b01fa19",
@@ -564,7 +638,9 @@
   "36": {
     "acr": "VTT",
     "active": true,
-    "catalogue": "http://culturecollection.vtt.fi/m/html?p=sti&code={id}",
+    "catalogue": [
+      "http://culturecollection.vtt.fi/m/html?p=sti&code={id}"
+    ],
     "code": "VTT",
     "country": "FI",
     "gbif": "19922d64-f9fa-43dc-bf4f-4fd5274b34bc",
@@ -587,7 +663,9 @@
   "37": {
     "acr": "UTEX",
     "active": true,
-    "catalogue": "https://utex.org/products/{acr}-{pre}<->{core}",
+    "catalogue": [
+      "https://utex.org/products/{acr}-{pre}<->{core}"
+    ],
     "code": "UTEX",
     "country": "US",
     "gbif": "87983748-1c5a-4a92-b9ea-9eeda92e6d3f",
@@ -606,6 +684,11 @@
   "38": {
     "acr": "CCM",
     "active": true,
+    "catalogue": [
+      "https://ccm.sci.muni.cz/en/catalogue-of-cultures/bacteria-and-archaea/bakterie/htmlb/{id}",
+      "https://ccm.sci.muni.cz/en/catalogue-of-cultures/filamentous-fungi-and-yeasts/houby/htmlh/{pre}<->{core}",
+      "https://ccm.sci.muni.cz/en/catalogue-of-cultures/bacteriophages/fagy/htmlp/{id}"
+    ],
     "code": "CCM",
     "country": "CZ",
     "gbif": "414400d6-9cc7-4d46-96a3-3e1d08dd8208",
@@ -623,7 +706,9 @@
   "39": {
     "acr": "NCPPB",
     "active": true,
-    "catalogue": "https://ncppb.fera.co.uk/furtherinfo.cfm?{acr}_no={id}",
+    "catalogue": [
+      "https://ncppb.fera.co.uk/furtherinfo.cfm?{acr}_no={id}"
+    ],
     "code": "NCPPB",
     "country": "GB",
     "gbif": "1d599ee0-a749-42ca-b573-2f0170d75a42",
@@ -637,7 +722,9 @@
   "4": {
     "acr": "ATCC",
     "active": true,
-    "catalogue": "https://www.atcc.org/products/{id}",
+    "catalogue": [
+      "https://www.atcc.org/products/{id}"
+    ],
     "code": "ATCC",
     "country": "US",
     "gbif": "25160e92-1a80-4226-9afb-b25691622ac6",
@@ -661,7 +748,9 @@
   "40": {
     "acr": "CCAP",
     "active": true,
-    "catalogue": "https://www.ccap.ac.uk/catalogue/strain-{core:1}-{core:2}{suf}",
+    "catalogue": [
+      "https://www.ccap.ac.uk/catalogue/strain-{core:1}-{core:2}{suf}"
+    ],
     "code": "CCAP",
     "country": "GB",
     "gbif": "2d644377-7e04-4aa2-8bea-17f9b2014f25",
@@ -708,7 +797,9 @@
   "43": {
     "acr": "SAG",
     "active": true,
-    "catalogue": "https://sagdb.uni-goettingen.de/detailedList.php?str_number={id}",
+    "catalogue": [
+      "https://sagdb.uni-goettingen.de/detailedList.php?str_number={id}"
+    ],
     "code": "SAG",
     "country": "DE",
     "gbif": "e635ed6d-ff83-4253-addf-ddf6e817a6ce",
@@ -728,6 +819,9 @@
   "44": {
     "acr": "NCAIM",
     "active": true,
+    "catalogue": [
+      "https://ncaim.etk.szie.hu/advspecies?field_ncaim_number_value={pre}.{core0:5}"
+    ],
     "code": "NCAIM",
     "country": "HU",
     "gbif": "ea042248-bd22-411c-9596-01e55c077483",
@@ -747,11 +841,13 @@
   "45": {
     "acr": "CCT",
     "active": true,
-    "catalogue": "https://fat.org.br/catalogo-de-culturas-online/?termo={core0:4}",
+    "catalogue": [
+      "https://fat.org.br/catalogo-de-culturas-online/?termo={core0:4}"
+    ],
     "code": "CCT",
     "country": "BR",
     "gbif": "827f23f5-63a6-412d-92bc-f3c0b1a31f70",
-    "homepage": "https://fat.org.br/catalogo-de-culturas-online/",
+    "homepage": "https://fat.org.br",
     "name": "Collection of Tropical Cultures",
     "regex_ccno": "^CCT\\s*\\d+$",
     "regex_id": {
@@ -764,7 +860,9 @@
       "NCMA:CCMP"
     ],
     "active": true,
-    "catalogue": "https://ncma.bigelow.org/search?keywords={acr}{id}",
+    "catalogue": [
+      "https://ncma.bigelow.org/search?keywords={acr}{id}"
+    ],
     "code": "NCMA:CCMP",
     "country": "US",
     "gbif": "501449a3-a24c-4454-9669-3a3a888a7a48",
@@ -779,7 +877,9 @@
   "47": {
     "acr": "NCMA",
     "active": true,
-    "catalogue": "https://ncma.bigelow.org/{acr}-{id}",
+    "catalogue": [
+      "https://ncma.bigelow.org/{acr}-{id}"
+    ],
     "code": "NCMA",
     "country": "US",
     "gbif": "501449a3-a24c-4454-9669-3a3a888a7a48",
@@ -810,7 +910,11 @@
   "49": {
     "acr": "NCIM",
     "active": true,
-    "catalogue": "https://www.ncl-india.org/files/NCIM/CatalogueDetails.aspx?{acr}No={id}",
+    "catalogue": [
+      "https://www.ncl-india.org/files/NCIM/CatalogueDetails.aspx?{acr}No={id}",
+      "https://www.ncl-india.org/files/NCIM/CatalogueDetails.aspx?{acr}No=*{id}",
+      "https://www.ncl-india.org/files/NCIM/CatalogueDetails.aspx?{acr}No=**{id}"
+    ],
     "code": "NCIM",
     "country": "IN",
     "gbif": "42f0bb66-a318-4b1e-800d-2f075a03060b",
@@ -827,7 +931,9 @@
       "WI:CBS"
     ],
     "active": true,
-    "catalogue": "https://wi.knaw.nl/page/fungal_display/fields/name/{acr} {id}",
+    "catalogue": [
+      "https://wi.knaw.nl/page/fungal_display/fields/name/{acr} {id}"
+    ],
     "code": "WI:CBS",
     "country": "NL",
     "gbif": "1370bc72-540f-4ff0-aefd-2358971299be",
@@ -842,7 +948,9 @@
   "50": {
     "acr": "RCC",
     "active": true,
-    "catalogue": "https://www.roscoff-culture-collection.org/rcc-strain-details/{id}",
+    "catalogue": [
+      "https://www.roscoff-culture-collection.org/rcc-strain-details/{id}"
+    ],
     "code": "RCC",
     "country": "FR",
     "gbif": "077a5464-186e-481e-84e0-b5bf0b265ff9",
@@ -877,7 +985,7 @@
     "code": "KACC",
     "country": "KR",
     "gbif": "a7bd7bea-6bf7-42dd-868c-894b0249306a",
-    "homepage": "https://genebank.rda.go.kr/",
+    "homepage": "https://genebank.rda.go.kr/eng/uat/uia/actionMain.do",
     "name": "Korean Agricultural Culture Collection",
     "regex_ccno": "^KACC\\s*\\d+$",
     "regex_id": {
@@ -890,7 +998,9 @@
       "WI:NCCB"
     ],
     "active": true,
-    "catalogue": "https://wi.knaw.nl/page/NCCB_strains_display/fields/name/{acr} {id}",
+    "catalogue": [
+      "https://wi.knaw.nl/page/NCCB_strains_display/fields/name/{acr} {id}"
+    ],
     "code": "WI:NCCB",
     "country": "NL",
     "gbif": "61dd77bc-bae0-44d3-9491-4ebb4f3afcf4",
@@ -970,7 +1080,9 @@
   "58": {
     "acr": "DBVPG",
     "active": true,
-    "catalogue": "https://dsa3.unipg.it/DBVPG/en/lievito/?id={id}",
+    "catalogue": [
+      "https://dsa3.unipg.it/DBVPG/en/lievito/?id={id}"
+    ],
     "code": "DBVPG",
     "country": "IT",
     "gbif": "e079c236-ce49-4359-abc0-febc6cfd160a",
@@ -987,7 +1099,9 @@
       "CIRM:CFBP"
     ],
     "active": true,
-    "catalogue": "https://cirm-cfbp.fr/page/strain-display/fields/name/{acr} {id}",
+    "catalogue": [
+      "https://cirm-cfbp.fr/page/strain-display/fields/name/{acr} {id}"
+    ],
     "code": "CIRM:CFBP",
     "country": "FR",
     "gbif": "316a147d-49ad-440b-90fc-e46845e044d6",
@@ -1004,7 +1118,9 @@
       "LCR:ICMP"
     ],
     "active": true,
-    "catalogue": "https://scd.landcareresearch.co.nz/Specimen/{acr} {id}",
+    "catalogue": [
+      "https://scd.landcareresearch.co.nz/Specimen/{acr} {id}"
+    ],
     "code": "LCR:ICMP",
     "country": "NZ",
     "gbif": "22ff6145-71a0-4829-b099-bdbcccc9adba",
@@ -1018,7 +1134,9 @@
   "60": {
     "acr": "VKM",
     "active": true,
-    "catalogue": "http://www.vkm.ru/strains.php?vkm={id}",
+    "catalogue": [
+      "http://www.vkm.ru/strains.php?vkm={id}"
+    ],
     "code": "VKM",
     "country": "RU",
     "gbif": "2101b8a6-52f3-4c94-a174-e5fa990c9260",
@@ -1098,7 +1216,9 @@
   "65": {
     "acr": "NBIMCC",
     "active": true,
-    "catalogue": "https://www.nbimcc.org/www_2020/strain.php?lan=en&cn={id}",
+    "catalogue": [
+      "https://www.nbimcc.org/www_2020/strain.php?lan=en&cn={id}"
+    ],
     "code": "NBIMCC",
     "country": "BG",
     "gbif": "b98d42bc-27e9-4f0b-998c-f59332bcf12b",
@@ -1162,7 +1282,9 @@
   "7": {
     "acr": "FGSC",
     "active": true,
-    "catalogue": "https://www.fgsc.net/fgsc/strain_search_sql.php?FGSC={id}",
+    "catalogue": [
+      "https://www.fgsc.net/fgsc/strain_search_sql.php?FGSC={id}"
+    ],
     "code": "FGSC",
     "country": "US",
     "gbif": "9ed8b7bc-0ac6-41d6-b2b5-f9f9f9db7d00",
@@ -1183,7 +1305,9 @@
       "CIRM:CLIB"
     ],
     "active": true,
-    "catalogue": "https://cirm-levures.bio-aware.com/page/CLIB_display/{id}",
+    "catalogue": [
+      "https://cirm-levures.bio-aware.com/page/CLIB_display/{id}"
+    ],
     "code": "CIRM:CLIB",
     "country": "FR",
     "gbif": "316a147d-49ad-440b-90fc-e46845e044d6",
@@ -1197,7 +1321,9 @@
   "71": {
     "acr": "CIRM:BIA",
     "active": true,
-    "catalogue": "https://collection-cirmbia.fr/page/Display_souches/{id}",
+    "catalogue": [
+      "https://collection-cirmbia.fr/page/Display_souches/{id}"
+    ],
     "code": "CIRM:BIA",
     "country": "FR",
     "gbif": "316a147d-49ad-440b-90fc-e46845e044d6",
@@ -1243,7 +1369,9 @@
   "74": {
     "acr": "CCAC",
     "active": true,
-    "catalogue": "https://www.uni-due.de/biology/ccac/details.php?strain={acr} {core0:4} {suf}",
+    "catalogue": [
+      "https://www.uni-due.de/biology/ccac/details.php?strain={acr} {core0:4} {suf}"
+    ],
     "code": "CCAC",
     "country": "DE",
     "gbif": "1eedb41b-d9d3-4d7a-871b-874f0e18afc0",
@@ -1262,6 +1390,9 @@
   "75": {
     "acr": "CBMAI",
     "active": true,
+    "catalogue": [
+      "https://specieslink.net/search/records/collectioncode/143/catalognumber/{id}"
+    ],
     "code": "CBMAI",
     "country": "BR",
     "gbif": "f4f22ff0-c7d5-4816-acf3-0bcc05e2f389",
@@ -1275,7 +1406,9 @@
   "76": {
     "acr": "TBRC",
     "active": true,
-    "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
+    "catalogue": [
+      "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}"
+    ],
     "code": "TBRC",
     "country": "TH",
     "gbif": "a47046da-867a-4a59-a0c2-5747223ffdc8",
@@ -1289,7 +1422,9 @@
   "77": {
     "acr": "TBRC:BCC",
     "active": true,
-    "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
+    "catalogue": [
+      "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}"
+    ],
     "code": "TBRC:BCC",
     "country": "TH",
     "gbif": "a47046da-867a-4a59-a0c2-5747223ffdc8",
@@ -1324,7 +1459,9 @@
       "TBRC:TISTR"
     ],
     "active": true,
-    "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}",
+    "catalogue": [
+      "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{id}"
+    ],
     "code": "TBRC:TISTR",
     "country": "TH",
     "gbif": "a47046da-867a-4a59-a0c2-5747223ffdc8",
@@ -1342,11 +1479,13 @@
       "BCCM:MUCL"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/mucl-strain-details?NUM={acr} {id}",
+    "catalogue": [
+      "https://bccm.belspo.be/page/mucl-catalogue-display/{id}"
+    ],
     "code": "BCCM:MUCL",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
-    "homepage": "https://bccm.belspo.be/",
+    "homepage": "https://bccm.belspo.be/about-MUCL",
     "name": "Belgian Coordinated Collections of Microorganisms: MUCL - Environmental and applied mycology collection",
     "regex_ccno": "^MUCL\\s*\\d+$",
     "regex_id": {
@@ -1359,7 +1498,9 @@
       "TBRC:MSCU"
     ],
     "active": true,
-    "catalogue": "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{core0:4}",
+    "catalogue": [
+      "https://www.tbrcnetwork.org/microb_detail.php?code={acr}_{core0:4}"
+    ],
     "code": "TBRC:MSCU",
     "country": "TH",
     "gbif": "a47046da-867a-4a59-a0c2-5747223ffdc8",
@@ -1388,11 +1529,13 @@
       "BCCM:DCG"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/bm-details?accession_number={acr} {core0:4}",
+    "catalogue": [
+      "https://bccm.belspo.be/page/dcg-catalogue-display/{id}"
+    ],
     "code": "BCCM:DCG",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
-    "homepage": "https://bccm.belspo.be/",
+    "homepage": "https://bccm.belspo.be/about-DCG",
     "name": "Belgian Coordinated Collections of Microorganisms: DCG - Diatoms Collection",
     "regex_ccno": "^DCG\\s*\\d+$",
     "regex_id": {
@@ -1536,11 +1679,13 @@
       "BCCM:IHEM"
     ],
     "active": true,
-    "catalogue": "https://bccm.belspo.be/catalogues/ihem-strain-details?NUM={acr} {id}",
+    "catalogue": [
+      "https://bccm.belspo.be/page/ihem-catalogue-display/{id}"
+    ],
     "code": "BCCM:IHEM",
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
-    "homepage": "https://bccm.belspo.be/",
+    "homepage": "https://bccm.belspo.be/about-IHEM",
     "name": "Belgian Coordinated Collections of Microorganisms: IHEM - Biomedical fungi & yeasts collection",
     "regex_ccno": "^IHEM\\s*\\d+$",
     "regex_id": {
@@ -1553,7 +1698,9 @@
       "IMTECH:MTCC"
     ],
     "active": true,
-    "catalogue": "https://mtccindia.res.in/catalog?orgnism=All&strain_type=All&supply_list=All&advance_feature=Yes&mtcc_no={id}&search_result=Search",
+    "catalogue": [
+      "https://mtccindia.res.in/catalog?orgnism=All&strain_type=All&supply_list=All&advance_feature=Yes&mtcc_no={id}&search_result=Search"
+    ],
     "code": "IMTECH:MTCC",
     "country": "IN",
     "gbif": "f4743a63-c919-4f2a-b3c2-8129171e7ab5",
@@ -1610,7 +1757,9 @@
   "94": {
     "acr": "KCCM",
     "active": true,
-    "catalogue": "http://www.kccm.or.kr/sub12_view.php3?f_kccm={id}",
+    "catalogue": [
+      "http://www.kccm.or.kr/sub12_view.php3?f_kccm={id}"
+    ],
     "code": "KCCM",
     "country": "KR",
     "gbif": "5e9047de-b4e7-4c6a-be50-7a8b9563982c",
@@ -1640,7 +1789,9 @@
   "96": {
     "acr": "CAIM",
     "active": true,
-    "catalogue": "https://www.ciad.mx/caim/busqueda.php?searchtype=CAIM&criterio={id}",
+    "catalogue": [
+      "https://www.ciad.mx/caim/busqueda.php?searchtype=CAIM&criterio={id}"
+    ],
     "code": "CAIM",
     "country": "MX",
     "gbif": "e8cb76fc-2a7c-462d-b9f0-5f7f4728a779",

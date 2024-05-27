@@ -47,7 +47,7 @@ def _check_active(cur_acr_con: AcrDbEntry, /) -> None:
         raise ValJsonEx(
             f"{cur_acr_con.acr}: 'inactive' BRC can not have a 'homepage' link"
         )
-    if not cur_acr_con.active and cur_acr_con.catalogue != "":
+    if not cur_acr_con.active and len(cur_acr_con.catalogue) != 0:
         raise ValJsonEx(
             f"{cur_acr_con.acr}: 'inactive' BRC can not have a 'catalogue' link"
         )
@@ -226,7 +226,7 @@ def _validate_regex_dc(reg_db: CCNO_DB_T, acr_db: ACR_DB_T, equal_sized: bool, /
 
 def _validate_catalogue_dc(cat_db: CCNO_DB_T, acr_db: ACR_DB_T, /) -> None:
     all_cat_ids = set(cat_db.keys())
-    all_acr_ids = set(cid for cid, adb in acr_db.items() if adb.catalogue != "")
+    all_acr_ids = set(cid for cid, adb in acr_db.items() if len(adb.catalogue) != 0)
     _check_malformed_list(cat_db)
     _check_ids_overlap(all_cat_ids, all_acr_ids, True)
     for acr_id, acr_con in acr_db.items():

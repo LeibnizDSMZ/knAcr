@@ -74,7 +74,7 @@ _ID_SUB: Final[Pattern[str]] = re.compile(r"^(.+?)(:\d+)?$")
 _ID_SEP: Final[Pattern[str]] = re.compile(r"[^A-Za-z0-9]")
 
 
-def check_uri_template(uri: str, /) -> None:
+def _check_uri_template(uri: str, /) -> None:
     sub_parts = defaultdict(list)
     for param in _VALID_URI.findall(uri):
         arg_parts = _ID_SUB.match(param)
@@ -89,6 +89,11 @@ def check_uri_template(uri: str, /) -> None:
     for param, arr_id in sub_parts.items():
         if 0 in arr_id:
             raise ValJsonEx(f"zeros are not allowed as index for params [{param}]")
+
+
+def check_uri_template(uris: list[str], /) -> None:
+    for uri in uris:
+        _check_uri_template(uri)
 
 
 def _parse_id_core(mat: str, id_core: str, /) -> dict[str, str]:
