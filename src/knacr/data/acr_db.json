@@ -1757,13 +1757,9 @@
   "94": {
     "acr": "KCCM",
     "active": true,
-    "catalogue": [
-      "http://www.kccm.or.kr/sub12_view.php3?f_kccm={id}"
-    ],
     "code": "KCCM",
     "country": "KR",
     "gbif": "5e9047de-b4e7-4c6a-be50-7a8b9563982c",
-    "homepage": "http://www.kccm.or.kr",
     "name": "Department of Food Engineering: Korean Culture Center of Microorganisms",
     "regex_ccno": "^KCCM\\s*\\d+$",
     "regex_id": {
@@ -1789,13 +1785,9 @@
   "96": {
     "acr": "CAIM",
     "active": true,
-    "catalogue": [
-      "https://www.ciad.mx/caim/busqueda.php?searchtype=CAIM&criterio={id}"
-    ],
     "code": "CAIM",
     "country": "MX",
     "gbif": "e8cb76fc-2a7c-462d-b9f0-5f7f4728a779",
-    "homepage": "https://www.ciad.mx/caim/CAIM.html",
     "name": "Center of Research for Nutrition and Development: Collection of Aquacultural Important Microorganisms",
     "regex_ccno": "^CAIM\\s*\\d+$",
     "regex_id": {
