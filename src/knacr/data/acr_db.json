@@ -1282,13 +1282,9 @@
   "7": {
     "acr": "FGSC",
     "active": true,
-    "catalogue": [
-      "https://www.fgsc.net/fgsc/strain_search_sql.php?FGSC={id}"
-    ],
     "code": "FGSC",
     "country": "US",
     "gbif": "9ed8b7bc-0ac6-41d6-b2b5-f9f9f9db7d00",
-    "homepage": "https://www.fgsc.net/",
     "name": "Fungal Genetics Stock Center",
     "regex_ccno": "^FGSC\\s*[A]?\\d+$",
     "regex_id": {
@@ -1785,9 +1781,13 @@
   "96": {
     "acr": "CAIM",
     "active": true,
+    "catalogue": [
+      "https://www.ciad.mx/caim/busqueda.php?searchtype=CAIM&criterio={id}"
+    ],
     "code": "CAIM",
     "country": "MX",
     "gbif": "e8cb76fc-2a7c-462d-b9f0-5f7f4728a779",
+    "homepage": "https://www.ciad.mx/caim/CAIM.html",
     "name": "Center of Research for Nutrition and Development: Collection of Aquacultural Important Microorganisms",
     "regex_ccno": "^CAIM\\s*\\d+$",
     "regex_id": {
