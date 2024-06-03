@@ -1192,7 +1192,6 @@
     "code": "PTCCI",
     "country": "IR",
     "gbif": "1d72c284-5e52-4535-afcf-b014f9791ec5",
-    "homepage": "https://irost.org/ptcc/en",
     "name": "Iranian Research Organization for Science and Technology (I.R.O.S.T.): Persian Type Culture Collection",
     "regex_ccno": "^PTCC\\s*\\d+$",
     "regex_id": {
