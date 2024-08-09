@@ -1,40 +1,64 @@
 from collections import defaultdict
-from dataclasses import asdict
 from re import Pattern
 import re
-from typing import Callable, Final, Mapping, Sequence, TypeVar
+from typing import Any, Callable, Final, Sequence, Sized
 from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T
 
-from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs
-from dacite import from_dict
+from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs, url_to_str
 from knacr.errors.custom_exceptions import ValJsonEx
+from pydantic import HttpUrl
 
 
 def get_brc_merge_type() -> list[str]:
     return [str(cha.value) for cha in AcrChaT]
 
 
-_TJ = TypeVar("_TJ")
+def remove_empty_dict_keys(dict_con: Any, /) -> dict[str, Any]:
+    if not isinstance(dict_con, dict):
+        return {}
+    to_rem = set()
+    shallow_copy: dict[str, Any] = {}
+    for key, val in dict_con.items():
+        if not isinstance(key, str):
+            continue
+        buf = val
+        if isinstance(val, dict) and len(val) > 0:
+            buf = remove_empty_dict_keys(val)
+        shallow_copy[key] = buf
+
+    for key, val in shallow_copy.items():
+        if not isinstance(key, str):
+            to_rem.add(key)
+        if isinstance(val, Sized) and len(val) == 0:
+            to_rem.add(key)
+        if isinstance(val, int) and val < 0:
+            to_rem.add(key)
+        if val is None:
+            to_rem.add(key)
+    for key in to_rem:
+        del shallow_copy[key]
+    return shallow_copy
 
 
 def _amend_regex_id(acr_db: ACR_DB_T, /) -> ACR_DB_T:
     for acr_id, acr_con in acr_db.items():
         if acr_con.regex_id.core == "":
-            buf = asdict(acr_con)
+            buf = remove_empty_dict_keys(acr_con.model_dump())
             buf.get("regex_id", {})["core"] = acr_con.regex_id.full[1:-2]
-            acr_db[acr_id] = from_dict(data_class=AcrDbEntry, data=buf)
+            acr_db[acr_id] = AcrDbEntry(**buf)
     return acr_db
 
 
-def create_acr_db(to_eval: dict[str, Mapping[str, _TJ]], /) -> ACR_DB_T:
+def create_acr_db(to_eval: dict[str, Any], /) -> ACR_DB_T:
     acr_db = {
-        int(acr_id): from_dict(data_class=AcrDbEntry, data=acr_db_entry)
+        int(acr_id): AcrDbEntry(**acr_db_entry)
         for acr_id, acr_db_entry in to_eval.items()
+        if isinstance(acr_db_entry, dict)
     }
     return _amend_regex_id(acr_db)
 
 
-def create_acr_min_db(to_eval: dict[str, Mapping[str, _TJ]], /) -> ACR_MIN_DB_T:
+def create_acr_min_db(to_eval: dict[str, Any], /) -> ACR_MIN_DB_T:
     min_db: ACR_MIN_DB_T = {}
     for acr_id, db_ent in to_eval.items():
         if not isinstance(db_ent, dict):
@@ -49,7 +73,7 @@ def create_acr_min_db(to_eval: dict[str, Mapping[str, _TJ]], /) -> ACR_MIN_DB_T:
     return min_db
 
 
-def create_ccno_db(to_eval: dict[str, Sequence[_TJ]], /) -> CCNO_DB_T:
+def create_ccno_db(to_eval: dict[str, Sequence[Any]], /) -> CCNO_DB_T:
     reg_db: CCNO_DB_T = {}
     for acr_id, db_ent in to_eval.items():
         if not isinstance(db_ent, list):
@@ -101,11 +125,11 @@ def _check_uri_template(uri: str, /) -> None:
             raise ValJsonEx(f"zeros are not allowed as index for params [{param}]")
 
 
-def check_uri_template(uris: list[str], /) -> None:
+def check_uri_template(uris: list[HttpUrl], /) -> None:
     domains = set()
     for uri in uris:
-        _check_uri_template(uri)
-        domains.add(_get_domain(uri))
+        _check_uri_template(url_to_str(uri))
+        domains.add(_get_domain(url_to_str(uri)))
     if len(domains) > 1:
         raise ValJsonEx(f"multiple catalogue domains detected [{uris!s}]")
 

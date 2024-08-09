@@ -23,9 +23,9 @@ def load_fix_catalogue_db() -> bytes:
 
 
 def _get_data_from_main_branch(data_name: str, /) -> bytes:
-    sub_proc = subprocess.Popen(
+    sub_proc = subprocess.Popen(  # noqa: S603
         ["git", "show", f"origin/main:src/knacr/data/{data_name}.json"],  # noqa: S607
-        shell=False,  # noqa: S603
+        shell=False,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         encoding="utf-8",
