@@ -1,18 +1,21 @@
-from typing import Any, Callable, Final, TypeAlias, TypeVar
+from typing import Any, Callable, Final, TypeAlias
 import re
 
-from jsonschema import Draft202012Validator, ValidationError, validate
+from pydantic import ValidationError
 from knacr.constants.types import ACR_DB_T, CCNO_DB_T
 
-from knacr.container.acr_db import AcrCoreReg, AcrDbEntry
+from knacr.container.acr_db import (
+    ACR_MIN_CON,
+    CCNO_DB_CON,
+    CCNO_DB_KEYS,
+    AcrCoreReg,
+    AcrDbEntry,
+    ACR_DB_KEYS,
+    url_to_str,
+    uuid_to_str,
+)
 from knacr.container.fun.acr_db import check_uri_template, create_acr_db, create_ccno_db
 from knacr.errors.custom_exceptions import ValJsonEx
-from knacr.schemas.acr_db import ACR_DB, ACR_MIN_DB, CCNO_DB
-
-
-_TJ = TypeVar("_TJ", bound=dict[str, Any])
-_TV = TypeVar("_TV")
-
 
 _ACR: Final[re.Pattern[str]] = re.compile("^[A-Z:]+$")
 _ACR_SPL: Final[re.Pattern[str]] = re.compile(":")
@@ -43,7 +46,7 @@ def _check_unique_gid(
 
 
 def _check_active(cur_acr_con: AcrDbEntry, /) -> None:
-    if not cur_acr_con.active and cur_acr_con.homepage != "":
+    if not cur_acr_con.active and url_to_str(cur_acr_con.homepage) != "":
         raise ValJsonEx(
             f"{cur_acr_con.acr}: 'inactive' BRC can not have a 'homepage' link"
         )
@@ -206,7 +209,9 @@ def _validate_acr_db_dc(acr_db: ACR_DB_T, /) -> None:
         check_uri_template(acr_con.catalogue)
         uni_gen.add(_check_unique_gen(uni_gen, acr_con))
         uni_gid.add(_check_unique_gid(uni_gid, acr_con, lambda db: db.ror, "ror"))
-        uni_gid.add(_check_unique_gid(uni_gid, acr_con, lambda db: db.gbif, "gbif"))
+        uni_gid.add(
+            _check_unique_gid(uni_gid, acr_con, lambda db: uuid_to_str(db.gbif), "gbif")
+        )
         _check_db_composition(acr_con, acr_db)
         _check_acr(acr_con.acr)
         _check_regex(acr_con.regex_ccno, acr_con.regex_id)
@@ -234,38 +239,48 @@ def _validate_catalogue_dc(cat_db: CCNO_DB_T, acr_db: ACR_DB_T, /) -> None:
             _apply_regex(acr_id, acr_con, cat_db[acr_id])
 
 
-def _validate_json(to_val_j: _TJ, schema: dict[str, _TV], msg: str, /) -> None:
+def validate_acr_db(to_eval: dict[str, Any], /) -> ACR_DB_T:
+    msg = "Acronym database is incorrectly formatted!"
     try:
-        validate(
-            instance=to_val_j,
-            schema=schema,
-            format_checker=Draft202012Validator.FORMAT_CHECKER,
-        )
+        ACR_DB_KEYS.validate_python(list(to_eval.keys()))
+        acr_db = create_acr_db(to_eval)
     except ValidationError as exc:
-        raise ValJsonEx(f"{msg} [{exc.cause!s}]") from exc
-
-
-def validate_acr_db(to_eval: _TJ, /) -> ACR_DB_T:
-    _validate_json(to_eval, ACR_DB, "Acronym Data is incorrectly formatted!")
-    acr_db = create_acr_db(to_eval)
+        raise ValJsonEx(f"{msg} [{exc!s}]") from exc
     if len(acr_db) > 0:
         _validate_acr_db_dc(acr_db)
     return acr_db
 
 
-def validate_min_acr_db_schema(to_eval: _TJ, /) -> None:
-    _validate_json(to_eval, ACR_MIN_DB, "Acronym Data is incorrectly formatted!")
+def validate_min_acr_db_schema(to_eval: dict[str, Any], /) -> None:
+    msg = "Acronym min database is incorrectly formatted!"
+    try:
+        ACR_DB_KEYS.validate_python(list(to_eval.keys()))
+        ACR_MIN_CON.validate_python(list(to_eval.values()))
+    except ValidationError as exc:
+        raise ValJsonEx(f"{msg} [{exc!s}]") from exc
 
 
-def validate_regex_db(to_eval: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
-    _validate_json(to_eval, CCNO_DB, "Regex Data is incorrectly formatted!")
+def _validate_ccno_db_struct(msg: str, to_eval: dict[str, Any], /) -> None:
+    try:
+        CCNO_DB_KEYS.validate_python(list(to_eval.keys()))
+        CCNO_DB_CON.validate_python(list(to_eval.values()))
+    except ValidationError as exc:
+        raise ValJsonEx(f"{msg} [{exc!s}]") from exc
+
+
+def validate_regex_db(
+    to_eval: dict[str, Any], acr_db: ACR_DB_T, equal_sized: bool, /
+) -> CCNO_DB_T:
+    msg = "Regex data is incorrectly formatted!"
+    _validate_ccno_db_struct(msg, to_eval)
     regex_db = create_ccno_db(to_eval)
     _validate_regex_dc(regex_db, acr_db, equal_sized)
     return regex_db
 
 
-def validate_catalogue_db(to_eval: _TJ, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
-    _validate_json(to_eval, CCNO_DB, "Catalogue Data is incorrectly formatted!")
+def validate_catalogue_db(to_eval: dict[str, Any], acr_db: ACR_DB_T, /) -> CCNO_DB_T:
+    msg = "Catalogue data is incorrectly formatted!"
+    _validate_ccno_db_struct(msg, to_eval)
     catalogue = create_ccno_db(to_eval)
     _validate_catalogue_dc(catalogue, acr_db)
     return catalogue

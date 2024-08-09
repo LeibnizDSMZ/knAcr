@@ -25,11 +25,10 @@ def _load_data_from_file(db_name: str, /) -> bytes:
 
 
 _T = TypeVar("_T", ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
-_V = TypeVar("_V")
 _P = ParamSpec("_P")
 
 
-def _load_data(version: str, db_name: str, create: Callable[[_V], _T], /) -> _T:
+def _load_data(version: str, db_name: str, create: Callable[[Any], _T], /) -> _T:
     knacr = "https://raw.githubusercontent.com/StrainInfo/knAcr"
     req = f"{knacr}/{version}/src/knacr/data/{db_name}.json"
     if version == CURRENT_VER:
@@ -82,28 +81,28 @@ def load_catalogue_db(acr_db: ACR_DB_T, version: str = CURRENT_VER, /) -> CCNO_D
     )
 
 
-_TJ = TypeVar("_TJ")
-
-
-def _dict_guard(database: _TJ, /) -> dict[str, Any]:
+def _dict_guard(database: Any, /) -> dict[str, Any]:
     if not isinstance(database, dict):
         raise ValJsonEx("JSON is not a dictionary")
+    for key in database.keys():
+        if not isinstance(key, str):
+            raise ValJsonEx("JSON first level keys are not strings")
     return database
 
 
-def parse_acr_db(acr_db: _TJ) -> ACR_DB_T:
+def parse_acr_db(acr_db: Any) -> ACR_DB_T:
     return validate_acr_db(_dict_guard(acr_db))
 
 
-def parse_min_acr_db(acr_db: _TJ) -> ACR_MIN_DB_T:
+def parse_min_acr_db(acr_db: Any) -> ACR_MIN_DB_T:
     dict_db = _dict_guard(acr_db)
     validate_min_acr_db_schema(dict_db)
     return create_acr_min_db(dict_db)
 
 
-def parse_regex_db(regex_db: _TJ, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
+def parse_regex_db(regex_db: Any, acr_db: ACR_DB_T, equal_sized: bool, /) -> CCNO_DB_T:
     return validate_regex_db(_dict_guard(regex_db), acr_db, equal_sized)
 
 
-def parse_catalogue_db(regex_db: _TJ, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
+def parse_catalogue_db(regex_db: Any, acr_db: ACR_DB_T, /) -> CCNO_DB_T:
     return validate_catalogue_db(_dict_guard(regex_db), acr_db)

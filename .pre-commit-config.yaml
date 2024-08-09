@@ -1,7 +1,7 @@
 repos:
 ###################################### Poetry ###################################
 - repo: https://github.com/python-poetry/poetry
-  rev: 1.7.0
+  rev: 1.8.0
   hooks:
   - id: poetry-check
     stages: [pre-commit]
@@ -33,7 +33,7 @@ repos:
 
   ###################################### Default ###################################
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
+  rev: v4.6.0
   hooks:
       # Identify invalid files
   - id: check-ast
@@ -87,14 +87,14 @@ repos:
 
   # python formatter
 - repo: https://github.com/psf/black
-  rev: 23.11.0
+  rev: 24.8.0
   hooks:
   - id: black
     stages: [pre-commit]
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.1.5
+  rev: v0.5.7
   hooks:
   - id: ruff
     stages: [pre-commit]
@@ -111,7 +111,7 @@ repos:
 
   # dead code
 - repo: https://github.com/jendrikseipp/vulture
-  rev: v2.10
+  rev: v2.11
   hooks:
   - id: vulture
     stages: [pre-commit]
@@ -119,7 +119,7 @@ repos:
   ###################################### INI/TOML/YAML ###########################
   # ini formatter
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.11.0
+  rev: v2.14.0
   hooks:
   - id: pretty-format-ini
     args: [--autofix]
@@ -133,7 +133,7 @@ repos:
 
   ###################################### SpellChecker ############################
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.6
+  rev: v2.3.0
   hooks:
   - id: codespell
     additional_dependencies:
@@ -142,14 +142,14 @@ repos:
 
   ###################################### Shell ###################################
 - repo: https://github.com/shellcheck-py/shellcheck-py
-  rev: v0.9.0.6
+  rev: v0.10.0.1
   hooks:
   - id: shellcheck
     stages: [pre-commit]
 
   ###################################### GIT #####################################
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: v3.13.0
+  rev: v3.28.0
   hooks:
   - id: commitizen
     stages: [commit-msg]
