@@ -4,7 +4,8 @@ import re
 from typing import Any, Callable, Final, Sequence, Sized
 from knacr.constants.types import ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T
 
-from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs, url_to_str
+from knacr.container.acr_db import AcrDbEntry, AcrChaT, CatArgs
+from knacr.container.fun.format import url_to_str
 from knacr.errors.custom_exceptions import ValJsonEx
 from pydantic import HttpUrl
 
@@ -88,16 +89,12 @@ _CAT_PRE: Final[Pattern[str]] = re.compile(r"\{pre\}")
 _CAT_CORE: Final[Pattern[str]] = re.compile(r"\{core(:\d+)?\}")
 _CAT_CORE_0: Final[Pattern[str]] = re.compile(r"\{core0(:\d+)?\}")
 _CAT_SUF: Final[Pattern[str]] = re.compile(r"\{suf\}")
-
 _OPT_VAL: Final[Pattern[str]] = re.compile(r"({[^{]+})?<.+?>({.+?})?")
-
 _VALID_URI: Final[Pattern[str]] = re.compile(r"\{([^}]+?)\}")
 _VALID_PAR: Final[set[str]] = {"acr", "id", "pre", "core", "core0", "suf"}
 _VALID_PAR_SUB: Final[set[str]] = {"core", "core0"}
 _ID_SUB: Final[Pattern[str]] = re.compile(r"^(.+?)(:\d+)?$")
 _ID_SEP: Final[Pattern[str]] = re.compile(r"[^A-Za-z0-9]")
-
-
 _LINK: Final[re.Pattern[str]] = re.compile(r"^https?://([^/?]+).*$")
 
 

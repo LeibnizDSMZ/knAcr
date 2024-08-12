@@ -1,7 +1,9 @@
 from collections.abc import Iterable
-from knacr.container.acr_db import AcrDbEntry, CatArgs, url_to_str
+from knacr.container.acr_db import AcrDbEntry, CatArgs
 from knacr.container.fun.acr_db import replace_param_value
 from knacr.container.links import CatalogueLink, LinkLevel
+
+from knacr.container.fun.acr_db import url_to_str
 
 
 def create_catalogue_link(acr_db: AcrDbEntry, args: CatArgs, /) -> Iterable[str]:
