@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from enum import Enum
 import re
 from typing import Annotated, Final, final
-from urllib.parse import unquote_plus
 from pydantic import (
     BaseModel,
     Field,
@@ -15,7 +14,6 @@ from pydantic import (
 from uuid import UUID
 
 _UrlStr = Annotated[HttpUrl, PlainSerializer(lambda val: str(val), return_type=str)]
-
 _UuidStr = Annotated[UUID, PlainSerializer(lambda val: str(val), return_type=str)]
 
 
@@ -25,18 +23,6 @@ def _is_regex(val: str) -> str:
     except re.error as err:
         raise ValueError("Regex has a wrong format") from err
     return val
-
-
-def url_to_str(url: HttpUrl | None, /) -> str:
-    if url is None:
-        return ""
-    return unquote_plus(url.unicode_string())
-
-
-def uuid_to_str(uuid: UUID | None, /) -> str:
-    if uuid is None:
-        return ""
-    return str(uuid)
 
 
 # TODO define more types
@@ -98,9 +84,7 @@ class AcrDbMinEntry(BaseModel):
 
 
 ACR_MIN_CON = TypeAdapter(list[AcrDbMinEntry])
-
 CCNO_DB_CON: Final = TypeAdapter(list[list[Annotated[str, Field(min_length=3)]]])
-
 CCNO_DB_KEYS: Final = TypeAdapter(list[Annotated[str, Field(pattern="^[1-9][0-9]*$")]])
 
 
