@@ -12,4 +12,4 @@ General project descriptions are available [here](about.md).
 
 ## License
 
-More information on the license can be found [here](license.md).
+More information on the license can be found [here](ref_lic.md).
