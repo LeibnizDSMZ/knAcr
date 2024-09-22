@@ -151,7 +151,7 @@ def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
     ) is not None:
         pre, suf = pre_suf.groups()
         _check_pre_suf("prefix", pre[1:], r_id.pre)
-        _check_pre_suf("suffix", suf[0:-2], r_id.suf)
+        _check_pre_suf("suffix", suf[0:-1], r_id.suf)
     else:
         raise ValJsonEx(
             f"regex for id must contain regex for core: {r_id.core} -> {r_id.full}"
