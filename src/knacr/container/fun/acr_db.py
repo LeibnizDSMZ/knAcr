@@ -45,7 +45,7 @@ def _amend_regex_id(acr_db: ACR_DB_T, /) -> ACR_DB_T:
     for acr_id, acr_con in acr_db.items():
         if acr_con.regex_id.core == "":
             buf = remove_empty_dict_keys(acr_con.model_dump())
-            buf.get("regex_id", {})["core"] = acr_con.regex_id.full[1:-2]
+            buf.get("regex_id", {})["core"] = acr_con.regex_id.full[1:-1]
             acr_db[acr_id] = AcrDbEntry(**buf)
     return acr_db
 
