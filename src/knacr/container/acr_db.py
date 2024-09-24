@@ -46,8 +46,8 @@ class AcrCoreReg(BaseModel):
 
     full: Annotated[str, Field(min_length=2), AfterValidator(_is_regex)]
     core: Annotated[str, Field(min_length=2), AfterValidator(_is_regex)] = ""
-    pre: list[Annotated[str, Field(min_length=1)]] = Field(default_factory=list)
-    suf: list[Annotated[str, Field(min_length=1)]] = Field(default_factory=list)
+    pre: Annotated[str, Field(min_length=1), AfterValidator(_is_regex)] = ""
+    suf: Annotated[str, Field(min_length=1), AfterValidator(_is_regex)] = ""
 
 
 @final

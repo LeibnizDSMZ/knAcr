@@ -60,9 +60,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^K-\\d+$",
-      "pre": [
-        "K"
-      ]
+      "pre": "K"
     },
     "ror": "035b05819"
   },
@@ -84,9 +82,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^K-\\d+$",
-      "pre": [
-        "K"
-      ]
+      "pre": "K"
     },
     "ror": "01xtthb56"
   },
@@ -172,12 +168,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^\\d+[ab*]?(i+)?$",
-      "suf": [
-        "a",
-        "b",
-        "*",
-        "i"
-      ]
+      "suf": "[ab*]?(i+)?"
     },
     "ror": "02y5sbr94"
   },
@@ -249,18 +240,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^((B|L|ISP|WC|HD|NRS|S|BD|YB|Y)-)?\\d+$",
-      "pre": [
-        "B",
-        "L",
-        "ISP",
-        "WC",
-        "HD",
-        "NRS",
-        "S",
-        "BD",
-        "YB",
-        "Y"
-      ]
+      "pre": "(B|L|ISP|WC|HD|NRS|S|BD|YB|Y)"
     },
     "ror": "02d2m2044"
   },
@@ -278,13 +258,11 @@
     "gbif": "c77394b6-3c70-40d4-94cc-dfe05ec2cfda",
     "homepage": "https://www.pasteur.fr/en/public-health/biobanks-and-collections/collection-institut-pasteur-cip",
     "name": "Biological Resource Center of Institut Pasteur (CRBIP): Collection of Institut Pasteur",
-    "regex_ccno": "^CIP\\s*[A]?\\d+(\\.\\d+)?$",
+    "regex_ccno": "^CIP\\s*A?\\d+(\\.\\d+)?$",
     "regex_id": {
       "core": "\\d+(\\.\\d+)?",
-      "full": "^[A]?\\d+(\\.\\d+)?$",
-      "pre": [
-        "A"
-      ]
+      "full": "^A?\\d+(\\.\\d+)?$",
+      "pre": "A"
     },
     "ror": "0495fxg12"
   },
@@ -354,13 +332,11 @@
     "gbif": "e53bb055-7348-483f-86c7-5399d6abf4d8",
     "homepage": "https://www.bcrc.firdi.org.tw/en/home/",
     "name": "Bioresource Collection and Research Center",
-    "regex_ccno": "^BCRC\\s*(A)?\\d+$",
+    "regex_ccno": "^BCRC\\s*A?\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^(A)?\\d+$",
-      "pre": [
-        "A"
-      ]
+      "full": "^A?\\d+$",
+      "pre": "A"
     }
   },
   "22": {
@@ -511,18 +487,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^\\d+(\\s*[AaBbCEQDFG]{1,2})?$",
-      "suf": [
-        "A",
-        "a",
-        "B",
-        "b",
-        "C",
-        "E",
-        "Q",
-        "D",
-        "F",
-        "G"
-      ]
+      "suf": "[AaBbCEQDFG]{1,2}"
     }
   },
   "30": {
@@ -650,13 +615,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^[ABCDE]-\\d+$",
-      "pre": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ]
+      "pre": "[ABCDE]"
     },
     "ror": "04b181w54"
   },
@@ -675,10 +634,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^(LB|B)?\\s*\\d+$",
-      "pre": [
-        "LB",
-        "B"
-      ]
+      "pre": "(LB|B)"
     }
   },
   "38": {
@@ -698,9 +654,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^(F-)?\\d+$",
-      "pre": [
-        "F"
-      ]
+      "pre": "F"
     }
   },
   "39": {
@@ -734,14 +688,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^((BAA|TSD|MYA|SD|VR|PTA)-)?\\d+$",
-      "pre": [
-        "BAA",
-        "TSD",
-        "MYA",
-        "SD",
-        "VR",
-        "PTA"
-      ]
+      "pre": "(BAA|TSD|MYA|SD|VR|PTA)"
     },
     "ror": "03thhhv76"
   },
@@ -760,12 +707,7 @@
     "regex_id": {
       "core": "\\d+/\\d+",
       "full": "^\\d+/\\d+[ABCD]?$",
-      "suf": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ]
+      "suf": "[ABCD]"
     }
   },
   "41": {
@@ -809,11 +751,7 @@
     "regex_id": {
       "core": "\\d+([.\\/-]\\d+){0,2}",
       "full": "^\\d+([.\\/-]\\d+){0,2}[Ma-z]?$",
-      "suf": [
-        "M",
-        "a",
-        "z"
-      ]
+      "suf": "[Ma-z]"
     }
   },
   "44": {
@@ -831,11 +769,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^[BYF][.\\s-]\\d+$",
-      "pre": [
-        "B",
-        "Y",
-        "F"
-      ]
+      "pre": "[BYF]"
     }
   },
   "45": {
@@ -889,9 +823,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^B\\d+$",
-      "pre": [
-        "B"
-      ]
+      "pre": "B"
     }
   },
   "48": {
@@ -973,10 +905,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^[BL]\\d+$",
-      "pre": [
-        "B",
-        "L"
-      ]
+      "pre": "[BL]"
     }
   },
   "52": {
@@ -1146,12 +1075,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^(Ac|B|F|Y)-\\d+$",
-      "pre": [
-        "Ac",
-        "B",
-        "F",
-        "Y"
-      ]
+      "pre": "(Ac|B|F|Y)"
     }
   },
   "61": {
@@ -1285,13 +1209,11 @@
     "country": "US",
     "gbif": "9ed8b7bc-0ac6-41d6-b2b5-f9f9f9db7d00",
     "name": "Fungal Genetics Stock Center",
-    "regex_ccno": "^FGSC\\s*[A]?\\d+$",
+    "regex_ccno": "^FGSC\\s*A?\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^[A]?\\d+$",
-      "pre": [
-        "A"
-      ]
+      "full": "^A?\\d+$",
+      "pre": "A"
     }
   },
   "70": {
@@ -1376,9 +1298,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^\\d+(\\s+B)?$",
-      "suf": [
-        "B"
-      ]
+      "suf": "B"
     },
     "ror": "04mz5ra38"
   },
@@ -1573,40 +1493,7 @@
     "regex_id": {
       "core": "\\d+",
       "full": "^(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA|M)?\\s*\\d+$",
-      "pre": [
-        "AF",
-        "AB",
-        "S",
-        "M",
-        "CB",
-        "DB",
-        "GB",
-        "HB",
-        "JB",
-        "KB",
-        "LB",
-        "NB",
-        "WB",
-        "ZB",
-        "CF",
-        "DF",
-        "HF",
-        "KF",
-        "WF",
-        "KY",
-        "WY",
-        "DY",
-        "AY",
-        "HY",
-        "CY",
-        "NY",
-        "KA",
-        "DA",
-        "AA",
-        "HA",
-        "CA",
-        "NA"
-      ]
+      "pre": "(AF|AB|S|CB|DB|GB|HB|JB|KB|LB|NB|WB|ZB|CF|DF|HF|KF|WF|KY|WY|DY|AY|HY|CY|NY|KA|DA|AA|HA|CA|NA|M)"
     }
   },
   "86": {

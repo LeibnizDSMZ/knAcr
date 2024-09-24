@@ -123,22 +123,7 @@ def _check_regex_start_end(reg_full: list[str], reg_part: list[str], /) -> None:
             raise ValJsonEx(f"invalid part regex {reg}")
 
 
-def _check_list_uniqueness(typ: str, con: list[str], /) -> None:
-    if len(set(con)) != len(con):
-        raise ValJsonEx(f"duplicates in {typ} - {con} found")
-
-
-def _check_pre_suf(typ: str, pr_su: str, pr_su_con: list[str], /) -> None:
-    if pr_su != "" and len(pr_su_con) == 0:
-        raise ValJsonEx(f"{typ} defines {pr_su} but given list is empty")
-    for ps_el in pr_su_con:
-        if ps_el not in pr_su:
-            raise ValJsonEx(f"given list for {typ} has unknown element {ps_el}")
-
-
 def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
-    _check_list_uniqueness("prefix", r_id.pre)
-    _check_list_uniqueness("suffix", r_id.suf)
     _check_regex_start_end([r_ccno, r_id.full], [r_id.core, *r_id.pre, *r_id.suf])
     if len(r_id.full) <= 2:
         raise ValJsonEx(f"regex for id must be longer than 2 {r_id.full}")
@@ -146,16 +131,15 @@ def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
         raise ValJsonEx(
             f"regex for ccno must contain regex for id: {r_id.full} -> {r_ccno}"
         )
-    if (
-        pre_suf := re.compile(rf"^(.*){re.escape(r_id.core)}(.*)$").match(r_id.full)
-    ) is not None:
-        pre, suf = pre_suf.groups()
-        _check_pre_suf("prefix", pre[1:], r_id.pre)
-        _check_pre_suf("suffix", suf[0:-1], r_id.suf)
-    else:
+    pre_suf = re.compile(rf"^(.*){re.escape(r_id.core)}(.*)$").match(r_id.full[1:-1])
+    if pre_suf is None or len(pre_suf.groups()) < 2:
         raise ValJsonEx(
             f"regex for id must contain regex for core: {r_id.core} -> {r_id.full}"
         )
+    pre, suf, *_ = pre_suf.groups()
+    for typ, fps, rps in [("prefix", pre, r_id.pre), ("suffix", suf, r_id.suf)]:
+        if not isinstance(fps, str) or rps not in fps or (rps == "" and fps != ""):
+            raise ValJsonEx(f"{typ} defines a different {rps} regex than the full id")
 
 
 def _check_loops(cur: AcrDbEntry, full: ACR_DB_T, ids: set[int], /) -> None:
