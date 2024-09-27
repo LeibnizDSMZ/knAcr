@@ -94,7 +94,7 @@ repos:
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.5.7
+  rev: v0.6.8
   hooks:
   - id: ruff
     stages: [pre-commit]
@@ -111,7 +111,7 @@ repos:
 
   # dead code
 - repo: https://github.com/jendrikseipp/vulture
-  rev: v2.11
+  rev: v2.12
   hooks:
   - id: vulture
     stages: [pre-commit]
@@ -149,7 +149,7 @@ repos:
 
   ###################################### GIT #####################################
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: v3.28.0
+  rev: v3.29.1
   hooks:
   - id: commitizen
     stages: [commit-msg]

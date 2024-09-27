@@ -73,7 +73,7 @@ version = "0.6.1"
 
 [tool.poetry.dependencies]
 pydantic = ">=2.8,<3"
-python = ">=3.11,<4"
+python = ">=3.12,<4"
 requests = ">=2.31,<3"
 
 [tool.poetry.group.dev]
@@ -106,8 +106,6 @@ tox = ">=4.11,<5"
 acr_db = "knacr.main:run"
 
 [tool.ruff]
-# Allow unused variables when underscore-prefixed.
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 exclude = [
   ".git",
   ".mypy_cache",
@@ -120,6 +118,12 @@ exclude = [
   "dist",
   "venv"
 ]
+line-length = 90
+target-version = "py311"
+
+[tool.ruff.lint]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 fixable = [
   "A",
   "B",
@@ -167,18 +171,16 @@ fixable = [
   "YTT"
 ]
 ignore = ["TRY003", "N818"]
-line-length = 90
 select = ["E", "F", "B", "C90", "S", "PT", "ARG", "PTH", "TRY", "RUF", "N"]
-target-version = "py311"
 unfixable = []
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 11
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "**/tests/*" = ["S101"]
 
-[tool.ruff.pylint]
+[tool.ruff.lint.pylint]
 max-args = 8
 
 [tool.vulture]

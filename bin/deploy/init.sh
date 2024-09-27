@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pyv="3.11.2"
+pyv="3.12.6"
 dist="/tmp/build"
 build="$dist/build.tar.gz"
 pyenv="$PYENV_ROOT"

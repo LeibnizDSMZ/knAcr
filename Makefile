@@ -1,5 +1,5 @@
 POETRY = $(HOME)/.local/bin/poetry
-PYV = 3.11
+PYV = 3.12
 
 dev: setup
 	$(POETRY) install --with test,docs,dev

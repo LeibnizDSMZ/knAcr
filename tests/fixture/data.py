@@ -4,19 +4,19 @@ import pytest
 from knacr import data
 
 
-@pytest.fixture()
+@pytest.fixture
 def load_fix_acr_db() -> bytes:
     with resources.files(data).joinpath("acr_db.json").open("rb") as fhd:
         return fhd.read()
 
 
-@pytest.fixture()
+@pytest.fixture
 def load_fix_regex_db() -> bytes:
     with resources.files(data).joinpath("regex_db.json").open("rb") as fhd:
         return fhd.read()
 
 
-@pytest.fixture()
+@pytest.fixture
 def load_fix_catalogue_db() -> bytes:
     with resources.files(data).joinpath("catalogue_db.json").open("rb") as fhd:
         return fhd.read()
@@ -36,11 +36,11 @@ def _get_data_from_main_branch(data_name: str, /) -> bytes:
     return out.encode("utf-8")
 
 
-@pytest.fixture()
+@pytest.fixture
 def load_fix_min_main_acr_db() -> bytes:
     return _get_data_from_main_branch("acr_db")
 
 
-@pytest.fixture()
+@pytest.fixture
 def load_fix_main_regex_db() -> bytes:
     return _get_data_from_main_branch("regex_db")
