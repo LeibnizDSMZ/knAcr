@@ -1,7 +1,7 @@
 from functools import reduce
 from importlib import resources
 import json
-from typing import Any, Callable, ParamSpec, TypeVar
+from typing import Any, Callable
 import warnings
 
 import requests
@@ -24,11 +24,9 @@ def _load_data_from_file(db_name: str, /) -> bytes:
         return fhd.read()
 
 
-_T = TypeVar("_T", ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
-_P = ParamSpec("_P")
-
-
-def _load_data(version: str, db_name: str, create: Callable[[Any], _T], /) -> _T:
+def _load_data[
+    T: (ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
+](version: str, db_name: str, create: Callable[[Any], T], /) -> T:
     knacr = "https://raw.githubusercontent.com/StrainInfo/knAcr"
     req = f"{knacr}/{version}/src/knacr/data/{db_name}.json"
     if version == CURRENT_VER:
@@ -42,8 +40,10 @@ def _load_data(version: str, db_name: str, create: Callable[[Any], _T], /) -> _T
         raise ReqURIEx(f"Could not get {req}")
 
 
-def _catch_expected_err(loader: Callable[_P, _T]) -> Callable[_P, _T]:
-    def load_f(*args: _P.args, **kwargs: _P.kwargs) -> _T:
+def _catch_expected_err[
+    **P, T: (ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
+](loader: Callable[P, T]) -> Callable[P, T]:
+    def load_f(*args: P.args, **kwargs: P.kwargs) -> T:
         version = reduce(lambda v_1, v_2: v_1 if isinstance(v_1, str) else v_2, args)
         try:
             return loader(*args, **kwargs)

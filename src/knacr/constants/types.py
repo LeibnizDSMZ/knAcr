@@ -1,8 +1,6 @@
-from typing import TypeAlias
-
 from knacr.container.acr_db import AcrDbEntry
 
 
-ACR_DB_T: TypeAlias = dict[int, AcrDbEntry]
-ACR_MIN_DB_T: TypeAlias = dict[int, tuple[str, bool]]
-CCNO_DB_T: TypeAlias = dict[int, list[str]]
+type ACR_DB_T = dict[int, AcrDbEntry]
+type ACR_MIN_DB_T = dict[int, tuple[str, bool]]
+type CCNO_DB_T = dict[int, list[str]]
