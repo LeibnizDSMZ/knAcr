@@ -33,7 +33,7 @@ repos:
 
   ###################################### Default ###################################
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.6.0
+  rev: v5.0.0
   hooks:
       # Identify invalid files
   - id: check-ast
@@ -87,14 +87,14 @@ repos:
 
   # python formatter
 - repo: https://github.com/psf/black
-  rev: 24.8.0
+  rev: 24.10.0
   hooks:
   - id: black
     stages: [pre-commit]
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.6.8
+  rev: v0.7.0
   hooks:
   - id: ruff
     stages: [pre-commit]
@@ -111,7 +111,7 @@ repos:
 
   # dead code
 - repo: https://github.com/jendrikseipp/vulture
-  rev: v2.12
+  rev: v2.13
   hooks:
   - id: vulture
     stages: [pre-commit]

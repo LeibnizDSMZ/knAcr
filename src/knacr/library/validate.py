@@ -1,4 +1,4 @@
-from typing import Any, Callable, Final, TypeAlias
+from typing import Any, Callable, Final
 import re
 
 from pydantic import ValidationError
@@ -19,8 +19,8 @@ from knacr.errors.custom_exceptions import ValJsonEx
 
 _ACR: Final[re.Pattern[str]] = re.compile("^[A-Z:]+$")
 _ACR_SPL: Final[re.Pattern[str]] = re.compile(":")
-_UNIQUE_GEN: TypeAlias = tuple[str, str, str, str]
-_UNIQUE_GID: TypeAlias = tuple[str, str, str]
+type _UNIQUE_GEN = tuple[str, str, str, str]
+type _UNIQUE_GID = tuple[str, str, str]
 
 
 def _check_unique_gen(unique: set[_UNIQUE_GEN], acr_db: AcrDbEntry, /) -> _UNIQUE_GEN:
