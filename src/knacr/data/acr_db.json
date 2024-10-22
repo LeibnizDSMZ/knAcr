@@ -1668,12 +1668,12 @@
     "acr": "CAIM",
     "active": true,
     "catalogue": [
-      "https://www.ciad.mx/caim/busqueda.php?searchtype=CAIM&criterio={id}"
+      "https://caim.ciad.mx/details/{acr} {id}"
     ],
     "code": "CAIM",
     "country": "MX",
     "gbif": "e8cb76fc-2a7c-462d-b9f0-5f7f4728a779",
-    "homepage": "https://www.ciad.mx/caim/CAIM.html",
+    "homepage": "https://caim.ciad.mx",
     "name": "Center of Research for Nutrition and Development: Collection of Aquacultural Important Microorganisms",
     "regex_ccno": "^CAIM\\s*\\d+$",
     "regex_id": {
