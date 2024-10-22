@@ -851,7 +851,7 @@
     "code": "NCIM",
     "country": "IN",
     "gbif": "42f0bb66-a318-4b1e-800d-2f075a03060b",
-    "homepage": "https://www.ncl-india.org/files/NCIM/Default.aspx",
+    "homepage": "https://www.ncl-india.org/files/NCIM",
     "name": "National Collection of Industrial Microorganisms",
     "regex_ccno": "^NCIM\\s*[*]{0,2}\\d+$",
     "regex_id": {
@@ -1690,7 +1690,6 @@
     "code": "YU:CGSC",
     "country": "US",
     "gbif": "0d56526b-f406-473d-bf65-7532d4d06d1d",
-    "homepage": "https://cgsc.biology.yale.edu",
     "name": "The Coli Genetic Stock Center",
     "regex_ccno": "^CGSC\\s*\\d+$",
     "regex_id": {
