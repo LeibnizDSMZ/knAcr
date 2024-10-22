@@ -13,8 +13,8 @@ from pydantic import (
 )
 from uuid import UUID
 
-_UrlStr = Annotated[HttpUrl, PlainSerializer(lambda val: str(val), return_type=str)]
-_UuidStr = Annotated[UUID, PlainSerializer(lambda val: str(val), return_type=str)]
+type _UrlStr = Annotated[HttpUrl, PlainSerializer(lambda val: str(val), return_type=str)]
+type _UuidStr = Annotated[UUID, PlainSerializer(lambda val: str(val), return_type=str)]
 
 
 def _is_regex(val: str) -> str:

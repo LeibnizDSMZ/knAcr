@@ -17,8 +17,9 @@ from knacr.container.fun.format import url_to_str, uuid_to_str
 from knacr.errors.custom_exceptions import ValJsonEx
 
 
-_ACR: Final[re.Pattern[str]] = re.compile("^[A-Z:]+$")
-_ACR_SPL: Final[re.Pattern[str]] = re.compile(":")
+_ACR: Final[re.Pattern[str]] = re.compile(r"^[A-Z:]+$")
+_ACR_SPL: Final[re.Pattern[str]] = re.compile(r":")
+_CORE_ID: Final[re.Pattern[str]] = re.compile(r"^\d+(\D\d+)*$")
 type _UNIQUE_GEN = tuple[str, str, str, str]
 type _UNIQUE_GID = tuple[str, str, str]
 
@@ -136,7 +137,7 @@ def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
         raise ValJsonEx(
             f"regex for id must contain regex for core: {r_id.core} -> {r_id.full}"
         )
-    pre, suf, *_ = pre_suf.groups()
+    pre, *_, suf = pre_suf.groups()
     for typ, fps, rps in [("prefix", pre, r_id.pre), ("suffix", suf, r_id.suf)]:
         if not isinstance(fps, str) or rps not in fps or (rps == "" and fps != ""):
             raise ValJsonEx(f"{typ} defines a different {rps} regex than the full id")
@@ -173,7 +174,16 @@ def _check_malformed_list(reg_db: CCNO_DB_T, /) -> None:
 def _apply_regex(acr_id: int, acr_con: AcrDbEntry, ccnos: list[str], /) -> None:
     reg_ccno = re.compile(acr_con.regex_ccno)
     reg_ccno_id = re.compile(acr_con.regex_id.full[1:])
+    reg_core_id = re.compile(rf"^.*?({acr_con.regex_id.core}).*$")
     for ccno in ccnos:
+        core_id_m = reg_core_id.match(ccno)
+        if core_id_m is None:
+            raise ValJsonEx(f"CCNo {ccno} contains a invalid core id - {acr_id}")
+        core_id, *_ = core_id_m.groups()
+        if not isinstance(core_id, str) or _CORE_ID.match(core_id) is None:
+            raise ValJsonEx(
+                f"CCNo {ccno} contains a invalid core id [{core_id}] - {acr_id}"
+            )
         if reg_ccno.match(ccno) is None:
             raise ValJsonEx(
                 f"CCNo {ccno} does not match the default ccno regex - ID {acr_id}"
