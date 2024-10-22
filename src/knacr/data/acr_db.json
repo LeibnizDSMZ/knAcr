@@ -576,7 +576,9 @@
     "name": "National Collection of Pathogenic Viruses",
     "regex_ccno": "^NCPV\\s*\\d+v$",
     "regex_id": {
-      "full": "^\\d+v$"
+      "core": "\\d+",
+      "full": "^\\d+v$",
+      "suf": "v"
     },
     "ror": "018h10037"
   },
@@ -804,7 +806,6 @@
     "name": "Culture Collection of Marine Phytoplankton",
     "regex_ccno": "^CCMP\\s*\\d+$",
     "regex_id": {
-      "core": "\\d+",
       "full": "^\\d+$"
     }
   },
