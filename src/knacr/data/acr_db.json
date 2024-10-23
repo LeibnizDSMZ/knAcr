@@ -1669,7 +1669,8 @@
     "acr": "CAIM",
     "active": true,
     "catalogue": [
-      "https://caim.ciad.mx/details/{acr} {id}"
+      "https://caim.ciad.mx/details/{acr} {id}",
+      "https://caim.ciad.mx/details/{acr} {id}T"
     ],
     "code": "CAIM",
     "country": "MX",
