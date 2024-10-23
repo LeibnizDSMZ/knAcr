@@ -27,7 +27,7 @@ def _load_data_from_file(db_name: str, /) -> bytes:
 def _load_data[
     T: (ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
 ](version: str, db_name: str, create: Callable[[Any], T], /) -> T:
-    knacr = "https://raw.githubusercontent.com/StrainInfo/knAcr"
+    knacr = "https://raw.githubusercontent.com/LeibnizDSMZ/knAcr"
     req = f"{knacr}/{version}/src/knacr/data/{db_name}.json"
     if version == CURRENT_VER:
         print("[KnAcr] loading from local file")
