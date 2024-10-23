@@ -68,7 +68,7 @@ license = "MIT"
 name = "knacr"
 packages = [{include = "knacr", from = "src"}]
 readme = "README.md"
-repository = "https://github.com/StrainInfo/knAcr"
+repository = "https://github.com/LeibnizDSMZ/knAcr"
 version = "0.6.1"
 
 [tool.poetry.dependencies]
