@@ -20,6 +20,8 @@ from knacr.errors.custom_exceptions import ValJsonEx
 _ACR: Final[re.Pattern[str]] = re.compile(r"^[A-Z:]+$")
 _ACR_SPL: Final[re.Pattern[str]] = re.compile(r":")
 _CORE_ID: Final[re.Pattern[str]] = re.compile(r"^\d+(\D\d+)*$")
+_CL_REGEX: Final[re.Pattern[str]] = re.compile(r"[()\][]")
+
 type _UNIQUE_GEN = tuple[str, str, str, str]
 type _UNIQUE_GID = tuple[str, str, str]
 
@@ -124,7 +126,20 @@ def _check_regex_start_end(reg_full: list[str], reg_part: list[str], /) -> None:
             raise ValJsonEx(f"invalid part regex {reg}")
 
 
-def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
+def _check_or_order(regex: str, bid: int, /) -> None:
+    if "|" in regex:
+        cl_reg = _CL_REGEX.sub("", regex)
+        ors = cl_reg.split("|")
+        for cnt, or_ch in enumerate(ors):
+            for com_ch in ors[cnt + 1 :]:
+                if com_ch.startswith(or_ch):
+                    raise ValJsonEx(
+                        f"regex for collection {bid} has a smaller"
+                        f" substring before the longer string {or_ch} - {regex}"
+                    )
+
+
+def _check_regex(r_ccno: str, r_id: AcrCoreReg, bid: int, /) -> None:
     _check_regex_start_end([r_ccno, r_id.full], [r_id.core, *r_id.pre, *r_id.suf])
     if len(r_id.full) <= 2:
         raise ValJsonEx(f"regex for id must be longer than 2 {r_id.full}")
@@ -141,6 +156,8 @@ def _check_regex(r_ccno: str, r_id: AcrCoreReg, /) -> None:
     for typ, fps, rps in [("prefix", pre, r_id.pre), ("suffix", suf, r_id.suf)]:
         if not isinstance(fps, str) or rps not in fps or (rps == "" and fps != ""):
             raise ValJsonEx(f"{typ} defines a different {rps} regex than the full id")
+    _check_or_order(r_id.suf, bid)
+    _check_or_order(r_id.pre, bid)
 
 
 def _check_loops(cur: AcrDbEntry, full: ACR_DB_T, ids: set[int], /) -> None:
@@ -208,7 +225,7 @@ def _validate_acr_db_dc(acr_db: ACR_DB_T, /) -> None:
         )
         _check_db_composition(acr_con, acr_db)
         _check_acr(acr_con.acr)
-        _check_regex(acr_con.regex_ccno, acr_con.regex_id)
+        _check_regex(acr_con.regex_ccno, acr_con.regex_id, acr_id)
         _check_acr_in_reg(acr_con.acr, acr_con.regex_ccno)
         _check_loops(acr_con, acr_db, {acr_id})
 

@@ -236,11 +236,11 @@
     "gbif": "e1666b1f-f017-4a8f-8d98-a675360bed6e",
     "homepage": "https://nrrl.ncaur.usda.gov/",
     "name": "USDA Agricultural Research Service (ARS): Culture Collection (NRRL)",
-    "regex_ccno": "^NRRL\\s*((B|L|ISP|WC|HD|NRS|S|BD|YB|Y)-)?\\d+$",
+    "regex_ccno": "^NRRL\\s*((L|ISP|WC|HD|NRS|S|BD|B|YB|Y)-)?\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^((B|L|ISP|WC|HD|NRS|S|BD|YB|Y)-)?\\d+$",
-      "pre": "(B|L|ISP|WC|HD|NRS|S|BD|YB|Y)"
+      "full": "^((L|ISP|WC|HD|NRS|S|BD|B|YB|Y)-)?\\d+$",
+      "pre": "(L|ISP|WC|HD|NRS|S|BD|B|YB|Y)"
     },
     "ror": "02d2m2044"
   },
