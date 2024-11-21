@@ -164,10 +164,10 @@
     "gbif": "66fa41cc-3c2d-42b1-9840-e4f097e38393",
     "homepage": "https://www.cabi.org/",
     "name": "CABI (Centre for Agriculture and Biosciences International): Genetic Resource Collection",
-    "regex_ccno": "^IMI\\s*\\d+[ab*]?(i+)?$",
+    "regex_ccno": "^IMI\\s*\\d+\\s*[ab*]?(i+)?$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^\\d+[ab*]?(i+)?$",
+      "full": "^\\d+\\s*[ab*]?(i+)?$",
       "suf": "[ab*]?(i+)?"
     },
     "ror": "02y5sbr94"
@@ -574,10 +574,10 @@
     "gbif": "292973d5-0aec-41d0-95ab-2b9632d4b8d6",
     "homepage": "https://www.culturecollections.org.uk/",
     "name": "National Collection of Pathogenic Viruses",
-    "regex_ccno": "^NCPV\\s*\\d+v$",
+    "regex_ccno": "^NCPV\\s*\\d+\\s*v$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^\\d+v$",
+      "full": "^\\d+\\s*v$",
       "suf": "v"
     },
     "ror": "018h10037"
@@ -705,10 +705,10 @@
     "gbif": "2d644377-7e04-4aa2-8bea-17f9b2014f25",
     "homepage": "https://www.ccap.ac.uk/catalogue/",
     "name": "Culture Collection of Algae and Protozoa",
-    "regex_ccno": "^CCAP\\s*\\d+/\\d+[ABCDGHFJITKRNEMQPSWZY]?$",
+    "regex_ccno": "^CCAP\\s*\\d+/\\d+\\s*[ABCDGHFJITKRNEMQPSWZY]?$",
     "regex_id": {
       "core": "\\d+/\\d+",
-      "full": "^\\d+/\\d+[ABCDGHFJITKRNEMQPSWZY]?$",
+      "full": "^\\d+/\\d+\\s*[ABCDGHFJITKRNEMQPSWZY]?$",
       "suf": "[ABCDGHFJITKRNEMQPSWZY]"
     }
   },
@@ -749,10 +749,10 @@
     "gbif": "e635ed6d-ff83-4253-addf-ddf6e817a6ce",
     "homepage": "https://sammlungen.uni-goettingen.de/sammlung/slg_1007/",
     "name": "Culture Collection of Algae at the University of Goettingen",
-    "regex_ccno": "^SAG\\s*\\d+([.\\/-]\\d+){0,2}[Ma-z]?$",
+    "regex_ccno": "^SAG\\s*\\d+([.\\/-]\\d+){0,2}\\s*[Ma-z]?$",
     "regex_id": {
       "core": "\\d+([.\\/-]\\d+){0,2}",
-      "full": "^\\d+([.\\/-]\\d+){0,2}[Ma-z]?$",
+      "full": "^\\d+([.\\/-]\\d+){0,2}\\s*[Ma-z]?$",
       "suf": "[Ma-z]"
     }
   },
@@ -1295,10 +1295,10 @@
     "gbif": "1eedb41b-d9d3-4d7a-871b-874f0e18afc0",
     "homepage": "https://www.uni-due.de/biology/ccac/",
     "name": "University of Duisburg-Essen (UDE): Central Collection of Algal Cultures",
-    "regex_ccno": "^CCAC\\s*\\d+(\\s+B)?$",
+    "regex_ccno": "^CCAC\\s*\\d+(\\s*B)?$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^\\d+(\\s+B)?$",
+      "full": "^\\d+(\\s*B)?$",
       "suf": "B"
     },
     "ror": "04mz5ra38"
