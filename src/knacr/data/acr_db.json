@@ -258,10 +258,10 @@
     "gbif": "c77394b6-3c70-40d4-94cc-dfe05ec2cfda",
     "homepage": "https://www.pasteur.fr/en/public-health/biobanks-and-collections/collection-institut-pasteur-cip",
     "name": "Biological Resource Center of Institut Pasteur (CRBIP): Collection of Institut Pasteur",
-    "regex_ccno": "^CIP\\s*A?\\d+(\\.\\d+)?$",
+    "regex_ccno": "^CIP\\s*A?\\s*\\d+(\\.\\d+)?$",
     "regex_id": {
       "core": "\\d+(\\.\\d+)?",
-      "full": "^A?\\d+(\\.\\d+)?$",
+      "full": "^A?\\s*\\d+(\\.\\d+)?$",
       "pre": "A"
     },
     "ror": "0495fxg12"
@@ -332,10 +332,10 @@
     "gbif": "e53bb055-7348-483f-86c7-5399d6abf4d8",
     "homepage": "https://www.bcrc.firdi.org.tw/en/home/",
     "name": "Bioresource Collection and Research Center",
-    "regex_ccno": "^BCRC\\s*A?\\d+$",
+    "regex_ccno": "^BCRC\\s*A?\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^A?\\d+$",
+      "full": "^A?\\s*\\d+$",
       "pre": "A"
     }
   },
@@ -820,10 +820,10 @@
     "gbif": "501449a3-a24c-4454-9669-3a3a888a7a48",
     "homepage": "https://ncma.bigelow.org/",
     "name": "Provasoli-Guillard National Center for Marine Algae and Microbiota",
-    "regex_ccno": "^NCMA\\s*B\\d+$",
+    "regex_ccno": "^NCMA\\s*B\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^B\\d+$",
+      "full": "^B\\s*\\d+$",
       "pre": "B"
     }
   },
@@ -902,10 +902,10 @@
     "gbif": "20029597-8cfa-439e-a4c5-d2597fec7ac4",
     "homepage": "https://www.ccmm.ma/",
     "name": "Moroccan Coordinated Collections of Microorganisms",
-    "regex_ccno": "^CCMM\\s*[BL]\\d+$",
+    "regex_ccno": "^CCMM\\s*[BL]\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^[BL]\\d+$",
+      "full": "^[BL]\\s*\\d+$",
       "pre": "[BL]"
     }
   },
@@ -1210,10 +1210,10 @@
     "country": "US",
     "gbif": "9ed8b7bc-0ac6-41d6-b2b5-f9f9f9db7d00",
     "name": "Fungal Genetics Stock Center",
-    "regex_ccno": "^FGSC\\s*A?\\d+$",
+    "regex_ccno": "^FGSC\\s*A?\\s*\\d+$",
     "regex_id": {
       "core": "\\d+",
-      "full": "^A?\\d+$",
+      "full": "^A?\\s*\\d+$",
       "pre": "A"
     }
   },
