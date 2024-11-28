@@ -1,10 +1,10 @@
 import re
 from urllib.parse import unquote_plus
 from uuid import UUID
-from pydantic import HttpUrl
+from pydantic_core import Url
 
 
-def url_to_str(url: HttpUrl | None, /) -> str:
+def url_to_str(url: Url | None, /) -> str:
     if url is None:
         return ""
     return unquote_plus(url.unicode_string())
