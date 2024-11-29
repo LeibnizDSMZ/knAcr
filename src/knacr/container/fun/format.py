@@ -1,10 +1,14 @@
 import re
+from typing import Protocol
 from urllib.parse import unquote_plus
 from uuid import UUID
-from pydantic_core import Url
 
 
-def url_to_str(url: Url | None, /) -> str:
+class _URLlike(Protocol):
+    def unicode_string(self) -> str: ...
+
+
+def url_to_str(url: _URLlike | None, /) -> str:
     if url is None:
         return ""
     return unquote_plus(url.unicode_string())
