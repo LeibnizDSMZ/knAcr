@@ -35,7 +35,7 @@
     "country": "BE",
     "gbif": "28b36aa2-3932-4ae9-81fb-c1e9ad12b459",
     "name": "Belgian Coordinated Collections of Microorganisms: ITM - Mycobacteria Collection",
-    "regex_ccno": "^ITM\\s*\\d+$",
+    "regex_ccno": "^ITM[\\s-]?\\d+$",
     "regex_id": {
       "full": "^\\d+$"
     }
