@@ -1,23 +1,32 @@
 repos:
 ###################################### Poetry ###################################
 - repo: https://github.com/python-poetry/poetry
-  rev: 1.8.0
+  rev: 2.0.1
   hooks:
   - id: poetry-check
-    stages: [pre-commit]
-  - id: poetry-export
-    args: [-f, requirements.txt, -o, requirements.txt]
-    stages: [pre-commit]
-  - id: poetry-export
-    args: [--only=dev, -f, requirements.txt, -o, configs/dev/requirements.dev.txt]
-    stages: [pre-commit]
-  - id: poetry-export
-    args: [--only=test, -f, requirements.txt, -o, configs/dev/requirements.test.txt]
     stages: [pre-commit]
 
   ###################################### Local ####################################
 - repo: local
   hooks:
+  - id: poetry-export
+    name: poetry-export
+    entry: bash -c 'poetry export -f requirements.txt -o requirements.txt'
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]
+  - id: poetry-export
+    name: poetry-export dev
+    entry: bash -c 'poetry export --only=dev -f requirements.txt -o configs/dev/requirements.dev.txt'
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]
+  - id: poetry-export
+    name: poetry-export test
+    entry: bash -c 'poetry export --only=test -f requirements.txt -o configs/dev/requirements.test.txt'
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]
   - id: tox
     name: tox test
     entry: bash -c 'make runTests'
@@ -94,7 +103,7 @@ repos:
 
   # ruff linter
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.7.0
+  rev: v0.9.1
   hooks:
   - id: ruff
     stages: [pre-commit]
@@ -111,7 +120,7 @@ repos:
 
   # dead code
 - repo: https://github.com/jendrikseipp/vulture
-  rev: v2.13
+  rev: v2.14
   hooks:
   - id: vulture
     stages: [pre-commit]
@@ -149,7 +158,7 @@ repos:
 
   ###################################### GIT #####################################
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: v3.29.1
+  rev: v4.1.0
   hooks:
   - id: commitizen
     stages: [commit-msg]

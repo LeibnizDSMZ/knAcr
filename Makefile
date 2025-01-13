@@ -20,7 +20,6 @@ setup:
 	pyenv install $(PYV) -s
 	pyenv local $(PYV)
 	curl -sSL https://install.python-poetry.org | python3 -
-	python3 -m pip install poetry-plugin-export
 	$(POETRY) env remove --all
 	$(POETRY) config virtualenvs.in-project true
 	$(POETRY) env use `pyenv which python`
