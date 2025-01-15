@@ -87,7 +87,6 @@ optional = true
 [tool.poetry.group.dev.dependencies]
 commitizen = ">=4.1,<5"
 mypy = ">=1.14,<2"
-types-requests = ">=2.32,<3"
 ruff = ">=0.9,<1"
 black = ">=24.10,<25"
 codespell = ">=2.3,<3"
@@ -95,6 +94,8 @@ shellcheck-py = ">=0.10,<1"
 pre-commit-hooks = ">=5.0,<6"
 # commit hooks
 lefthook = ">=1.10,<2"
+# types
+types-requests = ">=2.32,<3"
 
 [tool.poetry.group.docs]
 optional = true
