@@ -4,7 +4,7 @@ version = "0.6.1"
 description = """This project acts as a registry for \
 biological resource centers (BRC) used acronyms."""
 readme = "README.md"
-authors = [{ name = "Artur Lissin", email = "artdotlis@pm.me" }]
+authors = [{ name = "Artur Lissin", email = "artur.lissin@dsmz.de" }]
 license = "MIT"
 keywords = ["python", "data", "brc", "acronym"]
 repository = "https://github.com/LeibnizDSMZ/knAcr"
