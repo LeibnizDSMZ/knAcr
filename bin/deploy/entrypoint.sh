@@ -1,3 +1,3 @@
 #!/bin/bash
 
-main_run
+acr_db
