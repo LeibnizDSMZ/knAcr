@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.13']
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -35,10 +35,10 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Python 3.12
+    - name: Set up Python 3.13
       uses: actions/setup-python@v3
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install dependencies
       run: |
         sudo mkdir -p $CU_HOME && sudo chown runner -R $CU_HOME

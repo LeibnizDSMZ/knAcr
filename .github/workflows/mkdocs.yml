@@ -21,10 +21,10 @@ jobs:
       CU_HOME: /home/custom
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Python 3.12
+    - name: Set up Python 3.13
       uses: actions/setup-python@v3
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install dependencies
       run: |
         sudo mkdir -p $CU_HOME && sudo chown runner -R $CU_HOME
