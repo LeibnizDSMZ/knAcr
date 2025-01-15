@@ -851,7 +851,7 @@
     "code": "NCIM",
     "country": "IN",
     "gbif": "42f0bb66-a318-4b1e-800d-2f075a03060b",
-    "homepage": "https://www.ncl-india.org/files/NCIM",
+    "homepage": "https://www.ncl-india.org/files/NCIM/",
     "name": "National Collection of Industrial Microorganisms",
     "regex_ccno": "^NCIM\\s*[*]{0,2}\\d+$",
     "regex_id": {
