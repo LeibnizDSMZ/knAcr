@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pyv="3.13.0"
+pyv="3.13.1"
 dist="/tmp/build"
 build="$dist/build.tar.gz"
 
