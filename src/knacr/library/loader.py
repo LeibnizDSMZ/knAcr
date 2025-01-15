@@ -1,4 +1,3 @@
-from functools import reduce
 from importlib import resources
 import json
 from typing import Any, Callable
@@ -44,7 +43,13 @@ def _catch_expected_err[
     **P, T: (ACR_DB_T, ACR_MIN_DB_T, CCNO_DB_T)
 ](loader: Callable[P, T]) -> Callable[P, T]:
     def load_f(*args: P.args, **kwargs: P.kwargs) -> T:
-        version = reduce(lambda v_1, v_2: v_1 if isinstance(v_1, str) else v_2, args)
+        version = CURRENT_VER
+        if len(args) > 0:
+            v_1, v_2, *_ = args
+            if isinstance(v_1, str):
+                version = v_1
+            elif isinstance(v_2, str):
+                version = v_2
         try:
             return loader(*args, **kwargs)
         except (ReqURIEx, ValJsonEx):
