@@ -33,7 +33,7 @@
   ],
   "name": "knacr",
   "postAttachCommand": "make dev",
-  "remoteUser": "vscode",
+  "remoteUser": "devu",
   "runServices": [
     "dev"
   ],
