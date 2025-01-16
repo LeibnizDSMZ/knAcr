@@ -195,3 +195,39 @@ max-complexity = 11
 
 [tool.ruff.lint.pylint]
 max-args = 8
+
+[tool.tox]
+requires = ["tox>=4.23"]
+
+[tool.tox.env_run_base]
+allowlist_externals = ["coverage"]
+commands = [
+  [
+    "coverage",
+    "erase",
+  ],
+  [
+    "coverage",
+    "run",
+    "--parallel-mode",
+    "-m",
+    "pytest",
+    "{posargs}",
+  ],
+  [
+    "coverage",
+    "combine",
+  ],
+  [
+    "coverage",
+    "report",
+  ],
+]
+
+[tool.coverage.run]
+source = ["knacr"]
+parallel = true
+
+[tool.coverage.report]
+show_missing = false
+fail_under = 50
