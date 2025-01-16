@@ -44,12 +44,13 @@ def _catch_expected_err[
 ](loader: Callable[P, T]) -> Callable[P, T]:
     def load_f(*args: P.args, **kwargs: P.kwargs) -> T:
         version = CURRENT_VER
-        if len(args) > 0:
-            v_1, v_2, *_ = args
+        if len(args) > 0 and isinstance(args, list):
+            v_2: list[Any]
+            v_1, *v_2 = args
             if isinstance(v_1, str):
                 version = v_1
-            elif isinstance(v_2, str):
-                version = v_2
+            elif len(v_2) > 0 and isinstance(v_2[0], str):
+                version = v_2[0]
         try:
             return loader(*args, **kwargs)
         except (ReqURIEx, ValJsonEx):
