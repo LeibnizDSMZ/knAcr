@@ -3,6 +3,8 @@ output:
 pre-commit:
   parallel: true
   commands:
+    tox:
+      run: tox
     mypy:
       glob: "*.py"
       run: mypy {staged_files}
@@ -66,7 +68,7 @@ pre-commit:
       run: mixed-line-ending -f auto {staged_files}
       stage_fixed: true
     trailing-whitespace:
-      run: trailing-whitespace-fixer --markdown-linebreak-ext=md {staged_files}
+      run: trailing-whitespace-fixer --markdown-linebreak-ext=md {staged_files} || echo "fixed whitespaces"
       stage_fixed: true
     end-of-file:
       exclude: requirements(.*)?.txt
