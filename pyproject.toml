@@ -1,6 +1,6 @@
 [project]
 name = "knacr"
-version = "0.6.1"
+version = "0.7.0"
 description = """This project acts as a registry for \
 biological resource centers (BRC) used acronyms."""
 readme = "README.md"
