@@ -1,3 +1,52 @@
+## v0.7.0 (2025-01-17)
+
+### Feat
+
+- add ITM- CCNo structure
+- add more valid suffix to ccap
+- add T catalogue link to CAIM
+- add core id verification
+- update caim links
+- move to regex in pre and suf
+- migrate to pydantic
+- remove ptcc homepage due to timeout
+- readd caim and remove fgsc
+- disable kccm and caim websites
+- add domain checks for catalogues
+- update links and add multiple catalogue links support
+
+### Fix
+
+- fix unpack error
+- change init to init_py
+- change main_run entrypoint to acr_db
+- correct main call with default variables
+- correct url for ncim homepage
+- add prefix suffix regex or order checks
+- update caim catalogue ccno
+- add missing core regex and remove redundant one
+- correct suffix prefix regex
+- change CDBB link protocol
+- update collection links
+- update UKHSA links
+
+### Refactor
+
+- update pyproject.toml structure for dependencies
+- improve lefthook
+- add comments to dev types
+- change author mail
+- update license
+- use protocol for url_to_str
+- move to url instead of http_url
+- add optional spaces after prefix
+- add optional spaces before suffix
+- change ncim homepage
+- move to new generics and type structure
+- improve readme badges
+- add missing __init__.py
+- move functions from container module
+
 ## v0.6.1 (2024-01-25)
 
 ### Fix
