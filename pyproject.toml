@@ -8,6 +8,11 @@ authors = [{ name = "Artur Lissin", email = "artur.lissin@dsmz.de" }]
 license = "MIT"
 keywords = ["python", "data", "brc", "acronym"]
 repository = "https://github.com/LeibnizDSMZ/knAcr"
+requires-python = ">=3.13,<4"
+dependencies = [
+  "pydantic >=2.10,<3",
+  "requests >=2.32,<3"
+]
 
 [project.scripts]
 acr_db = "knacr.main:run"
@@ -75,11 +80,6 @@ warn_unused_ignores = true
 [tool.poetry]
 include = ["src/knacr/data/*", "src/knacr/py.typed"]
 packages = [{ include = "knacr", from = "src" }]
-
-[tool.poetry.dependencies]
-pydantic = ">=2.10,<3"
-python = ">=3.13,<4"
-requests = ">=2.32,<3"
 
 [tool.poetry.group.dev]
 optional = true
